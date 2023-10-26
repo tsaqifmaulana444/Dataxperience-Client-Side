@@ -9,7 +9,7 @@ import Profile from "../../images/blank_profile.jpeg"
 export default function AdminNavbar() {
     return (
         <div className="bg-[#FFFFFF] w-full h-[10vh] flex">
-            <input type="text" className="bg-[#d1d4dd] rounded-md w-[20vw] h-[6vh] mt-3.5 ml-[3vw]" />
+            <input type="text" className="bg-[#dddfe4] rounded-md w-[20vw] h-[6vh] mt-3.5 ml-[3vw] pl-[1vw]" placeholder='Search'/>
             <div className="flex ml-[27vw] w-[27vw] justify-between my-auto">
                 <FontAwesomeIcon icon={faCircleHalfStroke} style={{ color: "#d1d4dd" }} size="xl" className="my-auto" />
                 <FontAwesomeIcon icon={faMessage} style={{ color: "#d1d4dd" }} size="xl" className="my-auto" />

@@ -28,7 +28,7 @@ export default function AdminSideBar() {
                     <div className="px-2 py-1.5 rounded-md">
                         <FontAwesomeIcon icon={faNewspaper} style={{ color: "#ffffff" }} />
                     </div>
-                    <p className="text-[14px] font-semibold my-auto ml-[0.7vw]">News Paper</p>
+                    <p className="text-[14px] font-semibold my-auto ml-[0.7vw]">News Page</p>
                 </div>
                 <div className="flex cursor-pointer">
                     <div className="px-2 py-1.5 rounded-md">
