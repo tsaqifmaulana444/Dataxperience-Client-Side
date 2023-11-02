@@ -88,35 +88,35 @@ export default function page() {
                             <div className="flex w-[33vw] mx-[2vw]">
                                 <div>
                                     <p className="font-semibold w-fit mx-auto text-[24px]">05</p>
-                                    <p className="font-medium -mt-[0.8vh]">May</p>
+                                    <p className="font-medium -mt-[0.8vh] text-[13px]">May</p>
                                 </div>
                                 <div className="ml-[1.3vw] mt-[1vh]">
-                                    <p className="opacity-70 text-[14px] font-semibold">Full Day</p>
-                                    <p className="font-semibold -ml-[0.1vw]">Business Expansion In Cambodia</p>
+                                    <p className="opacity-70 text-[13px] font-semibold">Full Day</p>
+                                    <p className="font-semibold -ml-[0.1vw] text-[15px]">Business Expansion In Cambodia</p>
                                 </div>
-                                <FontAwesomeIcon icon={faEllipsisVertical} style={{ color: "#2e333e" }} className="ml-[10.7vw] my-auto" size="lg" />
+                                <FontAwesomeIcon icon={faEllipsisVertical} style={{ color: "#2e333e" }} className="ml-[12vw] my-auto" size="lg" />
                             </div>
-                            <div className="flex w-[33vw] mx-[2vw] mt-2">
+                            <div className="flex w-[33vw] mx-[2vw] mt-3">
                                 <div>
                                     <p className="font-semibold w-fit mx-auto text-[24px]">05</p>
-                                    <p className="font-medium -mt-[0.8vh]">May</p>
+                                    <p className="font-medium -mt-[0.8vh] text-[13px]">May</p>
                                 </div>
                                 <div className="ml-[1.3vw] mt-[1vh]">
-                                    <p className="opacity-70 text-[14px] font-semibold">Full Day</p>
-                                    <p className="font-semibold -ml-[0.1vw]">Business Expansion In Cambodia</p>
+                                    <p className="opacity-70 text-[13px] font-semibold">Full Day</p>
+                                    <p className="font-semibold -ml-[0.1vw] text-[15px]">Business Expansion In Cambodia</p>
                                 </div>
-                                <FontAwesomeIcon icon={faEllipsisVertical} style={{ color: "#2e333e" }} className="ml-[10.7vw] my-auto" size="lg" />
+                                <FontAwesomeIcon icon={faEllipsisVertical} style={{ color: "#2e333e" }} className="ml-[12vw] my-auto" size="lg" />
                             </div>
-                            <div className="flex w-[33vw] mx-[2vw] mt-2">
+                            <div className="flex w-[33vw] mx-[2vw] mt-3">
                                 <div>
                                     <p className="font-semibold w-fit mx-auto text-[24px]">05</p>
-                                    <p className="font-medium -mt-[0.8vh]">May</p>
+                                    <p className="font-medium -mt-[0.8vh] text-[13px]">May</p>
                                 </div>
                                 <div className="ml-[1.3vw] mt-[1vh]">
-                                    <p className="opacity-70 text-[14px] font-semibold">Full Day</p>
-                                    <p className="font-semibold -ml-[0.1vw]">Business Expansion In Cambodia</p>
+                                    <p className="opacity-70 text-[13px] font-semibold">Full Day</p>
+                                    <p className="font-semibold -ml-[0.1vw] text-[15px]">Business Expansion In Cambodia</p>
                                 </div>
-                                <FontAwesomeIcon icon={faEllipsisVertical} style={{ color: "#2e333e" }} className="ml-[10.7vw] my-auto" size="lg" />
+                                <FontAwesomeIcon icon={faEllipsisVertical} style={{ color: "#2e333e" }} className="ml-[12vw] my-auto" size="lg" />
                             </div>
                         </div>
                     </div>
@@ -132,17 +132,17 @@ export default function page() {
                                     className="rounded-full w-[3.5vw]"
                                 />
                                 <div className="ml-[1vw]">
-                                    <p className="opacity-70 text-[14px] font-semibold">Freecodecamp</p>
-                                    <p className="font-semibold">3 Months Contract Offer</p>
+                                    <p className="opacity-70 text-[13px] font-semibold">Freecodecamp</p>
+                                    <p className="font-semibold text-[15px]">3 Months Contract Offer</p>
                                 </div>
                                 <div className="flex ml-[2.5vw]">
                                     <div className="flex text-red-600 my-auto cursor-pointer">
                                         <FontAwesomeIcon icon={faXmark} size="xl"/>
-                                        <p className="text-[15px] ml-[0.3vw]">Decline</p>
+                                        <p className="text-[14px] ml-[0.3vw]">Decline</p>
                                     </div>
                                     <div className="flex text-green-500 my-auto ml-[1vw] cursor-pointer">
                                         <FontAwesomeIcon icon={faCheck} size="xl"/>
-                                        <p className="text-[15px] ml-[0.3vw]">Accept</p>
+                                        <p className="text-[14px] ml-[0.3vw]">Accept</p>
                                     </div>
                                 </div>
                             </div>
@@ -153,17 +153,17 @@ export default function page() {
                                     className="rounded-full w-[3.5vw]"
                                 />
                                 <div className="ml-[1vw]">
-                                    <p className="opacity-70 text-[14px] font-semibold">Freecodecamp</p>
-                                    <p className="font-semibold">3 Months Contract Offer</p>
+                                    <p className="opacity-70 text-[13px] font-semibold">Freecodecamp</p>
+                                    <p className="font-semibold text-[15px]">3 Months Contract Offer</p>
                                 </div>
                                 <div className="flex ml-[2.5vw]">
                                     <div className="flex text-red-600 my-auto cursor-pointer">
                                         <FontAwesomeIcon icon={faXmark} size="xl"/>
-                                        <p className="text-[15px] ml-[0.3vw]">Decline</p>
+                                        <p className="text-[14px] ml-[0.3vw]">Decline</p>
                                     </div>
                                     <div className="flex text-green-500 my-auto ml-[1vw] cursor-pointer">
                                         <FontAwesomeIcon icon={faCheck} size="xl"/>
-                                        <p className="text-[15px] ml-[0.3vw]">Accept</p>
+                                        <p className="text-[14px] ml-[0.3vw]">Accept</p>
                                     </div>
                                 </div>
                             </div>
@@ -174,17 +174,17 @@ export default function page() {
                                     className="rounded-full w-[3.5vw]"
                                 />
                                 <div className="ml-[1vw]">
-                                    <p className="opacity-70 text-[14px] font-semibold">Freecodecamp</p>
-                                    <p className="font-semibold">3 Months Contract Offer</p>
+                                    <p className="opacity-70 text-[13px] font-semibold">Freecodecamp</p>
+                                    <p className="font-semibold text-[15px]">3 Months Contract Offer</p>
                                 </div>
                                 <div className="flex ml-[2.5vw]">
                                     <div className="flex text-red-600 my-auto cursor-pointer">
                                         <FontAwesomeIcon icon={faXmark} size="xl"/>
-                                        <p className="text-[15px] ml-[0.3vw]">Decline</p>
+                                        <p className="text-[14px] ml-[0.3vw]">Decline</p>
                                     </div>
                                     <div className="flex text-green-500 my-auto ml-[1vw] cursor-pointer">
                                         <FontAwesomeIcon icon={faCheck} size="xl"/>
-                                        <p className="text-[15px] ml-[0.3vw]">Accept</p>
+                                        <p className="text-[14px] ml-[0.3vw]">Accept</p>
                                     </div>
                                 </div>
                             </div>

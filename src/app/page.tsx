@@ -16,12 +16,12 @@ export default function page() {
       {/* Video Article Section*/}
       <section className="mt-[7vh] text-[#141414]">
         <div className="mx-[8.7vw]">
-          <h1 className="font-bold text-2xl">Welcome To Dataxpetrise!</h1>
-          <p>We Discuss Everything About Data.</p>
+          <h1 className="font-bold sm:text-2xl text-[14px]">Welcome To Dataxpetrise!</h1>
+          <p className="text-[14px]">We Discuss Everything About Data.</p>
         </div>
-        <div className="ml-[8.7vw] flex mt-[2.5vh]">
+        <div className="ml-[8.7vw] sm:flex block mt-[2.5vh]">
           <div className="">
-            <iframe width="792" height="392" src="https://www.youtube.com/embed/D2vj0WcvH5c?si=s4ErRK_Jv9hcUd6n" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+            <iframe src="https://www.youtube.com/embed/D2vj0WcvH5c?si=s4ErRK_Jv9hcUd6n" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" className="sm:w-[57.2vw] sm:h-[65.2vh] sm:mx-0 mx-auto w-full h-[25.2vh]"></iframe>
           </div>
           <div className="ml-[2.3vw] w-[21vw]">
             <div className="card-1">
