@@ -1,13 +1,40 @@
+"use client"
+import { useState } from 'react'
 import AdminSideBar from '@/app/components/backend/AdminSideBar'
 import '../../../../public/styles/style.css'
 import AdminNavbar from '@/app/components/backend/AdminNavbar'
-import Link from 'next/link'
-// import { config } from '@fortawesome/fontawesome-svg-core'
-// import '@fortawesome/fontawesome-svg-core/styles.css'
-// config.autoAddCss = false
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
-export default function page() {
+export default function Page() {
+    const [categoryName, setCategoryName] = useState('')
+
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault()
+
+        if (!categoryName.trim()) {
+            alert('Please enter a category name')
+            return
+        }
+
+        try {
+            const response = await fetch('http://127.0.0.1:5000/api/categories', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ name: categoryName }),
+            })
+
+            if (response.ok) {
+                alert('Category added successfully')
+                // Additional logic if needed
+            } else {
+                alert('Failed to add category')
+            }
+        } catch (error) {
+            console.error('Error adding category:', error)
+        }
+    }
+
     return (
         <div className='flex w-full '>
             <AdminSideBar />
@@ -15,70 +42,67 @@ export default function page() {
                 <AdminNavbar />
                 <div className="flex w-[75vw] mt-[7vh] justify-between mx-[3vw]">
                     <h1 className="font-bold text-[24px]">Categories</h1>
-                    <Link href="/admin/form">
-                        <button className="bg-[#57504D] text-white p-2 rounded-md w-[9vw] text-[16px] font-medium">+ Add News</button>
-                    </Link>
+                    <form onSubmit={handleSubmit}>
+                        <input
+                            type="text"
+                            name="category"
+                            id=""
+                            placeholder='Enter New Category Name'
+                            className='p-2 rounded-l-md text-[13px] h-full'
+                            value={categoryName}
+                            onChange={(e) => setCategoryName(e.target.value)}
+                        />
+                        <button type='submit' className="bg-[#57504D] text-white py-2 px-4 rounded-r-md w-[7vw] text-[13px] font-medium">Add</button>
+                    </form>
                 </div>
 
-                <div className="relative overflow-x-auto mx-[3vw] mt-[3vh]">
+                <div className="relative overflow-x-auto mx-[3vw] mt-[4vh]">
                     <table className="w-full text-sm text-left text-gray-500">
                         <thead className="text-xs text-gray-700 uppercase bg-gray-50">
                             <tr>
                                 <th scope="col" className="px-6 py-3">
-                                    Product name
+                                    #
                                 </th>
                                 <th scope="col" className="px-6 py-3">
-                                    Color
+                                    Category Name
                                 </th>
                                 <th scope="col" className="px-6 py-3">
-                                    Category
-                                </th>
-                                <th scope="col" className="px-6 py-3">
-                                    Price
+                                    ID
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr className="bg-white border-b">
+                                <td className="px-6 py-4 text-gray-900">
+                                    1
+                                </td>
                                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                     Apple MacBook Pro 17
                                 </th>
                                 <td className="px-6 py-4">
                                     Silver
                                 </td>
-                                <td className="px-6 py-4">
-                                    Laptop
-                                </td>
-                                <td className="px-6 py-4">
-                                    $2999
-                                </td>
                             </tr>
                             <tr className="bg-white border-b">
+                                <td className="px-6 py-4 text-gray-900">
+                                    1
+                                </td>
                                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                     Microsoft Surface Pro
                                 </th>
                                 <td className="px-6 py-4">
                                     White
                                 </td>
-                                <td className="px-6 py-4">
-                                    Laptop PC
-                                </td>
-                                <td className="px-6 py-4">
-                                    $1999
-                                </td>
                             </tr>
                             <tr className="bg-white">
+                                <td className="px-6 py-4 text-gray-900">
+                                    1
+                                </td>
                                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                     Magic Mouse 2
                                 </th>
                                 <td className="px-6 py-4">
                                     Black
-                                </td>
-                                <td className="px-6 py-4">
-                                    Accessories
-                                </td>
-                                <td className="px-6 py-4">
-                                    $99
                                 </td>
                             </tr>
                         </tbody>

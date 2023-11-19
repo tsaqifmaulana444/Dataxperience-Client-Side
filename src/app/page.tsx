@@ -8,7 +8,6 @@ import '@fortawesome/fontawesome-svg-core/styles.css'
 import Link from "next/link"
 config.autoAddCss = false
 
-
 export default function page() {
   return (
     <div className="">
@@ -66,58 +65,58 @@ export default function page() {
         </div>
         <div className="mx-[8.7vw] flex mt-[4vh] w-[80vw] justify-between">
           <Link href="/details">
-            <div className="flex flex-col w-[19vw] cursor-pointer rounded-sm shadow-md">
+            <div className="flex flex-col w-[19vw] cursor-pointer">
               <div className="w-[19vw] h-[15.5vh]">
                 <Image
                   src={Cars}
                   alt="cars"
-                  className="w-full rounded-t-lg"
+                  className="w-full"
                 />
               </div>
-              <div className="mt-[8vh] mx-[1vw] p-1 mb-3">
+              <div className="mt-[8vh] mx-[0.8vw] mb-3">
                 <div className="w-fit bg-[#1E7610] text-white px-3 py-2 text-xs font-bold">Inspirational</div>
                 <h1 className="mt-[2vh] text-[15px] font-bold leading-6">Meet Zhang Fengxiao, Inspirational ML Engineer At Google Cloud.</h1>
                 <p className="text-[15px] opacity-70 mt-[1.5vh]">30 October 2023</p>
               </div>
             </div>
           </Link>
-          <div className="flex flex-col w-[19vw] cursor-pointer rounded-sm shadow-md">
+          <div className="flex flex-col w-[19vw] cursor-pointer">
             <div className="w-[19vw] h-[15.5vh]">
               <Image
                 src={Cars}
                 alt="cars"
-                className="w-full rounded-t-lg"
+                className="w-full"
               />
             </div>
-            <div className="mt-[8vh] mx-[1vw] p-1 mb-3">
+            <div className="mt-[8vh] mx-[0.8vw] mb-3">
               <div className="w-fit bg-[#1E7610] text-white px-3 py-2 text-xs font-bold">Inspirational</div>
               <h1 className="mt-[2vh] text-[15px] font-bold leading-6">Meet Zhang Fengxiao, Inspirational ML Engineer At Google Cloud.</h1>
               <p className="text-[15px] opacity-70 mt-[1.5vh]">30 October 2023</p>
             </div>
           </div>
-          <div className="flex flex-col w-[19vw] cursor-pointer rounded-sm shadow-md">
+          <div className="flex flex-col w-[19vw] cursor-pointer">
             <div className="w-[19vw] h-[15.5vh]">
               <Image
                 src={Cars}
                 alt="cars"
-                className="w-full rounded-t-lg"
+                className="w-full"
               />
             </div>
-            <div className="mt-[8vh] mx-[1vw] p-1 mb-3">
+            <div className="mt-[8vh] mx-[0.8vw] mb-3">
               <div className="w-fit bg-[#1E7610] text-white px-3 py-2 text-xs font-bold">Inspirational</div>
               <h1 className="mt-[2vh] text-[15px] font-bold leading-6">Meet Zhang Fengxiao, Inspirational ML Engineer At Google Cloud.</h1>
               <p className="text-[15px] opacity-70 mt-[1.5vh]">30 October 2023</p>
             </div>
           </div>
-          <div className="flex flex-col w-[19vw] cursor-pointer rounded-sm shadow-md">
+          <div className="flex flex-col w-[19vw] cursor-pointer">
             <div className="w-[19vw] h-[15.5vh]">
               <Image
                 src={Cars}
                 alt="cars"
-                className="w-full rounded-t-lg"
+                className="w-full"
               />
             </div>
-            <div className="mt-[8vh] mx-[1vw] p-1 mb-3">
+            <div className="mt-[8vh] mx-[0.8vw] mb-3">
               <div className="w-fit bg-[#1E7610] text-white px-3 py-2 text-xs font-bold">Inspirational</div>
               <h1 className="mt-[2vh] text-[15px] font-bold leading-6">Meet Zhang Fengxiao, Inspirational ML Engineer At Google Cloud.</h1>
               <p className="text-[15px] opacity-70 mt-[1.5vh]">30 October 2023</p>
@@ -180,43 +179,43 @@ export default function page() {
             <div>
               <h1 className="font-bold text-[21px] mb-[2vh]">Popular News</h1>
               <div className="w-[59.5vw] flex justify-between">
-                <div className="flex flex-col w-[19vw] cursor-pointer rounded-sm shadow-md">
+                <div className="flex flex-col w-[19vw] cursor-pointer">
                   <div className="w-[19vw] h-[15.5vh]">
                     <Image
                       src={Cars}
                       alt="cars"
-                      className="w-full rounded-t-lg"
+                      className="w-full"
                     />
                   </div>
-                  <div className="mt-[8vh] mx-[1vw] p-1 mb-3">
+                  <div className="mt-[8vh] mx-[0.8vw] mb-3">
                     <div className="w-fit bg-[#1E7610] text-white px-3 py-2 text-xs font-bold">Inspirational</div>
                     <h1 className="mt-[2vh] text-[15px] font-bold leading-6">Meet Zhang Fengxiao, Inspirational ML Engineer At Google Cloud.</h1>
                     <p className="text-[15px] opacity-70 mt-[1.5vh]">30 October 2023</p>
                   </div>
                 </div>
-                <div className="flex flex-col w-[19vw] cursor-pointer rounded-sm shadow-md">
+                <div className="flex flex-col w-[19vw] cursor-pointer">
                   <div className="w-[19vw] h-[15.5vh]">
                     <Image
                       src={Cars}
                       alt="cars"
-                      className="w-full rounded-t-lg"
+                      className="w-full"
                     />
                   </div>
-                  <div className="mt-[8vh] mx-[1vw] p-1 mb-3">
+                  <div className="mt-[8vh] mx-[0.8vw] mb-3">
                     <div className="w-fit bg-[#1E7610] text-white px-3 py-2 text-xs font-bold">Inspirational</div>
                     <h1 className="mt-[2vh] text-[15px] font-bold leading-6">Meet Zhang Fengxiao, Inspirational ML Engineer At Google Cloud.</h1>
                     <p className="text-[15px] opacity-70 mt-[1.5vh]">30 October 2023</p>
                   </div>
                 </div>
-                <div className="flex flex-col w-[19vw] cursor-pointer rounded-sm shadow-md">
+                <div className="flex flex-col w-[19vw] cursor-pointer">
                   <div className="w-[19vw] h-[15.5vh]">
                     <Image
                       src={Cars}
                       alt="cars"
-                      className="w-full rounded-t-lg"
+                      className="w-full"
                     />
                   </div>
-                  <div className="mt-[8vh] mx-[1vw] p-1 mb-3">
+                  <div className="mt-[8vh] mx-[0.8vw] mb-3">
                     <div className="w-fit bg-[#1E7610] text-white px-3 py-2 text-xs font-bold">Inspirational</div>
                     <h1 className="mt-[2vh] text-[15px] font-bold leading-6">Meet Zhang Fengxiao, Inspirational ML Engineer At Google Cloud.</h1>
                     <p className="text-[15px] opacity-70 mt-[1.5vh]">30 October 2023</p>
@@ -227,43 +226,43 @@ export default function page() {
             <div className="mt-[4vh]">
               <h1 className="font-bold text-[21px] mb-[2vh]">Old News</h1>
               <div className="w-[59.5vw] flex justify-between">
-                <div className="flex flex-col w-[19vw] cursor-pointer rounded-sm shadow-md">
+                <div className="flex flex-col w-[19vw] cursor-pointer">
                   <div className="w-[19vw] h-[15.5vh]">
                     <Image
                       src={Cars}
                       alt="cars"
-                      className="w-full rounded-t-lg"
+                      className="w-full"
                     />
                   </div>
-                  <div className="mt-[8vh] mx-[1vw] p-1 mb-3">
+                  <div className="mt-[8vh] mx-[0.8vw] mb-3">
                     <div className="w-fit bg-[#1E7610] text-white px-3 py-2 text-xs font-bold">Inspirational</div>
                     <h1 className="mt-[2vh] text-[15px] font-bold leading-6">Meet Zhang Fengxiao, Inspirational ML Engineer At Google Cloud.</h1>
                     <p className="text-[15px] opacity-70 mt-[1.5vh]">30 October 2023</p>
                   </div>
                 </div>
-                <div className="flex flex-col w-[19vw] cursor-pointer rounded-sm shadow-md">
+                <div className="flex flex-col w-[19vw] cursor-pointer">
                   <div className="w-[19vw] h-[15.5vh]">
                     <Image
                       src={Cars}
                       alt="cars"
-                      className="w-full rounded-t-lg"
+                      className="w-full"
                     />
                   </div>
-                  <div className="mt-[8vh] mx-[1vw] p-1 mb-3">
+                  <div className="mt-[8vh] mx-[0.8vw] mb-3">
                     <div className="w-fit bg-[#1E7610] text-white px-3 py-2 text-xs font-bold">Inspirational</div>
                     <h1 className="mt-[2vh] text-[15px] font-bold leading-6">Meet Zhang Fengxiao, Inspirational ML Engineer At Google Cloud.</h1>
                     <p className="text-[15px] opacity-70 mt-[1.5vh]">30 October 2023</p>
                   </div>
                 </div>
-                <div className="flex flex-col w-[19vw] cursor-pointer rounded-sm shadow-md">
+                <div className="flex flex-col w-[19vw] cursor-pointer">
                   <div className="w-[19vw] h-[15.5vh]">
                     <Image
                       src={Cars}
                       alt="cars"
-                      className="w-full rounded-t-lg"
+                      className="w-full"
                     />
                   </div>
-                  <div className="mt-[8vh] mx-[1vw] p-1 mb-3">
+                  <div className="mt-[8vh] mx-[0.8vw] mb-3">
                     <div className="w-fit bg-[#1E7610] text-white px-3 py-2 text-xs font-bold">Inspirational</div>
                     <h1 className="mt-[2vh] text-[15px] font-bold leading-6">Meet Zhang Fengxiao, Inspirational ML Engineer At Google Cloud.</h1>
                     <p className="text-[15px] opacity-70 mt-[1.5vh]">30 October 2023</p>
@@ -274,43 +273,43 @@ export default function page() {
             <div className="mt-[4vh]">
               <h1 className="font-bold text-[21px] mb-[2vh]">All News</h1>
               <div className="w-[59.5vw] flex justify-between">
-                <div className="flex flex-col w-[19vw] cursor-pointer rounded-sm shadow-md">
+                <div className="flex flex-col w-[19vw] cursor-pointer">
                   <div className="w-[19vw] h-[15.5vh]">
                     <Image
                       src={Cars}
                       alt="cars"
-                      className="w-full rounded-t-lg"
+                      className="w-full"
                     />
                   </div>
-                  <div className="mt-[8vh] mx-[1vw] p-1 mb-3">
+                  <div className="mt-[8vh] mx-[0.8vw] mb-3">
                     <div className="w-fit bg-[#1E7610] text-white px-3 py-2 text-xs font-bold">Inspirational</div>
                     <h1 className="mt-[2vh] text-[15px] font-bold leading-6">Meet Zhang Fengxiao, Inspirational ML Engineer At Google Cloud.</h1>
                     <p className="text-[15px] opacity-70 mt-[1.5vh]">30 October 2023</p>
                   </div>
                 </div>
-                <div className="flex flex-col w-[19vw] cursor-pointer rounded-sm shadow-md">
+                <div className="flex flex-col w-[19vw] cursor-pointer">
                   <div className="w-[19vw] h-[15.5vh]">
                     <Image
                       src={Cars}
                       alt="cars"
-                      className="w-full rounded-t-lg"
+                      className="w-full"
                     />
                   </div>
-                  <div className="mt-[8vh] mx-[1vw] p-1 mb-3">
+                  <div className="mt-[8vh] mx-[0.8vw] mb-3">
                     <div className="w-fit bg-[#1E7610] text-white px-3 py-2 text-xs font-bold">Inspirational</div>
                     <h1 className="mt-[2vh] text-[15px] font-bold leading-6">Meet Zhang Fengxiao, Inspirational ML Engineer At Google Cloud.</h1>
                     <p className="text-[15px] opacity-70 mt-[1.5vh]">30 October 2023</p>
                   </div>
                 </div>
-                <div className="flex flex-col w-[19vw] cursor-pointer rounded-sm shadow-md">
+                <div className="flex flex-col w-[19vw] cursor-pointer">
                   <div className="w-[19vw] h-[15.5vh]">
                     <Image
                       src={Cars}
                       alt="cars"
-                      className="w-full rounded-t-lg"
+                      className="w-full"
                     />
                   </div>
-                  <div className="mt-[8vh] mx-[1vw] p-1 mb-3">
+                  <div className="mt-[8vh] mx-[0.8vw] mb-3">
                     <div className="w-fit bg-[#1E7610] text-white px-3 py-2 text-xs font-bold">Inspirational</div>
                     <h1 className="mt-[2vh] text-[15px] font-bold leading-6">Meet Zhang Fengxiao, Inspirational ML Engineer At Google Cloud.</h1>
                     <p className="text-[15px] opacity-70 mt-[1.5vh]">30 October 2023</p>

@@ -6,6 +6,10 @@ config.autoAddCss = false
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons"
 
+export const metadata = {
+  title: 'Contact | Dataxperience'
+}
+
 export default function page() {
   return (
     <div>
