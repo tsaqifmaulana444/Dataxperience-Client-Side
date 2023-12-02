@@ -29,9 +29,7 @@ export default function page() {
                     </div>
                     <div className='mt-[2vh]'>
                         <p className='text-[14px] opacity-70'>Tell us suggestion for fixing the problem.</p>
-                        <textarea name="" id="" className='bg-white border border-[#D0D0D0] rounded-md mt-[1vh] w-full h-[21vh] px-[1vw] pt-[1vh]'>
-                            tes
-                        </textarea>
+                        <textarea name="" id="" className='bg-white border border-[#D0D0D0] rounded-md mt-[1vh] w-full h-[21vh] px-[1vw] pt-[1vh]' placeholder="Enter your suggestion"></textarea>
                     </div>
                     <div className="flex justify-end mt-[5vh]">
                         <button className='bg-[#57504D] text-white font-bold p-2 rounded-md text-[14px] w-[9vw]'>Send Report</button>

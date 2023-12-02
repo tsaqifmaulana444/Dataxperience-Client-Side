@@ -1,9 +1,43 @@
+"use client"
+
 import Image from "next/image"
 import Login from "../images/login.png"
 import Logo2 from "../images/logo2.png"
 import Google from "../images/google.png"
+import { useState } from "react"
 
-export default function page() {
+export default function LoginPage() {
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault()
+    const loginData = {
+      Email: email,
+      Password: password,
+    }
+
+    console.log(`Data : ${email} , ${password}`)
+
+    try {
+      const response = await fetch("http://127.0.0.1:5000/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(loginData),
+      })
+
+      if (!response.ok) {
+        throw new Error("Login failed")
+      }
+
+      const data = await response.json()
+      console.log("Token:", data.token)
+    } catch (error) {
+      console.error("Login error:", error)
+    }
+  }
   return (
     <div className="w-full flex text-[#141414]">
       <div className="content w-[50vw]">
@@ -17,16 +51,30 @@ export default function page() {
           <p className="text-[17px] mt-2">Enter to get unlimited access of the latest data news.</p>
         </div>
         <div className="mx-[9vw] mt-[4vh]">
-          <form action="">
+          <form onSubmit={handleLogin}>
             <div>
               <label className="text-[17px] font-bold">Email <span className="text-[#D12626]">*</span></label>
               <br />
-              <input type="text" placeholder="Enter your email address" className="border border-[#A1A1A1] px-5 py-3 rounded-md w-full text-[13px] mt-2" />
+              <input
+                type="text"
+                placeholder="Enter your email address"
+                className="border border-[#A1A1A1] px-5 py-3 rounded-md w-full text-[13px] mt-2"
+                value={email}
+                name="email"
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </div>
             <div className="mt-3">
               <label className="text-[17px] font-bold">Password <span className="text-[#D12626]">*</span></label>
               <br />
-              <input type="text" placeholder="Enter your password" className="border border-[#A1A1A1] px-5 py-3 rounded-md w-full text-[13px] mt-2" />
+              <input
+                type="password"
+                placeholder="Enter your password"
+                className="border border-[#A1A1A1] px-5 py-3 rounded-md w-full text-[13px] mt-2"
+                value={password}
+                name="password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </div>
             <div className="flex my-5 justify-between">
               <div className="flex">
@@ -55,7 +103,7 @@ export default function page() {
                 <p className="ml-3 my-auto">Sign In With Google</p>
               </div>
             </button>
-            <p className="w-fit mx-auto mt-3 text-[14px]">Don&apos;t Have Account? <span className="text-[#D12626]">Sign Up</span></p>
+            <p className="w-fit mx-auto mt-3 text-[14px]">Don&apost Have Account? <span className="text-[#D12626]">Sign Up</span></p>
           </div>
         </div>
       </div>
