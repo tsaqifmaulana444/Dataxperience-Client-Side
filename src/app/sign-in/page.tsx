@@ -9,15 +9,20 @@ import { useState } from "react"
 export default function LoginPage() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [error, setError] = useState("")
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
+
+    if (!email || !password) {
+      setError("Email and password are required")
+      return
+    }
+
     const loginData = {
       Email: email,
       Password: password,
     }
-
-    console.log(`Data : ${email} , ${password}`)
 
     try {
       const response = await fetch("http://127.0.0.1:5000/api/login", {
@@ -29,15 +34,31 @@ export default function LoginPage() {
       })
 
       if (!response.ok) {
-        throw new Error("Login failed")
+        const data = await response.json()
+        setError(data.error)
+        return
       }
 
       const data = await response.json()
+      setError("") // Clear any previous error
       console.log("Token:", data.token)
+      // Perform any additional actions after successful login
     } catch (error) {
       console.error("Login error:", error)
+      setError("An unexpected error occurred.")
     }
   }
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value)
+    setError("")
+  }
+
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value)
+    setError("")
+  }
+
   return (
     <div className="w-full flex text-[#141414]">
       <div className="content w-[50vw]">
@@ -61,7 +82,8 @@ export default function LoginPage() {
                 className="border border-[#A1A1A1] px-5 py-3 rounded-md w-full text-[13px] mt-2"
                 value={email}
                 name="email"
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={handleEmailChange}
+
               />
             </div>
             <div className="mt-3">
@@ -73,7 +95,8 @@ export default function LoginPage() {
                 className="border border-[#A1A1A1] px-5 py-3 rounded-md w-full text-[13px] mt-2"
                 value={password}
                 name="password"
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={handlePasswordChange}
+
               />
             </div>
             <div className="flex my-5 justify-between">
@@ -83,6 +106,7 @@ export default function LoginPage() {
               </div>
               <p className="font-bold text-[15px] text-[#D12626]">Forgot Your Password?</p>
             </div>
+            {error && <p className="text-red-500">{error}</p>}
             <button type="submit" className="w-full bg-[#D12626] p-2.5 rounded-md text-white font-bold text-[16px]">
               Sign In
             </button>
