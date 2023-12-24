@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Logo from "../../images/logo.png"
 import Image from "next/image"
 import Profile from "../../images/blank_profile.jpeg"
+import Hamburger from "../../images/hamburger.png"
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 config.autoAddCss = false
@@ -10,18 +11,18 @@ import { faCaretDown } from "@fortawesome/free-solid-svg-icons"
 
 export default function Navbar() {
     return (
-        <div className="flex h-[9.3vh] bg-white text-[#141414]">
-            <div className="ml-[8.7vw] w-[19vw] my-auto cursor-pointer">
+        <div className="flex justify-between text-[#141414] w-[90%] mx-auto">
+            <div className="sm:w-[230px] w-[180px] my-auto cursor-pointer sm:mt-0 mt-[20px]">
                 <Link href="/">
                     <Image
                         src={Logo}
                         alt="Logo"
-                        className=""
+                        className="w-full"
                         priority
                     />
                 </Link>
             </div>
-            <div className="flex text-[#141414] w-[45vw] justify-between text-sm text-center -ml-[1vw] mt-[3.3vh] font-medium">
+            <div className="sm:flex hidden text-[#141414] w-[48%] justify-between text-sm text-center ml-[10px] mt-[24px] font-medium">
                 <Link href="/categories">Inspirational</Link>
                 <p>Data Analytics</p>
                 <p>Data Science</p>
@@ -30,11 +31,11 @@ export default function Navbar() {
                 <p>Cloud Computing</p>
                 <div className="w-fit flex">
                     <p>More</p>
-                    <FontAwesomeIcon icon={faCaretDown} style={{ color: "#141414", }} className="ml-[0.8vw]" />
+                    <FontAwesomeIcon icon={faCaretDown} style={{ color: "#141414", }} className="ml-[12px]" />
                 </div>
             </div>
-            <div className="flex ml-[8.5vw] mt-1">
-                <div className="w-fit h-[5vh] my-3">
+            <div className="sm:flex hidden ml-[55px] mt-1">
+                <div className="w-fit my-3">
                     <Image
                         src={Profile}
                         alt="User"
@@ -43,12 +44,21 @@ export default function Navbar() {
                         className="rounded-full"
                     />
                 </div>
-                <div className="my-auto w-fit ml-[1vw]">
+                <div className="my-auto w-fit ml-[20px]">
                     <p className="font-bold text-base">Not Signed In</p>
                     <Link href="/sign-in" className="underline -mt-1 text-sm cursor-pointer font-medium">
                         Sign In
                     </Link>
                 </div>
+            </div>
+            <div className="sm:hidden block mt-[25px]">
+                <Image
+                    src={Hamburger}
+                    alt="hamburger"
+                    width={20}
+                    height={20}
+                    className=""
+                />
             </div>
         </div>
     )
