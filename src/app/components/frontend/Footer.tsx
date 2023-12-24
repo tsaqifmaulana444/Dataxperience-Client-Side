@@ -30,7 +30,7 @@ export default function Footer() {
               <div className="w-[15vw] my-[1.5vh]">
                 <hr className="opacity-75" />
               </div>
-              <p className="w-fit opacity-75 text-[13px]">Part Of 数据先锋 SEA - Copyright &copy; 2023</p>
+              <p className="w-fit opacity-75 text-[13px]">Part Of Jawaraat Innovation Group - Copyright &copy; 2023</p>
             </div>
           </div>
           <div className="flex w-[40vw] justify-between ml-[9vw]">

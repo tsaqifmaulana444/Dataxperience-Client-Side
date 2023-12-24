@@ -11,8 +11,8 @@ import { faCaretDown } from "@fortawesome/free-solid-svg-icons"
 
 export default function Navbar() {
     return (
-        <div className="flex justify-between text-[#141414] w-[90%] mx-auto">
-            <div className="sm:w-[230px] w-[180px] my-auto cursor-pointer sm:mt-0 mt-[20px]">
+        <div className="flex justify-between text-[#141414] sm:w-[83%] w-[90%] mx-auto">
+            <div className="sm:w-[230px] w-[180px] my-auto cursor-pointer sm:mt-[15px] mt-[20px]">
                 <Link href="/">
                     <Image
                         src={Logo}
@@ -22,7 +22,7 @@ export default function Navbar() {
                     />
                 </Link>
             </div>
-            <div className="sm:flex hidden text-[#141414] w-[48%] justify-between text-sm text-center ml-[10px] mt-[24px] font-medium">
+            <div className="sm:flex hidden text-[#141414] w-[52%] justify-between text-sm text-center mt-[25px] font-medium">
                 <Link href="/categories">Inspirational</Link>
                 <p>Data Analytics</p>
                 <p>Data Science</p>
