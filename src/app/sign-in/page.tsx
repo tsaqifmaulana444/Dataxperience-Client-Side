@@ -5,8 +5,10 @@ import Login from "../images/login.png"
 import Logo2 from "../images/logo2.png"
 import Google from "../images/google.png"
 import { useState } from "react"
+import { useRouter } from 'next/navigation'
 
 export default function LoginPage() {
+  const router = useRouter()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
@@ -43,6 +45,7 @@ export default function LoginPage() {
       setError("") // Clear any previous error
       console.log("Token:", data.token)
       // Perform any additional actions after successful login
+      router.push('/admin')
     } catch (error) {
       console.error("Login error:", error)
       setError("An unexpected error occurred.")
