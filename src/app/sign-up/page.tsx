@@ -66,24 +66,39 @@ export default function LoginPage() {
     <div className="w-full flex text-[#141414]">
       <div className="content w-[50vw]">
       <div className="h-screen flex flex-col items-center justify-center">
-          <div className="w-[60%] mx-auto">
+          <div className="w-[64%] mx-auto">
             <Image
               src={Logo2}
               alt="Logo2"
               className="w-[50px]"
             />
-            <h1 className="font-bold text-[25px]">Welcome Back!</h1>
-            <p className="text-[17px] mt-2">Enter to get unlimited access of the latest data news.</p>
+            <h1 className="font-bold text-[25px]">Welcome!</h1>
+            <p className="text-[17px] ">Register your account to get update about data news.</p>
           </div>
-          <div className="w-[60%] mx-auto mt-[20px]">
+          <div className="w-[64%] mx-auto mt-[20px]">
             <form onSubmit={handleLogin}>
               <div>
+                <label className="text-[17px] font-bold">Name <span className="text-[#D12626]">*</span></label>
+                <br />
+                <input
+                  autoComplete="off"
+                  type="text"
+                  placeholder="Enter your name"
+                  className="border border-[#A1A1A1] px-3 py-2.5 rounded-md w-full text-[13px] mt-2 h-[38px]"
+                  value={email}
+                  name="name"
+                  onChange={handleEmailChange}
+
+                />
+              </div>
+              <div className="mt-3">
                 <label className="text-[17px] font-bold">Email <span className="text-[#D12626]">*</span></label>
                 <br />
                 <input
-                  type="email"
+                  autoComplete="off"
+                  type="text"
                   placeholder="Enter your email address"
-                  className="border border-[#A1A1A1] px-5 py-2.5 rounded-md w-full text-[13px] mt-2"
+                  className="border border-[#A1A1A1] px-3 py-2.5 rounded-md w-full text-[13px] mt-2 h-[38px]"
                   value={email}
                   name="email"
                   onChange={handleEmailChange}
@@ -91,12 +106,37 @@ export default function LoginPage() {
                 />
               </div>
               <div className="mt-3">
+                <label className="text-[17px] font-bold">Country <span className="text-[#D12626]">*</span></label>
+                <br />
+                <select name="country" id="" className="border border-[#A1A1A1] px-3 py-2.5 rounded-md w-full text-[13px] mt-2 h-[38px]">
+                  <option value="">Select Your Country</option>
+                  <option value="">China</option>
+                  <option value="">India</option>
+                  <option value="">Pakistan</option>
+                </select>
+              </div>
+              <div className="mt-3">
                 <label className="text-[17px] font-bold">Password <span className="text-[#D12626]">*</span></label>
                 <br />
                 <input
+                  autoComplete="off"
                   type="password"
                   placeholder="Enter your password"
-                  className="border border-[#A1A1A1] px-5 py-2.5 rounded-md w-full text-[13px] mt-2"
+                  className="border border-[#A1A1A1] px-3 py-2.5 rounded-md w-full text-[13px] mt-2 h-[38px]"
+                  value={email}
+                  name="password"
+                  onChange={handleEmailChange}
+
+                />
+              </div>
+              <div className="mt-3">
+                <label className="text-[17px] font-bold">Confirm Password <span className="text-[#D12626]">*</span></label>
+                <br />
+                <input
+                  autoComplete="off"
+                  type="password"
+                  placeholder="Confirm your password"
+                  className="border border-[#A1A1A1] px-3 py-2.5 rounded-md w-full text-[13px] mt-2 h-[38px]"
                   value={password}
                   name="password"
                   onChange={handlePasswordChange}
@@ -106,33 +146,17 @@ export default function LoginPage() {
               <div className="flex my-5 justify-between">
                 <div className="flex">
                   <input type="checkbox" name="" id="" className="w-[20px] rounded-lg" />
-                  <p className="font-bold text-[15px] ml-3">Remember Me</p>
+                  <p className="text-[12px] ml-3">Agree to <a href="" className="font-bold">Privacy & Policy</a></p>
                 </div>
-                <p className="font-bold text-[15px] text-[#D12626]">Forgot Your Password?</p>
               </div>
               {error && <p className="text-red-500">{error}</p>}
               <button type="submit" className="w-full bg-[#D12626] p-2.5 rounded-md text-white font-bold text-[16px]">
                 Sign In
               </button>
             </form>
-            <div className="flex justify-between my-5">
-              <div className="w-[35%] bg-[#141414] h-[1px] rounded-md opacity-40 my-auto"></div>
-              <p className="mx-[10px] text-[14px] opacity-60">Or, Sign In With</p>
-              <div className="w-[35%] bg-[#141414] h-[1px] rounded-md opacity-40 my-auto"></div>
-            </div>
-            <div>
-              <button type="submit" className="w-full bg-[#ffffff] p-2.5 rounded-md text-[16px] border border-[#A1A1A1]">
-                <div className="flex mx-auto my-auto w-fit">
-                  <Image
-                    src={Google}
-                    alt="Login"
-                    className="w-[25px]"
-                  />
-                  <p className="ml-3 my-auto">Sign In With Google</p>
-                </div>
-              </button>
-              <p className="w-fit mx-auto mt-3 text-[14px]">Don&apos;t Have Account? <a href="/sign-up" className="text-[#D12626]">Sign Up</a></p>
-            </div>
+          </div>
+          <div>
+              <p className="w-fit mx-auto mt-3 text-[14px]">Already Have Account? <a href="/sign-up" className="text-[#D12626]">Sign In</a></p>
           </div>
         </div>
       </div>
