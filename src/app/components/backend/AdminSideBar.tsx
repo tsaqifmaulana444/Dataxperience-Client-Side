@@ -8,14 +8,17 @@ config.autoAddCss = false
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faBug, faChartSimple, faHouse, faList, faNewspaper, faGear, faCircleInfo } from "@fortawesome/free-solid-svg-icons"
 import Link from "next/link"
-import { usePathname } from 'next/navigation'
-
-
+import { usePathname, useRouter } from 'next/navigation'
 
 export default function AdminSideBar() {
-
     const currentRoute = usePathname()
-
+    const router = useRouter()
+    
+    const handleLogout = () => {
+        localStorage.removeItem("authToken");
+      
+        router.push('/');
+      }
     return (
         <aside className='bg-[#57504D] w-[19vw] h-full fixed text-white'>
             <div className="w-[14vw] mx-auto">
@@ -71,12 +74,14 @@ export default function AdminSideBar() {
                     </div>
                     <p className="text-[14px] font-semibold my-auto ml-[0.7vw]">Settings</p>
                 </div>
-                <div className="flex cursor-pointer">
-                    <div className="px-2 py-1.5 rounded-md">
-                        <FontAwesomeIcon icon={faCircleInfo} style={{ color: "#ffffff" }} />
+                <button onClick={handleLogout}>
+                    <div className="flex cursor-pointer">
+                        <div className="px-2 py-1.5 rounded-md">
+                            <FontAwesomeIcon icon={faCircleInfo} style={{ color: "#ffffff" }} />
+                        </div>
+                        <p className="text-[14px] font-semibold my-auto ml-[0.7vw]">Logout</p>
                     </div>
-                    <p className="text-[14px] font-semibold my-auto ml-[0.7vw]">About</p>
-                </div>
+                </button>
             </div>
         </aside>
     )
