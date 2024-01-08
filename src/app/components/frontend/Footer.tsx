@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Link from 'next/link'
 import LogoWhite from "../../images/logo-white.png"
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
@@ -46,10 +47,18 @@ export default function Footer() {
             </div>
             <div>
               <h1 className="font-bold text-[18px] mb-[10px]">Feedback</h1>
-              <p className="text-[12px] opacity-75 mb-1">Contact Us</p>
-              <p className="text-[12px] opacity-75 mb-1">Cricits</p>
-              <p className="text-[12px] opacity-75 mb-1">Suggestion</p>
-              <p className="text-[12px] opacity-75 mb-1">Rate Us</p>
+              <Link href="/contact-us">
+                <p className="text-[12px] opacity-75 mb-1">Contact Us</p>
+              </Link>
+              <Link href="/contact-us">
+                <p className="text-[12px] opacity-75 mb-1">Cricits</p>
+              </Link>
+              <Link href="/contact-us">
+                <p className="text-[12px] opacity-75 mb-1">Suggestion</p>
+              </Link>
+              <Link href="/contact-us">
+                <p className="text-[12px] opacity-75 mb-1">Rate Us</p>
+              </Link>
             </div>
             <div>
               <h1 className="font-bold text-[18px] mb-[10px]">Privacy & Policy</h1>
