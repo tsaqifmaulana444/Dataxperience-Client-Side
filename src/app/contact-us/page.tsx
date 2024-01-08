@@ -45,7 +45,7 @@ export default function page() {
               <button className="bg-[#ffffff] text-[#141414] font-medium px-[1.5vw] h-[6vh] rounded-lg border border-[#898989] ml-[2.3vw]">Apply as news author</button>
             </div>
             <div className="relative z-0 w-full mb-6 group mt-[2vh]">
-              <input type="email" name="floating_email" id="floating_email" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-[#141414] peer" placeholder=" " required />
+              <input type="name" name="floating_email" id="floating_email" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-[#141414] peer" placeholder=" " required />
               <label className="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-[#141414]  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Name</label>
             </div>
             <div className="relative z-0 w-full mb-6 group">
