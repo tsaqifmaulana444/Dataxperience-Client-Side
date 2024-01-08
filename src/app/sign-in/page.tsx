@@ -81,6 +81,7 @@ export default function LoginPage() {
                 <label className="text-[17px] font-bold">Email <span className="text-[#D12626]">*</span></label>
                 <br />
                 <input
+                  autoComplete="off"
                   type="email"
                   placeholder="Enter your email address"
                   className="border border-[#A1A1A1] px-5 py-2.5 rounded-md w-full text-[13px] mt-2"
@@ -94,6 +95,7 @@ export default function LoginPage() {
                 <label className="text-[17px] font-bold">Password <span className="text-[#D12626]">*</span></label>
                 <br />
                 <input
+                  autoComplete="off"
                   type="password"
                   placeholder="Enter your password"
                   className="border border-[#A1A1A1] px-5 py-2.5 rounded-md w-full text-[13px] mt-2"
