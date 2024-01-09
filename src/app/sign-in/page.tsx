@@ -6,53 +6,12 @@ import Logo2 from "../images/logo2.png"
 import Google from "../images/google.png"
 import { useState } from "react"
 import { useRouter } from 'next/navigation'
-import Cookies from 'js-cookie'
 
 export default function LoginPage() {
   const router = useRouter()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
-
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault()
-
-    if (!email || !password) {
-      setError("Email and password are required")
-      return
-    }
-
-    const loginData = {
-      Email: email,
-      Password: password,
-    }
-
-    try {
-      const response = await fetch("http://127.0.0.1:5000/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(loginData),
-      })
-
-      if (!response.ok) {
-        const data = await response.json()
-        setError(data.error)
-        return
-      }
-
-      const data = await response.json()
-      setError("") // Clear any previous error
-      console.log("Token:", data.token)
-      // Perform any additional actions after successful login
-      Cookies.set('loggedin', data.token)
-      router.push('/admin')
-    } catch (error) {
-      console.error("Login error:", error)
-      setError("An unexpected error occurred.")
-    }
-  }
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value)
@@ -78,7 +37,7 @@ export default function LoginPage() {
             <p className="text-[17px] mt-2">Enter to get unlimited access of the latest data news.</p>
           </div>
           <div className="w-[60%] mx-auto mt-[20px]">
-            <form onSubmit={handleLogin}>
+            <form>
               <div>
                 <label className="text-[17px] font-bold">Email <span className="text-[#D12626]">*</span></label>
                 <br />
