@@ -1,3 +1,5 @@
+"use client"
+
 import AdminNavbar from "../components/backend/AdminNavbar"
 import AdminSideBar from "../components/backend/AdminSideBar"
 import '../../../public/styles/style.css'
@@ -9,8 +11,22 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCheck, faEllipsisVertical, faPlus, faXmark } from "@fortawesome/free-solid-svg-icons"
 import Image from "next/image"
 import Profile from "../images/blank_profile.jpeg"
+import { useEffect } from 'react'
+import Cookies from 'js-cookie'
+import router from "next/router"
 
-export default function page() {
+export default function AdminPage() {
+    useEffect(() => {
+        // Retrieve the token from the "loggedin" cookie
+        const token = Cookies.get('loggedin')
+
+        if (token) {
+            // Do something with the token, for example, send it in API requests
+            console.log('Token:', token)
+        } else {
+            router.push('/sign-in')
+        }
+    }, [])
     return (
         <div className='flex w-full '>
             <AdminSideBar />
@@ -137,11 +153,11 @@ export default function page() {
                                 </div>
                                 <div className="flex ml-[2.5vw]">
                                     <div className="flex text-red-600 my-auto cursor-pointer">
-                                        <FontAwesomeIcon icon={faXmark} size="xl"/>
+                                        <FontAwesomeIcon icon={faXmark} size="xl" />
                                         <p className="text-[14px] ml-[0.3vw]">Decline</p>
                                     </div>
                                     <div className="flex text-green-500 my-auto ml-[1vw] cursor-pointer">
-                                        <FontAwesomeIcon icon={faCheck} size="xl"/>
+                                        <FontAwesomeIcon icon={faCheck} size="xl" />
                                         <p className="text-[14px] ml-[0.3vw]">Accept</p>
                                     </div>
                                 </div>
@@ -158,11 +174,11 @@ export default function page() {
                                 </div>
                                 <div className="flex ml-[2.5vw]">
                                     <div className="flex text-red-600 my-auto cursor-pointer">
-                                        <FontAwesomeIcon icon={faXmark} size="xl"/>
+                                        <FontAwesomeIcon icon={faXmark} size="xl" />
                                         <p className="text-[14px] ml-[0.3vw]">Decline</p>
                                     </div>
                                     <div className="flex text-green-500 my-auto ml-[1vw] cursor-pointer">
-                                        <FontAwesomeIcon icon={faCheck} size="xl"/>
+                                        <FontAwesomeIcon icon={faCheck} size="xl" />
                                         <p className="text-[14px] ml-[0.3vw]">Accept</p>
                                     </div>
                                 </div>
@@ -179,11 +195,11 @@ export default function page() {
                                 </div>
                                 <div className="flex ml-[2.5vw]">
                                     <div className="flex text-red-600 my-auto cursor-pointer">
-                                        <FontAwesomeIcon icon={faXmark} size="xl"/>
+                                        <FontAwesomeIcon icon={faXmark} size="xl" />
                                         <p className="text-[14px] ml-[0.3vw]">Decline</p>
                                     </div>
                                     <div className="flex text-green-500 my-auto ml-[1vw] cursor-pointer">
-                                        <FontAwesomeIcon icon={faCheck} size="xl"/>
+                                        <FontAwesomeIcon icon={faCheck} size="xl" />
                                         <p className="text-[14px] ml-[0.3vw]">Accept</p>
                                     </div>
                                 </div>

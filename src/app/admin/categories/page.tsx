@@ -1,10 +1,34 @@
 "use client"
+
 import { useState } from 'react'
 import AdminSideBar from '@/app/components/backend/AdminSideBar'
 import '../../../../public/styles/style.css'
 import AdminNavbar from '@/app/components/backend/AdminNavbar'
+import { useEffect } from 'react'
+import Cookies from 'js-cookie'
+import router from "next/router"
+
+interface Category {
+    ID: number
+    CreatedAt: string
+    UpdatedAt: string
+    DeletedAt: string | null
+    Name: string
+}
 
 export default function Page() {
+    const [token, setToken] = useState<string | null>(null)
+
+    useEffect(() => {
+        const storedToken = Cookies.get('loggedin')
+
+        if (storedToken) {
+            setToken(storedToken)
+        } else {
+            router.push('/sign-in')
+        }
+    }, [])
+
     const [categoryName, setCategoryName] = useState('')
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -34,6 +58,34 @@ export default function Page() {
             console.error('Error adding category:', error)
         }
     }
+
+    //get data
+    const [categories, setCategories] = useState<Category[]>([])
+
+    useEffect(() => {
+        if (token) {
+            console.log('Fetching data with token:', token)
+
+            fetch('http://127.0.0.1:5000/api/categories', {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('API Response:', data)
+
+                    // Check if 'categories' property exists in the response
+                    if (data.categories) {
+                        setCategories(data.categories)
+                    } else {
+                        console.error('Categories property not found in API response')
+                    }
+                })
+                .catch(error => console.error('Error fetching categories:', error))
+        }
+    }, [token])
 
     return (
         <div className='flex w-full '>
@@ -72,43 +124,16 @@ export default function Page() {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr className="bg-white border-b">
-                                <td className="px-6 py-4 text-gray-900">
-                                    1
-                                </td>
-                                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                    Apple MacBook Pro 17
-                                </th>
-                                <td className="px-6 py-4">
-                                    Silver
-                                </td>
-                            </tr>
-                            <tr className="bg-white border-b">
-                                <td className="px-6 py-4 text-gray-900">
-                                    1
-                                </td>
-                                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                    Microsoft Surface Pro
-                                </th>
-                                <td className="px-6 py-4">
-                                    White
-                                </td>
-                            </tr>
-                            <tr className="bg-white">
-                                <td className="px-6 py-4 text-gray-900">
-                                    1
-                                </td>
-                                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                    Magic Mouse 2
-                                </th>
-                                <td className="px-6 py-4">
-                                    Black
-                                </td>
-                            </tr>
+                            {categories.map((category, index) => (
+                                <tr key={index} className="bg-white border-b">
+                                    <td className="px-6 py-4 text-gray-900">{index + 1}</td>
+                                    <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{category.Name}</td>
+                                    <td className="px-6 py-4">{category.ID}</td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>
-
             </main>
         </div>
     )

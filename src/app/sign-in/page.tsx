@@ -6,6 +6,7 @@ import Logo2 from "../images/logo2.png"
 import Google from "../images/google.png"
 import { useState } from "react"
 import { useRouter } from 'next/navigation'
+import Cookies from 'js-cookie'
 
 export default function LoginPage() {
   const router = useRouter()
@@ -45,6 +46,7 @@ export default function LoginPage() {
       setError("") // Clear any previous error
       console.log("Token:", data.token)
       // Perform any additional actions after successful login
+      Cookies.set('loggedin', data.token)
       router.push('/admin')
     } catch (error) {
       console.error("Login error:", error)
