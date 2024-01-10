@@ -10,8 +10,52 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Authors {
+  id         Int       @id @default(autoincrement())
+  name       String
+  email      String
+  password   String
+  role       Int       @default(1)
+  created_at DateTime  @default(now()) @db.Timestamptz(3)
+  updated_at DateTime  @default(now()) @db.Timestamptz(3)
+  deleted_at DateTime?
+  // Define a one-to-many relationship between Author and News
+  news       News[]
+}
 
-model Test {
-  id Int @id @default(autoincrement())
-  name String
+model Users {
+  id         Int       @id @default(autoincrement())
+  name       String
+  email      String
+  password   String
+  country    String
+  role       Int       @default(2)
+  created_at DateTime  @default(now()) @db.Timestamptz(3)
+  updated_at DateTime  @default(now()) @db.Timestamptz(3)
+  deleted_at DateTime?
+}
+
+model Categories {
+  id         Int       @id @default(autoincrement())
+  name       String
+  created_at DateTime  @default(now()) @db.Timestamptz(3)
+  updated_at DateTime  @default(now()) @db.Timestamptz(3)
+  deleted_at DateTime?
+  // Define a many-to-many relationship between Categories and News
+  news       News[]
+}
+
+model News {
+  id          Int       @id @default(autoincrement())
+  title       String
+  news_body   String
+  news_image  String
+  category_id Int?
+  author_id   Int
+  created_at  DateTime  @default(now()) @db.Timestamptz(3)
+  updated_at  DateTime  @default(now()) @db.Timestamptz(3)
+  deleted_at  DateTime?
+  // Define foreign key relationships
+  category    Categories? @relation(fields: [category_id], references: [id])
+  author      Authors     @relation(fields: [author_id], references: [id])
 }
