@@ -1,66 +1,55 @@
 "use client"
 
-import Image from "next/image"
-import Login from "../images/login.png"
-import Logo2 from "../images/logo2.png"
-import Google from "../images/google.png"
-import { useState } from "react"
-import { useRouter } from 'next/navigation'
+import Image from "next/image";
+import Login from "../images/login.png";
+import Logo2 from "../images/logo2.png";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
-export default function LoginPage() {
-  const router = useRouter()
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [error, setError] = useState("")
+interface SignUpFormData {
+  name: string;
+  email: string;
+  country: string;
+  password: string;
+}
 
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault()
+export default function SignUpPage() {
+  const router = useRouter();
 
-    if (!email || !password) {
-      setError("Email and password are required")
-      return
-    }
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
-    const loginData = {
-      Email: email,
-      Password: password,
-    }
+    const formData = new FormData(event.currentTarget);
+    const data: SignUpFormData = {
+      name: formData.get("name") as string,
+      email: formData.get("email") as string,
+      country: formData.get("country") as string,
+      password: formData.get("password") as string,
+    };
+
+    // console.log("data user : " + data.email)
 
     try {
-      const response = await fetch("http://127.0.0.1:5000/api/login", {
+      const response = await fetch("/api/sign-up", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(loginData),
-      })
+        body: JSON.stringify(data),
+      });
 
-      if (!response.ok) {
-        const data = await response.json()
-        setError(data.error)
-        return
+      if (response.ok) {
+        const result = await response.json();
+        console.log(result);
+        router.push("/sign-in");
+      } else {
+        const error = await response.json();
+        console.error("Signup failed:", error.message);
       }
-
-      const data = await response.json()
-      setError("") // Clear any previous error
-      console.log("Token:", data.token)
-      // Perform any additional actions after successful login
-      router.push('/admin')
     } catch (error) {
-      console.error("Login error:", error)
-      setError("An unexpected error occurred.")
+      console.error("Signup error:", error);
     }
-  }
-
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value)
-    setError("")
-  }
-
-  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value)
-    setError("")
-  }
+  };
 
   return (
     <div className="w-full flex text-[#141414]">
@@ -76,7 +65,7 @@ export default function LoginPage() {
             <p className="text-[17px] ">Register your account to get update about data news.</p>
           </div>
           <div className="w-[64%] mx-auto mt-[20px]">
-            <form onSubmit={handleLogin}>
+            <form onSubmit={handleSubmit}>
               <div>
                 <label className="text-[17px] font-bold">Name <span className="text-[#D12626]">*</span></label>
                 <br />
@@ -85,9 +74,7 @@ export default function LoginPage() {
                   type="text"
                   placeholder="Enter your name"
                   className="border border-[#A1A1A1] px-3 py-2.5 rounded-md w-full text-[13px] mt-2 h-[38px]"
-                  value={email}
                   name="name"
-                  onChange={handleEmailChange}
 
                 />
               </div>
@@ -99,9 +86,7 @@ export default function LoginPage() {
                   type="text"
                   placeholder="Enter your email address"
                   className="border border-[#A1A1A1] px-3 py-2.5 rounded-md w-full text-[13px] mt-2 h-[38px]"
-                  value={email}
                   name="email"
-                  onChange={handleEmailChange}
 
                 />
               </div>
@@ -110,9 +95,9 @@ export default function LoginPage() {
                 <br />
                 <select name="country" id="" className="border border-[#A1A1A1] px-3 py-2.5 rounded-md w-full text-[13px] mt-2 h-[38px]">
                   <option value="">Select Your Country</option>
-                  <option value="">China</option>
-                  <option value="">India</option>
-                  <option value="">Pakistan</option>
+                  <option value="China">China</option>
+                  <option value="India">India</option>
+                  <option value="Pakistan">Pakistan</option>
                 </select>
               </div>
               <div className="mt-3">
@@ -123,9 +108,7 @@ export default function LoginPage() {
                   type="password"
                   placeholder="Enter your password"
                   className="border border-[#A1A1A1] px-3 py-2.5 rounded-md w-full text-[13px] mt-2 h-[38px]"
-                  value={email}
                   name="password"
-                  onChange={handleEmailChange}
 
                 />
               </div>
@@ -137,9 +120,7 @@ export default function LoginPage() {
                   type="password"
                   placeholder="Confirm your password"
                   className="border border-[#A1A1A1] px-3 py-2.5 rounded-md w-full text-[13px] mt-2 h-[38px]"
-                  value={password}
-                  name="password"
-                  onChange={handlePasswordChange}
+                  name="confirm_password"
 
                 />
               </div>
@@ -149,7 +130,6 @@ export default function LoginPage() {
                   <p className="text-[12px] ml-3">Agree to <a href="" className="font-bold">Privacy & Policy</a></p>
                 </div>
               </div>
-              {error && <p className="text-red-500">{error}</p>}
               <button type="submit" className="w-full bg-[#D12626] p-2.5 rounded-md text-white font-bold text-[16px]">
                 Sign In
               </button>
