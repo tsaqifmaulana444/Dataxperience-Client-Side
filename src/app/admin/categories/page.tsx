@@ -4,12 +4,22 @@ import AdminSideBar from '@/app/components/backend/AdminSideBar'
 import '../../../../public/styles/style.css'
 import AdminNavbar from '@/app/components/backend/AdminNavbar'
 import router from "next/navigation"
+import { useEffect, useState } from 'react'
 
 interface CategoriesFormData {
     name: string
 }
 
+interface Category {
+    id: number
+    name: string
+}
+
 export default function Categories() {
+    const [categories, setCategories] = useState<Category[]>([])
+    const [error, setError] = useState('')
+
+    // create
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
 
@@ -38,6 +48,33 @@ export default function Categories() {
             console.error("Error:", error)
         }
     }
+
+    // read
+    const fetchCategories = async () => {
+        try {
+            const response = await fetch('/api/categories', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+
+            if (response.ok) {
+                const { categories } = await response.json()
+                setCategories(categories)
+            } else {
+                const error = await response.json()
+                setError(error.message)
+            }
+        } catch (error) {
+            console.error('Error fetching categories:', error)
+            setError('Internal Server Error')
+        }
+    }
+
+    useEffect(() => {
+        fetchCategories()
+    }, [])
 
     return (
         <div className='flex w-full '>
@@ -74,11 +111,13 @@ export default function Categories() {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr className="bg-white border-b">
-                                <td className="px-6 py-4 text-gray-900">1</td>
-                                <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">Name</td>
-                                <td className="px-6 py-4">20</td>
-                            </tr>
+                            {categories.map((category, index) => (
+                                <tr key={category.id} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+                                    <td className="px-6 py-4 text-gray-900">{index + 1}</td>
+                                    <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{category.name}</td>
+                                    <td className="px-6 py-4">{category.id}</td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>
