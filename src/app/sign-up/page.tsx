@@ -3,7 +3,6 @@
 import Image from "next/image"
 import Login from "../images/login.png"
 import Logo2 from "../images/logo2.png"
-import { useState } from "react"
 import { useRouter } from "next/navigation"
 
 interface SignUpFormData {

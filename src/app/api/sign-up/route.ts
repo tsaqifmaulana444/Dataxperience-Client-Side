@@ -1,7 +1,9 @@
 import { PrismaClient } from '@prisma/client'
 import { NextResponse } from 'next/server'
+import bcrypt from 'bcryptjs'
 
 const prisma = new PrismaClient()
+const saltRounds = 10
 
 export async function POST(req: Request) {
   if (req.method !== 'POST') {
@@ -27,12 +29,15 @@ export async function POST(req: Request) {
       return NextResponse.json({ message: 'Email already in use. Please use a different email address.' })
     }
 
-    // Create the new user in the database
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(data.password, saltRounds)
+
+    // Create the new user in the database with the hashed password
     const newUser = await prisma.authors.create({
       data: {
         name: data.name,
         email: data.email,
-        password: data.password,
+        password: hashedPassword,
       },
     })
 
