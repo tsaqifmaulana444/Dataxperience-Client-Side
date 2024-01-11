@@ -26,8 +26,9 @@ export default function SignUpPage() {
       country: formData.get("country") as string,
       password: formData.get("password") as string,
     }
-
+    let ccc = JSON.stringify(data)
     // console.log("data user : " + data.name, data.email, data.country, data.password)
+    console.log({"ccc" : ccc})
 
     try {
       const response = await fetch("/api/sign-up", {
@@ -65,7 +66,7 @@ export default function SignUpPage() {
             <p className="text-[17px] ">Register your account to get update about data news.</p>
           </div>
           <div className="w-[64%] mx-auto mt-[20px]">
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} method="POST">
               <div>
                 <label className="text-[17px] font-bold">Name <span className="text-[#D12626]">*</span></label>
                 <br />
