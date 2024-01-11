@@ -1,15 +1,14 @@
 import { NextResponse } from 'next/server'
-import { NextApiRequest, NextApiResponse } from 'next'
 
-export async function POST(req: NextApiRequest, res: NextApiResponse) {
+export async function POST(req: Request) {
   if (req.method !== 'POST') {
     return NextResponse.json({ message: 'Method Not Allowed' })
   }
 
-  const { name, email, country, password } = req.body
+  const data = await req.json()
 
   try {
-    console.log('Received data:', { name, email, country, password })
+    console.log('Received data:', data)
 
     // Further processing and response handling should be added here
 
