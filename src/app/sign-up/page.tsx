@@ -11,6 +11,7 @@ interface SignUpFormData {
   email: string
   country: string
   password: string
+  confirm_password: string
 }
 
 export default function SignUpPage() {
@@ -25,10 +26,8 @@ export default function SignUpPage() {
       email: formData.get("email") as string,
       country: formData.get("country") as string,
       password: formData.get("password") as string,
+      confirm_password: formData.get('confirm_password') as string
     }
-    let ccc = JSON.stringify(data)
-    // console.log("data user : " + data.name, data.email, data.country, data.password)
-    console.log({"ccc" : ccc})
 
     try {
       const response = await fetch("/api/sign-up", {
@@ -42,7 +41,7 @@ export default function SignUpPage() {
       if (response.ok) {
         const result = await response.json()
         console.log(result)
-        // router.push("/sign-in")
+        router.push("/sign-in")
       } else {
         const error = await response.json()
         console.error("Signup failed:", error.message)
