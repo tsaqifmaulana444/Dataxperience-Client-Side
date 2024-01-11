@@ -18,6 +18,7 @@ interface Category {
 export default function Categories() {
     const [categories, setCategories] = useState<Category[]>([])
     const [error, setError] = useState('')
+    const [newCategory, setNewCategory] = useState('');
 
     // create
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -38,6 +39,8 @@ export default function Categories() {
             })
 
             if (response.ok) {
+                await fetchCategories()
+                setNewCategory('')
                 const result = await response.json()
                 console.log(result)
             } else {
@@ -90,6 +93,8 @@ export default function Categories() {
                             id=""
                             placeholder='Enter New Category Name'
                             className='p-2 rounded-l-md text-[13px] h-full'
+                            value={newCategory}
+                            onChange={(e) => setNewCategory(e.target.value)}
                         />
                         <button type='submit' className="bg-[#57504D] text-white py-2 px-4 rounded-r-md w-[7vw] text-[13px] font-medium">Add</button>
                     </form>
