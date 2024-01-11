@@ -1,33 +1,33 @@
 "use client"
 
-import Image from "next/image";
-import Login from "../images/login.png";
-import Logo2 from "../images/logo2.png";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import Image from "next/image"
+import Login from "../images/login.png"
+import Logo2 from "../images/logo2.png"
+import { useState } from "react"
+import { useRouter } from "next/navigation"
 
 interface SignUpFormData {
-  name: string;
-  email: string;
-  country: string;
-  password: string;
+  name: string
+  email: string
+  country: string
+  password: string
 }
 
 export default function SignUpPage() {
-  const router = useRouter();
+  const router = useRouter()
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+    event.preventDefault()
 
-    const formData = new FormData(event.currentTarget);
+    const formData = new FormData(event.currentTarget)
     const data: SignUpFormData = {
       name: formData.get("name") as string,
       email: formData.get("email") as string,
       country: formData.get("country") as string,
       password: formData.get("password") as string,
-    };
+    }
 
-    // console.log("data user : " + data.email)
+    // console.log("data user : " + data.name, data.email, data.country, data.password)
 
     try {
       const response = await fetch("/api/sign-up", {
@@ -36,20 +36,20 @@ export default function SignUpPage() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
-      });
+      })
 
       if (response.ok) {
-        const result = await response.json();
-        console.log(result);
-        router.push("/sign-in");
+        const result = await response.json()
+        console.log(result)
+        // router.push("/sign-in")
       } else {
-        const error = await response.json();
-        console.error("Signup failed:", error.message);
+        const error = await response.json()
+        console.error("Signup failed:", error.message)
       }
     } catch (error) {
-      console.error("Signup error:", error);
+      console.error("Signup error:", error)
     }
-  };
+  }
 
   return (
     <div className="w-full flex text-[#141414]">

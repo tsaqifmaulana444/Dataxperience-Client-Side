@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { PrismaClient } from '@prisma/client'
 import bcrypt from 'bcryptjs'
+import { NextResponse } from 'next/server';
 
 const prisma = new PrismaClient()
 
@@ -12,36 +13,17 @@ export async function POST(
     return res.status(405).json({ message: 'Method Not Allowed' });
   }
 
-  const { name, email, password } = req.body;
+  const { name, email, country, password } = req.body;
 
   try {
-    const existingUser = await prisma.authors.findUnique({
-      where: { email: email },
-    });
+    console.log('Received data:', { name, email, country, password });
 
-    if (existingUser) {
-      return res.status(400).json({ message: 'User with this email already exists' });
-    }
+    // Further processing and response handling should be added here
 
-    // Hash the password
-    const hashedPassword = bcrypt.hashSync(password, 10);
-
-    // Create the user
-    const newUser = await prisma.authors.create({
-      data: {
-        name,
-        email,
-        role: 1,
-        password: hashedPassword,
-      },
-    });
-
-    res.status(201).json({ message: 'User registered successfully', user: newUser });
+    return res.status(200).json({ message: 'Data received successfully' });
   } catch (error) {
-    console.error('Sign-up error:', error);
-    console.log('Request Body:', req.body);  // Log the request body for debugging
-    res.status(500).json({ message: 'Internal Server Error' });
-  } finally {
-    await prisma.$disconnect();
+    console.error("Error processing request:", error);
+    return res.status(500).json({ message: 'Internal Server Error' });
   }
 }
+
