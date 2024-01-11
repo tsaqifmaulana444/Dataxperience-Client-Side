@@ -13,12 +13,25 @@ import { usePathname, useRouter } from 'next/navigation'
 export default function AdminSideBar() {
     const currentRoute = usePathname()
     const router = useRouter()
-    
-    const handleLogout = () => {
-        localStorage.removeItem("authToken");
-      
-        router.push('/');
-      }
+
+    const handleLogout = async () => {
+        try {
+            const response = await fetch('/api/sign-out', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+
+            if (response.ok) {
+                router.push('/')
+            } else {
+                const data = await response.json()
+            }
+        } catch (error) {
+            console.error('Logout error:', error)
+        }
+    }
     return (
         <aside className='bg-[#57504D] w-[19vw] h-full fixed text-white'>
             <div className="w-[14vw] mx-auto">
@@ -52,7 +65,7 @@ export default function AdminSideBar() {
                 </div>
                 <Link href={"/admin/categories"}>
                     <div className="flex cursor-pointer">
-                    <div className={currentRoute === "/admin/categories" ? "bg-[#776F6B] px-2 py-1.5 rounded-md" : "px-2 py-1.5 rounded-md"}>
+                        <div className={currentRoute === "/admin/categories" ? "bg-[#776F6B] px-2 py-1.5 rounded-md" : "px-2 py-1.5 rounded-md"}>
                             <FontAwesomeIcon icon={faList} style={{ color: "#ffffff" }} />
                         </div>
                         <p className="text-[14px] font-semibold my-auto ml-[0.7vw]">Categories</p>
@@ -60,7 +73,7 @@ export default function AdminSideBar() {
                 </Link>
                 <Link href={"/admin/report"}>
                     <div className="flex cursor-pointer">
-                    <div className={currentRoute === "/admin/report" ? "bg-[#776F6B] px-2 py-1.5 rounded-md" : "px-2 py-1.5 rounded-md"}>
+                        <div className={currentRoute === "/admin/report" ? "bg-[#776F6B] px-2 py-1.5 rounded-md" : "px-2 py-1.5 rounded-md"}>
                             <FontAwesomeIcon icon={faBug} style={{ color: "#ffffff" }} />
                         </div>
                         <p className="text-[14px] font-semibold my-auto ml-[0.7vw]">Report Problem</p>

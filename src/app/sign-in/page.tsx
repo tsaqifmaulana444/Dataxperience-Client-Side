@@ -26,7 +26,6 @@ export default function LoginPage() {
     setError("")
   }
 
-
   const handleSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
@@ -50,7 +49,7 @@ export default function LoginPage() {
       setError('Internal Server Error')
     }
   }
-
+ 
   return (
     <div className="w-full flex text-[#141414]">
       <div className="content w-[50vw]">

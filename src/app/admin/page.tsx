@@ -11,22 +11,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCheck, faEllipsisVertical, faPlus, faXmark } from "@fortawesome/free-solid-svg-icons"
 import Image from "next/image"
 import Profile from "../images/blank_profile.jpeg"
-import { useEffect } from 'react'
-import Cookies from 'js-cookie'
-import router from "next/router"
+import { useRouter } from "next/navigation"
 
 export default function AdminPage() {
-    useEffect(() => {
-        // Retrieve the token from the "loggedin" cookie
-        const token = Cookies.get('loggedin')
-
-        if (token) {
-            // Do something with the token, for example, send it in API requests
-            console.log('Token:', token)
-        } else {
-            router.push('/sign-in')
-        }
-    }, [])
+    
     return (
         <div className='flex w-full '>
             <AdminSideBar />

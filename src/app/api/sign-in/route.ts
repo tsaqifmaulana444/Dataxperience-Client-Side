@@ -1,31 +1,30 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
 import { PrismaClient } from '@prisma/client'
 import bcrypt from 'bcryptjs'
+import { NextResponse } from 'next/server'
 
 const prisma = new PrismaClient()
 
-export async function POST(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+export async function POST(req: Request) {
   if (req.method !== 'POST') {
-    return res.status(405).json({ message: 'Method Not Allowed' })
+    return NextResponse.json({ message: 'Method Not Allowed' })
   }
 
-  const { email, password } = req.body
+  const data = await req.json()
 
   try {
     const user = await prisma.authors.findUnique({
-      where: { email },
+      where: { email: data.email }
     })
 
-    if (!user || !bcrypt.compareSync(password, user.password)) {
-      return res.status(401).json({ message: 'Invalid email or password' })
+    if (!user || !bcrypt.compareSync(data.password, user.password)) {
+      return NextResponse.json({ message: 'Invalid email or password' })
     }
 
-    res.status(200).json({ message: 'Login successful' })
+    // If the user exists and the password is correct, you can generate an authentication token here.
+
+    return NextResponse.json({ message: 'Login successful' })
   } catch (error) {
     console.error('Login error:', error)
-    // res.status(500).json({ message: 'Internal Server Error' })
+    return NextResponse.json({ message: 'Internal Server Error' })
   }
 }
