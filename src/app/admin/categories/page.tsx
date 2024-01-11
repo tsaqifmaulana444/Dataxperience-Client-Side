@@ -1,14 +1,43 @@
 "use client"
 
-import { useState } from 'react'
 import AdminSideBar from '@/app/components/backend/AdminSideBar'
 import '../../../../public/styles/style.css'
 import AdminNavbar from '@/app/components/backend/AdminNavbar'
-import { useEffect } from 'react'
-import Cookies from 'js-cookie'
-import router from "next/router"
+import router from "next/navigation"
 
-export default function Page() {
+interface CategoriesFormData {
+    name: string
+}
+
+export default function Categories() {
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault()
+
+        const formData = new FormData(event.currentTarget)
+        const data: CategoriesFormData = {
+            name: formData.get("name") as string,
+        }
+
+        try {
+            const response = await fetch("/api/categories", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            })
+
+            if (response.ok) {
+                const result = await response.json()
+                console.log(result)
+            } else {
+                const error = await response.json()
+                console.error("Failed:", error.message)
+            }
+        } catch (error) {
+            console.error("Error:", error)
+        }
+    }
 
     return (
         <div className='flex w-full '>
@@ -17,10 +46,10 @@ export default function Page() {
                 <AdminNavbar />
                 <div className="flex w-[75vw] mt-[7vh] justify-between mx-[3vw]">
                     <h1 className="font-bold text-[24px]">Categories</h1>
-                    <form>
+                    <form onSubmit={handleSubmit} method="POST">
                         <input
                             type="text"
-                            name="category"
+                            name="name"
                             id=""
                             placeholder='Enter New Category Name'
                             className='p-2 rounded-l-md text-[13px] h-full'
