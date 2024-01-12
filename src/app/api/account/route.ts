@@ -15,23 +15,38 @@ export async function POST(req: Request) {
 
     if (!data.name) {
       return NextResponse.json({
-        message: "Invalid input. category name are required.",
+        message: "Author name, email and default password are required.",
       })
     }
 
-    const newCategory = await prisma.categories.create({
+    await prisma.authors.create({
       data: {
         name: data.name,
+        email: data.email,
+        password: data.password
       },
     })
 
-    return NextResponse.json({
-      message: "Category created successfully",
-      Category: newCategory,
-    })
+    return NextResponse.json(
+      {
+        success: true,
+        message: "Author Created!",
+      },
+      {
+        status: 200,
+      }
+    )
   } catch (error) {
     console.error("Error processing request:", error)
-    return NextResponse.json({ message: "Internal Server Error" })
+    return NextResponse.json(
+      {
+        success: false,
+        message: "Something Went Wrong",
+      },
+      {
+        status: 500,
+      }
+    )
   }
 }
 

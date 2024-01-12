@@ -31,7 +31,15 @@ export async function POST(req: Request) {
     })
   } catch (error) {
     console.error("Error processing request:", error)
-    return NextResponse.json({ message: "Internal Server Error" })
+    return NextResponse.json(
+      {
+        success: false,
+        message: "Something Went Wrong",
+      },
+      {
+        status: 500,
+      }
+    )
   }
 }
 
@@ -42,10 +50,26 @@ export async function GET(req: Request) {
       return NextResponse.json({ categories })
     } catch (error) {
       console.error("Error fetching categories:", error)
-      return NextResponse.json({ message: "Internal Server Error" })
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Something Went Wrong",
+        },
+        {
+          status: 500,
+        }
+      )
     }
   } else {
-    return NextResponse.json({ message: "Method Not Allowed" })
+    return NextResponse.json(
+      {
+        success: false,
+        message: "Method Not Allowed",
+      },
+      {
+        status: 405,
+      }
+    )
   }
 }
 

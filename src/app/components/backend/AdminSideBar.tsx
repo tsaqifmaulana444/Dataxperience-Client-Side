@@ -59,12 +59,14 @@ export default function AdminSideBar() {
                         <p className="text-[14px] font-semibold my-auto ml-[0.7vw]">News Page</p>
                     </div>
                 </Link>
-                <div className="flex cursor-pointer">
-                    <div className="px-2 py-1.5 rounded-md">
-                        <FontAwesomeIcon icon={faChartSimple} style={{ color: "#ffffff" }} />
+                <Link href={"/admin/statistic"}>
+                    <div className="flex cursor-pointer">
+                        <div className={currentRoute === "/admin/news" ? "bg-[#776F6B] p-2 rounded-md" : "p-2 rounded-md"}>
+                            <FontAwesomeIcon icon={faChartSimple} style={{ color: "#ffffff" }} />
+                        </div>
+                        <p className="text-[14px] font-semibold my-auto ml-[0.9vw]">Statistic</p>
                     </div>
-                    <p className="text-[14px] font-semibold my-auto ml-[0.9vw]">Statistic</p>
-                </div>
+                </Link>
                 <Link href={"/admin/categories"}>
                     <div className="flex cursor-pointer">
                         <div className={currentRoute === "/admin/categories" ? "bg-[#776F6B] p-2 rounded-md" : "p-2 rounded-md"}>
