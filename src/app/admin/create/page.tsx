@@ -5,10 +5,11 @@ import '../../../../public/styles/style.css'
 import AdminNavbar from '@/app/components/backend/AdminNavbar'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-// import { config } from '@fortawesome/fontawesome-svg-core'
-// import '@fortawesome/fontawesome-svg-core/styles.css'
-// config.autoAddCss = false
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { config } from '@fortawesome/fontawesome-svg-core'
+import '@fortawesome/fontawesome-svg-core/styles.css'
+config.autoAddCss = false
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
 
 interface Authors {
@@ -44,6 +45,28 @@ export default function AuthorPage() {
         }
     }
 
+    // delete
+    const handleDelete = async (id: number) => {
+        try {
+            const response = await fetch(`/api/account/${id}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            })
+
+            if (response.ok) {
+                await fetchAuthors()
+                console.log("Author deleted successfully")
+            } else {
+                const error = await response.json()
+                console.error("Failed to delete author:", error.message)
+            }
+        } catch (error) {
+            console.error("Error:", error)
+        }
+    }
+
     useEffect(() => {
         fetchAuthors()
     }, [])
@@ -56,7 +79,7 @@ export default function AuthorPage() {
                 <div className="flex w-[75vw] mt-[7vh] justify-between mx-[3vw]">
                     <h1 className="font-bold text-[24px]">News Panel</h1>
                     <Link href="/admin/form">
-                        <button className="bg-[#57504D] text-white p-2 rounded-md w-[9vw] text-[16px] font-medium">+ Add News</button>
+                        <button className="bg-[#57504D] text-white p-2 rounded-md w-[9vw] text-[16px] font-medium"><FontAwesomeIcon icon={faPlus} style={{ color: "#ffffff" }} /> Add News</button>
                     </Link>
                 </div>
 
@@ -86,13 +109,13 @@ export default function AuthorPage() {
                                     <td className="px-6 py-4">{author.email}</td>
                                     <td className="px-6 py-4">
                                         <button
-                                            // onClick={() => handleDelete(authors.id)}
+                                            onClick={() => handleDelete(author.id)}
                                             className="text-red-500 font-bold"
                                         >
                                             Delete
                                         </button>
                                         <button
-                                            // onClick={() => handleDelete(authors.id)}
+                                            // onClick={() => handleDelete(author.id)}
                                             className="text-yellow-500 font-bold ml-3"
                                         >
                                             Edit
