@@ -6,7 +6,7 @@ import { config, icon } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 config.autoAddCss = false
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faBug, faChartSimple, faHouse, faList, faNewspaper, faGear, faCircleInfo } from "@fortawesome/free-solid-svg-icons"
+import { faBug, faUser, faChartSimple, faHouse, faList, faNewspaper, faGear, faCircleInfo } from "@fortawesome/free-solid-svg-icons"
 import Link from "next/link"
 import { usePathname, useRouter } from 'next/navigation'
 
@@ -45,18 +45,20 @@ export default function AdminSideBar() {
             <div className="flex flex-col w-[14vw] mx-auto mt-[4vh] h-[37vh] justify-between">
                 <Link href={"/admin"}>
                     <div className="flex cursor-pointer">
-                        <div className={currentRoute === "/admin" ? "bg-[#776F6B] px-2 py-1.5 rounded-md" : "px-2 py-1.5 rounded-md"}>
+                        <div className={currentRoute === "/admin" ? "bg-[#776F6B] p-2 rounded-md" : "p-2 rounded-md"}>
                             <FontAwesomeIcon icon={faHouse} style={{ color: "#ffffff" }} />
                         </div>
                         <p className="text-[14px] font-semibold my-auto ml-[0.6vw]">Home</p>
                     </div>
                 </Link>
-                <div className="flex cursor-pointer">
-                    <div className="px-2 py-1.5 rounded-md">
-                        <FontAwesomeIcon icon={faNewspaper} style={{ color: "#ffffff" }} />
+                <Link href={"/admin/news"}>
+                    <div className="flex cursor-pointer">
+                        <div className={currentRoute === "/admin/news" ? "bg-[#776F6B] p-2 rounded-md" : "p-2 rounded-md"}>
+                            <FontAwesomeIcon icon={faNewspaper} style={{ color: "#ffffff" }} />
+                        </div>
+                        <p className="text-[14px] font-semibold my-auto ml-[0.7vw]">News Page</p>
                     </div>
-                    <p className="text-[14px] font-semibold my-auto ml-[0.7vw]">News Page</p>
-                </div>
+                </Link>
                 <div className="flex cursor-pointer">
                     <div className="px-2 py-1.5 rounded-md">
                         <FontAwesomeIcon icon={faChartSimple} style={{ color: "#ffffff" }} />
@@ -65,15 +67,23 @@ export default function AdminSideBar() {
                 </div>
                 <Link href={"/admin/categories"}>
                     <div className="flex cursor-pointer">
-                        <div className={currentRoute === "/admin/categories" ? "bg-[#776F6B] px-2 py-1.5 rounded-md" : "px-2 py-1.5 rounded-md"}>
+                        <div className={currentRoute === "/admin/categories" ? "bg-[#776F6B] p-2 rounded-md" : "p-2 rounded-md"}>
                             <FontAwesomeIcon icon={faList} style={{ color: "#ffffff" }} />
                         </div>
                         <p className="text-[14px] font-semibold my-auto ml-[0.7vw]">Categories</p>
                     </div>
                 </Link>
+                <Link href={"/admin/create"}>
+                    <div className="flex cursor-pointer">
+                        <div className={currentRoute === "/admin/create" ? "bg-[#776F6B] p-2 rounded-md" : "p-2 rounded-md"}>
+                            <FontAwesomeIcon icon={faUser} style={{ color: "#ffffff" }} />
+                        </div>
+                        <p className="text-[14px] font-semibold my-auto ml-[0.7vw]">Create Account</p>
+                    </div>
+                </Link>
                 <Link href={"/admin/report"}>
                     <div className="flex cursor-pointer">
-                        <div className={currentRoute === "/admin/report" ? "bg-[#776F6B] px-2 py-1.5 rounded-md" : "px-2 py-1.5 rounded-md"}>
+                        <div className={currentRoute === "/admin/report" ? "bg-[#776F6B] p-2 rounded-md" : "p-2 rounded-md"}>
                             <FontAwesomeIcon icon={faBug} style={{ color: "#ffffff" }} />
                         </div>
                         <p className="text-[14px] font-semibold my-auto ml-[0.7vw]">Report Problem</p>
