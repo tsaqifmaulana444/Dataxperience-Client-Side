@@ -14,9 +14,15 @@ export async function POST(req: Request) {
     console.log("Received data:", data)
 
     if (!data.name) {
-      return NextResponse.json({
-        message: "Author name, email and default password are required.",
-      })
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Author name, email and default password are required.",
+        },
+        {
+          status: 400,
+        }
+      )
     }
 
     await prisma.authors.create({
@@ -57,10 +63,26 @@ export async function GET(req: Request) {
       return NextResponse.json({ authors })
     } catch (error) {
       console.error("Error fetching author:", error)
-      return NextResponse.json({ message: "Internal Server Error" })
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Something Went Wrong",
+        },
+        {
+          status: 500,
+        }
+      )
     }
   } else {
-    return NextResponse.json({ message: "Method Not Allowed" })
+    return NextResponse.json(
+      {
+        success: false,
+        message: "Method Not Allowed",
+      },
+      {
+        status: 405,
+      }
+    )
   }
 }
 

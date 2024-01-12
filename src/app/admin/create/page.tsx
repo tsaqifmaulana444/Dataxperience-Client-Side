@@ -17,12 +17,55 @@ interface Authors {
     id: number
     name: string
     email: string
+    password: string
+}
+
+interface FormAuthors {
+    name: string
+    email: string
+    password: string
 }
 
 export default function AuthorPage() {
     const [authors, setAuthors] = useState<Authors[]>([])
+    const [newAuthors, setNewAuthors] = useState('');
     const [error, setError] = useState('')
     const [openModalCreate, setOpenModalCreate] = useState(false)
+
+    // create
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault()
+
+        const formData = new FormData(event.currentTarget)
+        const data: FormAuthors = {
+            name: formData.get("name") as string,
+            email: formData.get("email") as string,
+            password: formData.get("password") as string,
+        }
+
+        try {
+            const response = await fetch("/api/account", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            })
+
+            if (response.ok) {
+                await fetchAuthors()
+                setNewAuthors('')
+                const result = await response.json()
+                console.log(result)
+            } else {
+                const error = await response.json()
+                console.error("Failed:", error.message)
+            }
+        } catch (error) {
+            console.error("Error:", error)
+        }
+    }
+
 
     // read
     const fetchAuthors = async () => {
@@ -86,7 +129,7 @@ export default function AuthorPage() {
                     <Modal.Header>Create An Account</Modal.Header>
                     <Modal.Body>
                         <div className="space-y-6">
-                            <form className=" mx-auto">
+                            <form className="mx-auto" onSubmit={handleSubmit} method="POST">
                                 <div className="mb-3">
                                     <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Author Name</label>
                                     <input autoComplete="off" type="text" id="name" name="name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" required />
@@ -97,11 +140,10 @@ export default function AuthorPage() {
                                 </div>
                                 <div className="mb-5">
                                     <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Default Password</label>
-                                    <input autoComplete="off" type="password" id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" required />
+                                    <input autoComplete="off" type="text" id="password" name="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" required />
                                 </div>
                                 <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Submit</button>
                             </form>
-
                         </div>
                     </Modal.Body>
                 </Modal>
