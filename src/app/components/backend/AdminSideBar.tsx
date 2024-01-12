@@ -6,7 +6,7 @@ import { config, icon } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 config.autoAddCss = false
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faBug, faUser, faChartSimple, faHouse, faList, faNewspaper, faGear, faCircleInfo } from "@fortawesome/free-solid-svg-icons"
+import { faBug, faUser, faChartSimple, faHouse, faList, faNewspaper, faGear, faRightFromBracket } from "@fortawesome/free-solid-svg-icons"
 import Link from "next/link"
 import { usePathname, useRouter } from 'next/navigation'
 
@@ -100,7 +100,7 @@ export default function AdminSideBar() {
                 <button onClick={handleLogout}>
                     <div className="flex cursor-pointer">
                         <div className="px-2 py-1.5 rounded-md">
-                            <FontAwesomeIcon icon={faCircleInfo} style={{ color: "#ffffff" }} />
+                            <FontAwesomeIcon icon={faRightFromBracket} style={{ color: "#ffffff" }}/>
                         </div>
                         <p className="text-[14px] font-semibold my-auto ml-[0.7vw]">Logout</p>
                     </div>

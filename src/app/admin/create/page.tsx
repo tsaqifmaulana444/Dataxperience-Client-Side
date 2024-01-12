@@ -10,6 +10,7 @@ import '@fortawesome/fontawesome-svg-core/styles.css'
 config.autoAddCss = false
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import { Button, Modal } from 'flowbite-react'
 
 
 interface Authors {
@@ -21,6 +22,7 @@ interface Authors {
 export default function AuthorPage() {
     const [authors, setAuthors] = useState<Authors[]>([])
     const [error, setError] = useState('')
+    const [openModalCreate, setOpenModalCreate] = useState(false)
 
     // read
     const fetchAuthors = async () => {
@@ -77,11 +79,32 @@ export default function AuthorPage() {
             <main className="ml-[19vw] w-full h-full">
                 <AdminNavbar />
                 <div className="flex w-[75vw] mt-[7vh] justify-between mx-[3vw]">
-                    <h1 className="font-bold text-[24px]">News Panel</h1>
-                    <Link href="/admin/form">
-                        <button className="bg-[#57504D] text-white p-2 rounded-md w-[9vw] text-[16px] font-medium"><FontAwesomeIcon icon={faPlus} style={{ color: "#ffffff" }} /> Add News</button>
-                    </Link>
+                    <h1 className="font-bold text-[24px]">Account Panel</h1>
+                    <button className="bg-[#57504D] text-white p-2 rounded-md text-[13px] font-medium" onClick={() => setOpenModalCreate(true)}><FontAwesomeIcon icon={faPlus} style={{ color: "#ffffff" }} /> Add Account</button>
                 </div>
+                <Modal show={openModalCreate} onClose={() => setOpenModalCreate(false)}>
+                    <Modal.Header>Create An Account</Modal.Header>
+                    <Modal.Body>
+                        <div className="space-y-6">
+                            <form className=" mx-auto">
+                                <div className="mb-3">
+                                    <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Author Name</label>
+                                    <input autoComplete="off" type="text" id="name" name="name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" required />
+                                </div>
+                                <div className="mb-3">
+                                    <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                                    <input autoComplete="off" type="email" id="email" name="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" required />
+                                </div>
+                                <div className="mb-5">
+                                    <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Default Password</label>
+                                    <input autoComplete="off" type="password" id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" required />
+                                </div>
+                                <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Submit</button>
+                            </form>
+
+                        </div>
+                    </Modal.Body>
+                </Modal>
 
                 <div className="relative overflow-x-auto mx-[3vw] mt-[3vh]">
                     <table className="w-full text-sm text-left text-gray-500">
