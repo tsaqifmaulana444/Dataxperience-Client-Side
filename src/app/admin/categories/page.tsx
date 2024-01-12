@@ -75,6 +75,29 @@ export default function Categories() {
         }
     }
 
+
+    // delete
+    const handleDelete = async (id: number) => {
+        try {
+            const response = await fetch(`/api/categories/${id}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            })
+
+            if (response.ok) {
+                await fetchCategories()
+                console.log("Category deleted successfully")
+            } else {
+                const error = await response.json()
+                console.error("Failed to delete category:", error.message)
+            }
+        } catch (error) {
+            console.error("Error:", error)
+        }
+    }
+
     useEffect(() => {
         fetchCategories()
     }, [])
@@ -124,11 +147,14 @@ export default function Categories() {
                                     <td className="px-6 py-4 text-gray-900">{index + 1}</td>
                                     <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{category.name}</td>
                                     <td className="px-6 py-4">{category.id}</td>
-                                    {/* <td className="px-6 py-4">
-                                        <form onSubmit={}>
-                                            <p className="text-red-500 font-bold">Delele</p>
-                                        </form>
-                                    </td> */}
+                                    <td className="px-6 py-4">
+                                        <button
+                                            onClick={() => handleDelete(category.id)}
+                                            className="text-red-500 font-bold"
+                                        >
+                                            Delete
+                                        </button>
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>
