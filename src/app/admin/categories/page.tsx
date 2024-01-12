@@ -113,6 +113,9 @@ export default function Categories() {
                                 <th scope="col" className="px-6 py-3">
                                     ID
                                 </th>
+                                <th scope="col" className="px-6 py-3">
+                                    Action
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -121,6 +124,11 @@ export default function Categories() {
                                     <td className="px-6 py-4 text-gray-900">{index + 1}</td>
                                     <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{category.name}</td>
                                     <td className="px-6 py-4">{category.id}</td>
+                                    {/* <td className="px-6 py-4">
+                                        <form onSubmit={}>
+                                            <p className="text-red-500 font-bold">Delele</p>
+                                        </form>
+                                    </td> */}
                                 </tr>
                             ))}
                         </tbody>
