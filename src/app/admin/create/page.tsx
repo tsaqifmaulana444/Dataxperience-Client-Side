@@ -3,7 +3,6 @@
 import AdminSideBar from '@/app/components/backend/AdminSideBar'
 import '../../../../public/styles/style.css'
 import AdminNavbar from '@/app/components/backend/AdminNavbar'
-import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
@@ -28,9 +27,11 @@ interface FormAuthors {
 
 export default function AuthorPage() {
     const [authors, setAuthors] = useState<Authors[]>([])
-    const [newAuthors, setNewAuthors] = useState('');
+    const [newAuthors, setNewAuthors] = useState('')
     const [error, setError] = useState('')
     const [openModalCreate, setOpenModalCreate] = useState(false)
+    const [openModalUpdate, setOpenModalUpdate] = useState(false)
+    const [editingAuthor, setEditingAuthor] = useState<FormAuthors | null>(null)
 
     // create
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -66,7 +67,6 @@ export default function AuthorPage() {
         }
     }
 
-
     // read
     const fetchAuthors = async () => {
         try {
@@ -89,6 +89,8 @@ export default function AuthorPage() {
             setError('Internal Server Error')
         }
     }
+
+    // update
 
     // delete
     const handleDelete = async (id: number) => {
@@ -180,7 +182,7 @@ export default function AuthorPage() {
                                             Delete
                                         </button>
                                         <button
-                                            // onClick={() => handleDelete(author.id)}
+                                            onClick={() => setOpenModalUpdate(true)}
                                             className="text-yellow-500 font-bold ml-3"
                                         >
                                             Edit
@@ -190,6 +192,30 @@ export default function AuthorPage() {
                             ))}
                         </tbody>
                     </table>
+                    <Modal show={openModalUpdate} onClose={() => setOpenModalUpdate(false)}>
+                        <Modal.Header>Edit Account</Modal.Header>
+                        <Modal.Body>
+                            <div className="space-y-6">
+                                <form className="mx-auto" onSubmit={handleSubmit} method="POST">
+                                    <input autoComplete="off" type="text" id="name" name="id"/>
+
+                                    <div className="mb-3">
+                                        <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Author Name</label>
+                                        <input autoComplete="off" type="text" id="name" name="name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" required />
+                                    </div>
+                                    <div className="mb-3">
+                                        <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                                        <input autoComplete="off" type="email" id="email" name="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" required />
+                                    </div>
+                                    <div className="mb-5">
+                                        <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Default Password</label>
+                                        <input autoComplete="off" type="text" id="password" name="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" required />
+                                    </div>
+                                    <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Submit</button>
+                                </form>
+                            </div>
+                        </Modal.Body>
+                    </Modal>
                 </div>
 
             </main>
