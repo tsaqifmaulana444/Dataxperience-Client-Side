@@ -31,7 +31,7 @@ export default function AuthorPage() {
     const [error, setError] = useState('')
     const [openModalCreate, setOpenModalCreate] = useState(false)
     const [openModalUpdate, setOpenModalUpdate] = useState(false)
-    const [editingAuthor, setEditingAuthor] = useState<FormAuthors | null>(null)
+    const [editingAuthor, setEditingAuthor] = useState<Authors | null>(null)
 
     // create
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -90,7 +90,40 @@ export default function AuthorPage() {
         }
     }
 
-    // update
+    // update, put the frontend function here
+    const handleUpdate = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault()
+      
+        const formData = new FormData(event.currentTarget)
+        const data: Authors = {
+          id: parseInt(formData.get("id") as string),
+          name: formData.get("name") as string,
+          email: formData.get("email") as string,
+          password: formData.get("password") as string,
+        }
+      
+        try {
+          const response = await fetch(`/api/account/${data.id}`, {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          })
+      
+          if (response.ok) {
+            await fetchAuthors()
+            setOpenModalUpdate(false)
+            console.log("Author updated successfully")
+          } else {
+            const error = await response.json()
+            console.error("Failed to update author:", error.message)
+          }
+        } catch (error) {
+          console.error("Error:", error)
+        }
+      }
+      
 
     // delete
     const handleDelete = async (id: number) => {
@@ -182,9 +215,12 @@ export default function AuthorPage() {
                                             Delete
                                         </button>
                                         <button
-                                            onClick={() => setOpenModalUpdate(true)}
+                                            onClick={() => {
+                                                setEditingAuthor(author)
+                                                setOpenModalUpdate(true)
+                                            }}
                                             className="text-yellow-500 font-bold ml-3"
-                                        >
+                                            >
                                             Edit
                                         </button>
                                     </td>
@@ -196,23 +232,22 @@ export default function AuthorPage() {
                         <Modal.Header>Edit Account</Modal.Header>
                         <Modal.Body>
                             <div className="space-y-6">
-                                <form className="mx-auto" onSubmit={handleSubmit} method="POST">
-                                    <input autoComplete="off" type="text" id="name" name="id"/>
-
-                                    <div className="mb-3">
-                                        <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Author Name</label>
-                                        <input autoComplete="off" type="text" id="name" name="name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" required />
-                                    </div>
-                                    <div className="mb-3">
-                                        <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-                                        <input autoComplete="off" type="email" id="email" name="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" required />
-                                    </div>
-                                    <div className="mb-5">
-                                        <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Default Password</label>
-                                        <input autoComplete="off" type="text" id="password" name="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" required />
-                                    </div>
-                                    <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Submit</button>
-                                </form>
+                            <form className="mx-auto" onSubmit={handleUpdate} method="PATCH">
+                                <input type="hidden" name="id" value={editingAuthor?.id} />
+                                <div className="mb-3">
+                                    <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Author Name</label>
+                                    <input autoComplete="off" type="text" id="name" name="name" defaultValue={editingAuthor?.name} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"/>
+                                </div>
+                                <div className="mb-3">
+                                    <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                                    <input autoComplete="off" type="email" id="email" name="email" defaultValue={editingAuthor?.email} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"/>
+                                </div>
+                                <div className="mb-5">
+                                    <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Default Password</label>
+                                    <input autoComplete="off" type="text" id="password" name="password" defaultValue={editingAuthor?.password} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"/>
+                                </div>
+                                <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Submit</button>
+                            </form>
                             </div>
                         </Modal.Body>
                     </Modal>

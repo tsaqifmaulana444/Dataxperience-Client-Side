@@ -43,7 +43,7 @@ export async function PATCH(request: Request, { params }: { params: { id: string
   //return response JSON
   return NextResponse.json(
     {
-      sucess: true,
+      success: true,
       message: "Data Authors Updated!",
       data: authors,
     },
