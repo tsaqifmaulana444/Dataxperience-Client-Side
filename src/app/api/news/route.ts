@@ -17,7 +17,7 @@ export async function POST(req: Request) {
       return NextResponse.json(
         {
           success: false,
-          message: "Author name, email and default password are required.",
+          message: "News name, email, and default password are required.",
         },
         {
           status: 400,
@@ -36,7 +36,7 @@ export async function POST(req: Request) {
     return NextResponse.json(
       {
         success: true,
-        message: "Author Created!",
+        message: "News Created!",
       },
       {
         status: 200,
@@ -59,10 +59,10 @@ export async function POST(req: Request) {
 export async function GET(req: Request) {
   if (req.method === "GET") {
     try {
-      const authors = await prisma.authors.findMany()
-      return NextResponse.json({ authors })
+      const news = await prisma.news.findMany()
+      return NextResponse.json({ news })
     } catch (error) {
-      console.error("Error fetching author:", error)
+      console.error("Error fetching news:", error)
       return NextResponse.json(
         {
           success: false,
@@ -85,4 +85,3 @@ export async function GET(req: Request) {
     )
   }
 }
-

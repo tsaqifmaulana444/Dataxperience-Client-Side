@@ -6,7 +6,7 @@ const prisma = new PrismaClient()
 export async function DELETE(req: Request, { params }: { params: { id: string } }) {
   const id = parseInt(params.id, 10)
 
-  await prisma.authors.delete({
+  await prisma.news.delete({
     where: {
       id: id,
     },
