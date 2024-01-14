@@ -61,7 +61,7 @@ export default function AdminSideBar() {
                 </Link>
                 <Link href={"/admin/statistic"}>
                     <div className="flex cursor-pointer">
-                        <div className={currentRoute === "/admin/news" ? "bg-[#776F6B] p-2 rounded-md" : "p-2 rounded-md"}>
+                        <div className={currentRoute === "/admin/statiscic" ? "bg-[#776F6B] p-2 rounded-md" : "p-2 rounded-md"}>
                             <FontAwesomeIcon icon={faChartSimple} style={{ color: "#ffffff" }} />
                         </div>
                         <p className="text-[14px] font-semibold my-auto ml-[0.9vw]">Statistic</p>

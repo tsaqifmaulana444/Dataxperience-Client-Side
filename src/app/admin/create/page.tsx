@@ -13,13 +13,7 @@ import { Button, Modal } from 'flowbite-react'
 
 
 interface Authors {
-    id: number
-    name: string
-    email: string
-    password: string
-}
-
-interface FormAuthors {
+    id?: number
     name: string
     email: string
     password: string
@@ -38,7 +32,7 @@ export default function AuthorPage() {
         event.preventDefault()
 
         const formData = new FormData(event.currentTarget)
-        const data: FormAuthors = {
+        const data: Authors = {
             name: formData.get("name") as string,
             email: formData.get("email") as string,
             password: formData.get("password") as string,
@@ -126,7 +120,7 @@ export default function AuthorPage() {
       
 
     // delete
-    const handleDelete = async (id: number) => {
+    const handleDelete = async (id?: number) => {
         try {
             const response = await fetch(`/api/account/${id}`, {
                 method: "DELETE",

@@ -6,12 +6,8 @@ import AdminNavbar from '@/app/components/backend/AdminNavbar'
 import router from "next/navigation"
 import { useEffect, useState } from 'react'
 
-interface CategoriesFormData {
-    name: string
-}
-
 interface Category {
-    id: number
+    id?: number
     name: string
 }
 
@@ -25,7 +21,7 @@ export default function Categories() {
         event.preventDefault()
 
         const formData = new FormData(event.currentTarget)
-        const data: CategoriesFormData = {
+        const data: Category = {
             name: formData.get("name") as string,
         }
 
@@ -77,7 +73,7 @@ export default function Categories() {
 
 
     // delete
-    const handleDelete = async (id: number) => {
+    const handleDelete = async (id?: number) => {
         try {
             const response = await fetch(`/api/categories/${id}`, {
                 method: "DELETE",
