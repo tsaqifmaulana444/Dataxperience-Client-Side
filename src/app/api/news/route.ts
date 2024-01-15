@@ -14,11 +14,11 @@ export async function POST(req: Request) {
   try {
     console.log("Received data:", data)
 
-    if (!data.name) {
+    if (!data.category_ids || !Array.isArray(data.category_ids)) {
       return NextResponse.json(
         {
           success: false,
-          message: "News name, email, and default password are required.",
+          message: "Category IDs are missing or not an array.",
         },
         {
           status: 400,
@@ -30,9 +30,9 @@ export async function POST(req: Request) {
       data: {
         title: data.title,
         news_body: data.news_body,
-        news_image: data.news_image
-        // author_id: data.author_id
-        // category_id: data.category_id
+        news_image: data.news_image,
+        author_id: data.author_id,
+        category_ids: data.category_ids,
       },
     })
 
@@ -58,6 +58,7 @@ export async function POST(req: Request) {
     )
   }
 }
+
 
 export async function GET(req: Request) {
   if (req.method === "GET") {

@@ -16,7 +16,7 @@ interface News {
     title: string
     news_body: string
     news_image: string
-    category_id?: number | null
+    category_ids?: number[] | null
     author_id?: number
     created_at?: string
     updated_at?: string
@@ -41,27 +41,29 @@ export default function NewsPage() {
     // create
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
-
+    
         const formData = new FormData(event.currentTarget)
         const data: News = {
             title: formData.get("title") as string,
             news_body: formData.get("news_body") as string,
             news_image: formData.get("news_image") as string,
             author_id: 1,
+            category_ids: Array.from(formData.getAll("category_ids[]") as FormDataEntryValue[]).map(Number),
         }
-
+    
         try {
-            const response = await fetch("/api/account", {
+            const response = await fetch("/api/news", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(data),
             })
-
+    
             if (response.ok) {
                 await fetchNews()
                 setNewNews('')
+                setOpenModalCreate(false)
                 const result = await response.json()
                 console.log(result)
             } else {
@@ -71,7 +73,7 @@ export default function NewsPage() {
         } catch (error) {
             console.error("Error:", error)
         }
-    }
+    }    
 
     // read
     const fetchNews = async () => {
@@ -206,12 +208,12 @@ export default function NewsPage() {
                                     <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Categories</label>
                                     {/* loop categories data here */}
                                     <div className="">
-                                    {categories.map((category, index) => (
-                                        <div key={category.id} className="flex items-center mb-4">
-                                            <input id="default-checkbox" type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 " defaultValue={category.id}/>
-                                                <label htmlFor="default-checkbox" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{category.name}</label>
-                                        </div>
-                                    ))}
+                                        {categories.map((category, index) => (
+                                            <div key={category.id} className="flex items-center mb-4">
+                                                <input id={`category-checkbox-${index}`} type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 " defaultValue={category.id} name="category_ids" />
+                                                <label htmlFor={`category-checkbox-${index}`} className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{category.name}</label>
+                                            </div>
+                                        ))}
                                     </div>
                                 </div>
                                 <div className="mb-5">
