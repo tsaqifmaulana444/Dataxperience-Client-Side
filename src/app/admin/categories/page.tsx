@@ -115,7 +115,7 @@ export default function Categories() {
                             value={newCategory}
                             onChange={(e) => setNewCategory(e.target.value)}
                         />
-                        <button type='submit' className="bg-[#57504D] text-white py-2 px-4 rounded-r-md w-[7vw] text-[13px] font-medium">Add</button>
+                        <button type='submit' className="bg-[#262524] text-white py-2 px-4 rounded-r-md w-[7vw] text-[13px] font-medium">Add</button>
                     </form>
                 </div>
 

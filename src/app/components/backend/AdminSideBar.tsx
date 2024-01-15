@@ -33,19 +33,19 @@ export default function AdminSideBar() {
         }
     }
     return (
-        <aside className='bg-[#57504D] w-[19vw] h-full fixed text-white'>
+        <aside className='bg-[#262524] w-[19vw] h-full fixed text-white'>
             <div className="w-[14vw] mx-auto">
                 <Image
                     src={LogoWhite}
                     alt="Logo White"
                     className="w-full mt-[4vh]"
                 />
-                <div className="bg-white w-[12vw] h-[0.1vh] mx-auto mt-[1vh] opacity-60"></div>
+                <div className="bg-white w-[12vw] h-[0.1vh] mx-auto mt-[0vh] opacity-60"></div>
             </div>
             <div className="flex flex-col w-[14vw] mx-auto mt-[4vh] h-[37vh] justify-between">
                 <Link href={"/admin"}>
                     <div className="flex cursor-pointer">
-                        <div className={currentRoute === "/admin" ? "bg-[#776F6B] p-2 rounded-md" : "p-2 rounded-md"}>
+                        <div className={currentRoute === "/admin" ? "bg-[#525252] p-2 rounded-md" : "p-2 rounded-md"}>
                             <FontAwesomeIcon icon={faHouse} style={{ color: "#ffffff" }} />
                         </div>
                         <p className="text-[14px] font-semibold my-auto ml-[0.6vw]">Home</p>
@@ -53,7 +53,7 @@ export default function AdminSideBar() {
                 </Link>
                 <Link href={"/admin/news"}>
                     <div className="flex cursor-pointer">
-                        <div className={currentRoute === "/admin/news" ? "bg-[#776F6B] p-2 rounded-md" : "p-2 rounded-md"}>
+                        <div className={currentRoute === "/admin/news" ? "bg-[#525252] p-2 rounded-md" : "p-2 rounded-md"}>
                             <FontAwesomeIcon icon={faNewspaper} style={{ color: "#ffffff" }} />
                         </div>
                         <p className="text-[14px] font-semibold my-auto ml-[0.7vw]">News Page</p>
@@ -61,7 +61,7 @@ export default function AdminSideBar() {
                 </Link>
                 <Link href={"/admin/statistic"}>
                     <div className="flex cursor-pointer">
-                        <div className={currentRoute === "/admin/statiscic" ? "bg-[#776F6B] p-2 rounded-md" : "p-2 rounded-md"}>
+                        <div className={currentRoute === "/admin/statiscic" ? "bg-[#525252] p-2 rounded-md" : "p-2 rounded-md"}>
                             <FontAwesomeIcon icon={faChartSimple} style={{ color: "#ffffff" }} />
                         </div>
                         <p className="text-[14px] font-semibold my-auto ml-[0.9vw]">Statistic</p>
@@ -69,7 +69,7 @@ export default function AdminSideBar() {
                 </Link>
                 <Link href={"/admin/categories"}>
                     <div className="flex cursor-pointer">
-                        <div className={currentRoute === "/admin/categories" ? "bg-[#776F6B] p-2 rounded-md" : "p-2 rounded-md"}>
+                        <div className={currentRoute === "/admin/categories" ? "bg-[#525252] p-2 rounded-md" : "p-2 rounded-md"}>
                             <FontAwesomeIcon icon={faList} style={{ color: "#ffffff" }} />
                         </div>
                         <p className="text-[14px] font-semibold my-auto ml-[0.7vw]">Categories</p>
@@ -77,20 +77,14 @@ export default function AdminSideBar() {
                 </Link>
                 <Link href={"/admin/create"}>
                     <div className="flex cursor-pointer">
-                        <div className={currentRoute === "/admin/create" ? "bg-[#776F6B] p-2 rounded-md" : "p-2 rounded-md"}>
+                        <div className={currentRoute === "/admin/create" ? "bg-[#525252] p-2 rounded-md" : "p-2 rounded-md"}>
                             <FontAwesomeIcon icon={faUser} style={{ color: "#ffffff" }} />
                         </div>
                         <p className="text-[14px] font-semibold my-auto ml-[0.7vw]">Create Account</p>
                     </div>
                 </Link>
             </div>
-            <div className="flex flex-col w-[14vw] mx-auto mt-[31vh] h-[12vh] justify-between">
-                <div className="flex cursor-pointer">
-                    <div className="px-2 py-1.5 rounded-md">
-                        <FontAwesomeIcon icon={faGear} style={{ color: "#ffffff" }} />
-                    </div>
-                    <p className="text-[14px] font-semibold my-auto ml-[0.7vw]">Settings</p>
-                </div>
+            <div className="flex flex-col w-[14vw] mx-auto mt-[38vh] h-[12vh] justify-between">
                 <button onClick={handleLogout}>
                     <div className="flex cursor-pointer">
                         <div className="px-2 py-1.5 rounded-md">

@@ -23,7 +23,7 @@ export default function AdminPage() {
                 <div className="flex w-[75vw] mt-[7vh] justify-between mx-[3vw]">
                     <h1 className="font-bold text-[24px]">Dashboard</h1>
                     <Link href="/admin/form">
-                        <button className="bg-[#57504D] text-white p-2 rounded-md w-[9vw] text-[16px] font-medium">+ Add News</button>
+                        <button className="bg-[#262524] text-white p-2 rounded-md w-[9vw] text-[16px] font-medium">+ Add News</button>
                     </Link>
                 </div>
                 <div className="flex mx-[3vw] mt-[3vh]">

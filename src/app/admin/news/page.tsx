@@ -190,7 +190,7 @@ export default function NewsPage() {
                 <AdminNavbar />
                 <div className="flex w-[75vw] mt-[7vh] justify-between mx-[3vw]">
                     <h1 className="font-bold text-[24px]">News Panel</h1>
-                    <button className="bg-[#57504D] text-white p-2 rounded-md text-[13px] font-medium" onClick={() => setOpenModalCreate(true)}><FontAwesomeIcon icon={faPlus} style={{ color: "#ffffff" }} /> Add News</button>
+                    <button className="bg-[#262524] text-white p-2 rounded-md text-[13px] font-medium" onClick={() => setOpenModalCreate(true)}><FontAwesomeIcon icon={faPlus} style={{ color: "#ffffff" }} /> Add News</button>
                 </div>
                 <Modal show={openModalCreate} onClose={() => setOpenModalCreate(false)}>
                     <Modal.Header>Create A News</Modal.Header>
