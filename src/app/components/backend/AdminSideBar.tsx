@@ -83,14 +83,6 @@ export default function AdminSideBar() {
                         <p className="text-[14px] font-semibold my-auto ml-[0.7vw]">Create Account</p>
                     </div>
                 </Link>
-                <Link href={"/admin/report"}>
-                    <div className="flex cursor-pointer">
-                        <div className={currentRoute === "/admin/report" ? "bg-[#776F6B] p-2 rounded-md" : "p-2 rounded-md"}>
-                            <FontAwesomeIcon icon={faBug} style={{ color: "#ffffff" }} />
-                        </div>
-                        <p className="text-[14px] font-semibold my-auto ml-[0.7vw]">Report Problem</p>
-                    </div>
-                </Link>
             </div>
             <div className="flex flex-col w-[14vw] mx-auto mt-[31vh] h-[12vh] justify-between">
                 <div className="flex cursor-pointer">
