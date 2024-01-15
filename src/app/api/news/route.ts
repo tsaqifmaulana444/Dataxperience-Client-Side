@@ -1,3 +1,4 @@
+import AuthorPage from "@/app/admin/create/page"
 import { PrismaClient } from "@prisma/client"
 import { NextResponse } from "next/server"
 
@@ -25,11 +26,13 @@ export async function POST(req: Request) {
       )
     }
 
-    await prisma.authors.create({
+    await prisma.news.create({
       data: {
-        name: data.name,
-        email: data.email,
-        password: data.password
+        title: data.title,
+        news_body: data.news_body,
+        news_image: data.news_image
+        // author_id: data.author_id
+        // author_id: data.author_id
       },
     })
 
