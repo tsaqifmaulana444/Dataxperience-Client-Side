@@ -25,7 +25,7 @@ interface News {
 }
 
 interface Category {
-    id?: number
+    id: number
     name: string
 }
 
@@ -41,7 +41,7 @@ export default function NewsPage() {
     // create
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
-    
+
         const formData = new FormData(event.currentTarget)
         const data: News = {
             title: formData.get("title") as string,
@@ -50,7 +50,7 @@ export default function NewsPage() {
             author_id: 1,
             category_ids: Array.from(formData.getAll("category_ids[]") as FormDataEntryValue[]).map(Number),
         }
-    
+
         try {
             const response = await fetch("/api/news", {
                 method: "POST",
@@ -59,7 +59,7 @@ export default function NewsPage() {
                 },
                 body: JSON.stringify(data),
             })
-    
+
             if (response.ok) {
                 await fetchNews()
                 setNewNews('')
@@ -73,7 +73,7 @@ export default function NewsPage() {
         } catch (error) {
             console.error("Error:", error)
         }
-    }    
+    }
 
     // read
     const fetchNews = async () => {
@@ -100,37 +100,38 @@ export default function NewsPage() {
 
     // update
     const handleUpdate = async (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault()
+        event.preventDefault();
 
-        const formData = new FormData(event.currentTarget)
+        const formData = new FormData(event.currentTarget);
         const data: News = {
             id: parseInt(formData.get("id") as string),
             title: formData.get("title") as string,
             news_body: formData.get("news_body") as string,
             news_image: formData.get("news_image") as string,
-        }
+            category_ids: Array.from(formData.getAll("category_ids") as FormDataEntryValue[]).map(Number),
+        };
 
         try {
-            const response = await fetch(`/api/account/${data.id}`, {
+            const response = await fetch(`/api/news/${data.id}`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(data),
-            })
+            });
 
             if (response.ok) {
-                await fetchNews()
-                setOpenModalUpdate(false)
-                console.log("News updated successfully")
+                await fetchNews();
+                setOpenModalUpdate(false);
+                console.log("News updated successfully");
             } else {
-                const error = await response.json()
-                console.error("Failed to update news:", error.message)
+                const error = await response.json();
+                console.error("Failed to update news:", error.message);
             }
         } catch (error) {
-            console.error("Error:", error)
+            console.error("Error:", error);
         }
-    }
+    };
 
 
     // delete
@@ -271,29 +272,77 @@ export default function NewsPage() {
                             ))}
                         </tbody>
                     </table>
-                    {/* <Modal show={openModalUpdate} onClose={() => setOpenModalUpdate(false)}>
+                    <Modal show={openModalUpdate} onClose={() => setOpenModalUpdate(false)}>
                         <Modal.Header>Edit News</Modal.Header>
                         <Modal.Body>
                             <div className="space-y-6">
-                            <form className="mx-auto" onSubmit={handleUpdate} method="PATCH">
-                                <input type="hidden" name="id" value={editingNews?.id} />
-                                <div className="mb-3">
-                                    <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">News Name</label>
-                                    <input autoComplete="off" type="text" id="name" name="name" defaultValue={editingNews?.name} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"/>
-                                </div>
-                                <div className="mb-3">
-                                    <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-                                    <input autoComplete="off" type="email" id="email" name="email" defaultValue={editingNews?.email} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"/>
-                                </div>
-                                <div className="mb-5">
-                                    <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Default Password</label>
-                                    <input autoComplete="off" type="text" id="password" name="password" defaultValue={editingNews?.password} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"/>
-                                </div>
-                                <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Submit</button>
-                            </form>
+                                <form className="mx-auto" onSubmit={handleUpdate} method="PATCH">
+                                    <input type="hidden" name="id" value={editingNews?.id} />
+                                    <div className="mb-3">
+                                        <label htmlFor="title" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                            News Title
+                                        </label>
+                                        <input
+                                            autoComplete="off"
+                                            type="text"
+                                            id="title"
+                                            name="title"
+                                            defaultValue={editingNews?.title}
+                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+                                            required
+                                        />
+                                    </div>
+                                    <div className="mb-3">
+                                        <label htmlFor="news_image" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                            Thumbnail Image
+                                        </label>
+                                        <input
+                                            autoComplete="off"
+                                            type="text"
+                                            id="news_image"
+                                            name="news_image"
+                                            defaultValue={editingNews?.news_image}
+                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+                                            required
+                                            placeholder="Please Use URL Image"
+                                        />
+                                    </div>
+                                    <div className="mb-3">
+                                        <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Categories</label>
+                                        {/* loop categories data here */}
+                                        <div className="">
+                                            {categories.map((category, index) => (
+                                                <div key={category.id} className="flex items-center mb-4">
+                                                    <input id={`category-checkbox-${index}`} type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 " defaultValue={category.id} name="category_ids" />
+                                                    <label htmlFor={`category-checkbox-${index}`} className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{category.name}</label>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+
+                                    <div className="mb-5">
+                                        <label htmlFor="news_body" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                            Content
+                                        </label>
+                                        <textarea
+                                            autoComplete="off"
+                                            name="news_body"
+                                            id="news_body"
+                                            defaultValue={editingNews?.news_body}
+                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 h-[150px]"
+                                            required
+                                        ></textarea>
+                                    </div>
+                                    <button
+                                        type="submit"
+                                        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+                                    >
+                                        Submit
+                                    </button>
+                                </form>
                             </div>
                         </Modal.Body>
-                    </Modal> */}
+                    </Modal>
                 </div>
 
             </main>

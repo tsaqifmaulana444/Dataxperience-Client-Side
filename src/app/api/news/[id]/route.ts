@@ -28,17 +28,20 @@ export async function PATCH(request: Request, { params }: { params: { id: string
 
   const  data  = await request.json()
 
-  const authors = await prisma.authors.update({
+  const authors = await prisma.news.update({
     where: {
       id: id,
     },
     data: {
-      name: data.name,
-      email: data.email,
-      password: data.password,
+      title: data.title,
+      news_body: data.news_body,
+      news_image: data.news_image,
+      categories: {
+        set: data.category_ids?.map((id: number) => ({ id })) || [], // Make sure to handle category_ids correctly
+      },
       updated_at: new Date(),
     },
-  })
+  })  
 
   //return response JSON
   return NextResponse.json(
