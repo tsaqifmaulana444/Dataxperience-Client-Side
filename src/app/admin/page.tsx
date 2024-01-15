@@ -16,8 +16,98 @@ import { Dropdown } from 'flowbite-react'
 import { useState } from "react"
 import { Button, Modal } from 'flowbite-react'
 
+interface Agenda {
+    id?: number
+    title: string
+    description: string
+    type: string
+}
+
 export default function AdminPage() {
     const [openModalAgenda, setOpenModalAgenda] = useState(false)
+    const [agenda, setAgenda] = useState<Agenda[]>([])
+    const [newAgenda, setNewAgenda] = useState('')
+    const [error, setError] = useState('')
+
+    // create
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault()
+
+        const formData = new FormData(event.currentTarget)
+        const data: Agenda = {
+            title: formData.get("title") as string,
+            description: formData.get("description") as string,
+            type: formData.get("type") as string,
+        }
+
+        try {
+            const response = await fetch("/api/agenda", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            })
+
+            if (response.ok) {
+                await fetchAgenda()
+                setNewAgenda('')
+                setOpenModalAgenda(false)
+                const result = await response.json()
+                console.log(result)
+            } else {
+                const error = await response.json()
+                console.error("Failed:", error.message)
+            }
+        } catch (error) {
+            console.error("Error:", error)
+        }
+    }
+
+    // read
+    const fetchAgenda = async () => {
+        try {
+            const response = await fetch('/api/account', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            console.log(response)
+            if (response.ok) {
+                const { agenda } = await response.json()
+                setAgenda(agenda)
+            } else {
+                const error = await response.json()
+                setError(error.message)
+            }
+        } catch (error) {
+            console.error('Error fetching agenda:', error)
+            setError('Internal Server Error')
+        }
+    }
+
+    // delete
+    const handleDelete = async (id?: number) => {
+        try {
+            const response = await fetch(`/api/agenda/${id}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            })
+
+            if (response.ok) {
+                await fetchAgenda()
+                console.log("Agenda deleted successfully")
+            } else {
+                const error = await response.json()
+                console.error("Failed to delete agenda:", error.message)
+            }
+        } catch (error) {
+            console.error("Error:", error)
+        }
+    }
 
     return (
         <div className='flex w-full '>
@@ -95,24 +185,24 @@ export default function AdminPage() {
                                 <Modal.Header>Add Agenda</Modal.Header>
                                 <Modal.Body>
                                     <div className="space-y-6">
-                                        <form className="mx-auto" method="POST">
+                                        <form className="mx-auto" onSubmit={handleSubmit} method="POST">
                                             <div className="mb-3">
-                                                <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
-                                                <input autoComplete="off" type="text" id="name" name="name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" required />
+                                                <label htmlFor="title" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
+                                                <input autoComplete="off" type="text" id="title" name="title" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" required />
                                             </div>
                                             <div className="mb-3">
-                                                <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-                                                <textarea autoComplete="off" id="email" name="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 h-[150px]" required></textarea>
+                                                <label htmlFor="description" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+                                                <textarea autoComplete="off" id="description" name="description" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 h-[150px]" required></textarea>
                                             </div>
                                             <div className="mb-5">
-                                                <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Type</label>
-                                                <select id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                                <label htmlFor="type" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Type</label>
+                                                <select id="type" name="type" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                                                     <option selected>Choose Type</option>
-                                                    <option value="US">Urgent</option>
-                                                    <option value="CA">Semi-Urgent</option>
-                                                    <option value="FR">Medium Intensity</option>
-                                                    <option value="DE">Low Intensity</option>
-                                                    <option value="DE">Very Low Intensity</option>
+                                                    <option value="Urgent">Urgent</option>
+                                                    <option value="Semi Urgent">Semi Urgent</option>
+                                                    <option value="Medium Intensity">Medium Intensity</option>
+                                                    <option value="Low Intensity">Low Intensity</option>
+                                                    <option value="Very Low Intensity">Very Low Intensity</option>
                                                 </select>
                                             </div>
                                             <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Submit</button>
@@ -133,7 +223,7 @@ export default function AdminPage() {
                                 </div>
                                 <Dropdown label="" dismissOnClick={false} renderTrigger={() => <span><FontAwesomeIcon icon={faEllipsisVertical} style={{ color: "#2e333e" }} className="ml-[12vw] mt-[20px] my-auto" size="lg" /></span>}>
                                     <Dropdown.Item>Details</Dropdown.Item>
-                                    <Dropdown.Item>Delete</Dropdown.Item>
+                                    {/* <Dropdown.Item onClick={() => handleDelete(author.id)}>Delete</Dropdown.Item> */}
                                 </Dropdown>
                             </div>
                         </div>
