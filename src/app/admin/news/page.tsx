@@ -100,16 +100,16 @@ export default function NewsPage() {
 
     // update
     const handleUpdate = async (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
+        event.preventDefault()
 
-        const formData = new FormData(event.currentTarget);
+        const formData = new FormData(event.currentTarget)
         const data: News = {
             id: parseInt(formData.get("id") as string),
             title: formData.get("title") as string,
             news_body: formData.get("news_body") as string,
             news_image: formData.get("news_image") as string,
             category_ids: Array.from(formData.getAll("category_ids") as FormDataEntryValue[]).map(Number),
-        };
+        }
 
         try {
             const response = await fetch(`/api/news/${data.id}`, {
@@ -118,20 +118,20 @@ export default function NewsPage() {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(data),
-            });
+            })
 
             if (response.ok) {
-                await fetchNews();
-                setOpenModalUpdate(false);
-                console.log("News updated successfully");
+                await fetchNews()
+                setOpenModalUpdate(false)
+                console.log("News updated successfully")
             } else {
-                const error = await response.json();
-                console.error("Failed to update news:", error.message);
+                const error = await response.json()
+                console.error("Failed to update news:", error.message)
             }
         } catch (error) {
-            console.error("Error:", error);
+            console.error("Error:", error)
         }
-    };
+    }
 
 
     // delete

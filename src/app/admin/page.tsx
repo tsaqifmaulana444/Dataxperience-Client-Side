@@ -12,9 +12,13 @@ import { faCheck, faEllipsisVertical, faPlus, faXmark } from "@fortawesome/free-
 import Image from "next/image"
 import Profile from "../images/blank_profile.jpeg"
 import { useRouter } from "next/navigation"
+import { Dropdown } from 'flowbite-react'
+import { useState } from "react"
+import { Button, Modal } from 'flowbite-react'
 
 export default function AdminPage() {
-    
+    const [openModalAgenda, setOpenModalAgenda] = useState(false)
+
     return (
         <div className='flex w-full '>
             <AdminSideBar />
@@ -22,7 +26,7 @@ export default function AdminPage() {
                 <AdminNavbar />
                 <div className="flex w-[75vw] mt-[7vh] justify-between mx-[3vw]">
                     <h1 className="font-bold text-[24px]">Dashboard</h1>
-                    <Link href="/admin/form">
+                    <Link href="/admin/news">
                         <button className="bg-[#262524] text-white p-2 rounded-md w-[9vw] text-[16px] font-medium">+ Add News</button>
                     </Link>
                 </div>
@@ -81,12 +85,41 @@ export default function AdminPage() {
                     </div>
                 </div>
                 <div className="grid grid-cols-2 mx-[3vw] mt-[2vh] mb-[7vh]">
-                    <div className="bg-white w-[37vw] h-[40vh] rounded-md"></div>
-                    <div className="bg-white w-[37vw] h-[40vh] rounded-md ml-[0.6vw]"></div>
                     <div className="bg-white w-[37vw] h-[40vh] rounded-md mt-[2.2vh]">
                         <div className="flex w-full mx-[2vw] opacity-70 mt-[3vh] text-[16px] font-semibold">
                             <h1>Upcoming Agendas</h1>
-                            <p className="ml-[19vw]">Add <FontAwesomeIcon icon={faPlus} style={{ color: "#141414" }} /></p>
+                            <button onClick={() => setOpenModalAgenda(true)}>
+                                <p className="ml-[19vw]">Add <FontAwesomeIcon icon={faPlus} style={{ color: "#141414" }} /></p>
+                            </button>
+                            <Modal show={openModalAgenda} onClose={() => setOpenModalAgenda(false)}>
+                                <Modal.Header>Add Agenda</Modal.Header>
+                                <Modal.Body>
+                                    <div className="space-y-6">
+                                        <form className="mx-auto" method="POST">
+                                            <div className="mb-3">
+                                                <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
+                                                <input autoComplete="off" type="text" id="name" name="name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" required />
+                                            </div>
+                                            <div className="mb-3">
+                                                <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+                                                <textarea autoComplete="off" id="email" name="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 h-[150px]" required></textarea>
+                                            </div>
+                                            <div className="mb-5">
+                                                <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Type</label>
+                                                <select id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                                    <option selected>Choose Type</option>
+                                                    <option value="US">Urgent</option>
+                                                    <option value="CA">Semi-Urgent</option>
+                                                    <option value="FR">Medium Intensity</option>
+                                                    <option value="DE">Low Intensity</option>
+                                                    <option value="DE">Very Low Intensity</option>
+                                                </select>
+                                            </div>
+                                            <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Submit</button>
+                                        </form>
+                                    </div>
+                                </Modal.Body>
+                            </Modal>
                         </div>
                         <div className="mt-[2vh]">
                             <div className="flex w-[33vw] mx-[2vw]">
@@ -98,29 +131,10 @@ export default function AdminPage() {
                                     <p className="opacity-70 text-[13px] font-semibold">Full Day</p>
                                     <p className="font-semibold -ml-[0.1vw] text-[15px]">Business Expansion In Cambodia</p>
                                 </div>
-                                <FontAwesomeIcon icon={faEllipsisVertical} style={{ color: "#2e333e" }} className="ml-[12vw] my-auto" size="lg" />
-                            </div>
-                            <div className="flex w-[33vw] mx-[2vw] mt-3">
-                                <div>
-                                    <p className="font-semibold w-fit mx-auto text-[24px]">05</p>
-                                    <p className="font-medium -mt-[0.8vh] text-[13px]">May</p>
-                                </div>
-                                <div className="ml-[1.3vw] mt-[1vh]">
-                                    <p className="opacity-70 text-[13px] font-semibold">Full Day</p>
-                                    <p className="font-semibold -ml-[0.1vw] text-[15px]">Business Expansion In Cambodia</p>
-                                </div>
-                                <FontAwesomeIcon icon={faEllipsisVertical} style={{ color: "#2e333e" }} className="ml-[12vw] my-auto" size="lg" />
-                            </div>
-                            <div className="flex w-[33vw] mx-[2vw] mt-3">
-                                <div>
-                                    <p className="font-semibold w-fit mx-auto text-[24px]">05</p>
-                                    <p className="font-medium -mt-[0.8vh] text-[13px]">May</p>
-                                </div>
-                                <div className="ml-[1.3vw] mt-[1vh]">
-                                    <p className="opacity-70 text-[13px] font-semibold">Full Day</p>
-                                    <p className="font-semibold -ml-[0.1vw] text-[15px]">Business Expansion In Cambodia</p>
-                                </div>
-                                <FontAwesomeIcon icon={faEllipsisVertical} style={{ color: "#2e333e" }} className="ml-[12vw] my-auto" size="lg" />
+                                <Dropdown label="" dismissOnClick={false} renderTrigger={() => <span><FontAwesomeIcon icon={faEllipsisVertical} style={{ color: "#2e333e" }} className="ml-[12vw] mt-[20px] my-auto" size="lg" /></span>}>
+                                    <Dropdown.Item>Details</Dropdown.Item>
+                                    <Dropdown.Item>Delete</Dropdown.Item>
+                                </Dropdown>
                             </div>
                         </div>
                     </div>
