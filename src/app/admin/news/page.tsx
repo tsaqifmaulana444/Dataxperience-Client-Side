@@ -206,10 +206,12 @@ export default function NewsPage() {
                                     <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Categories</label>
                                     {/* loop categories data here */}
                                     <div className="">
-                                        <div className="flex items-center mb-4">
-                                            <input id="default-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                                                <label htmlFor="default-checkbox" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default checkbox</label>
+                                    {categories.map((category, index) => (
+                                        <div key={category.id} className="flex items-center mb-4">
+                                            <input id="default-checkbox" type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 " defaultValue={category.id}/>
+                                                <label htmlFor="default-checkbox" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{category.name}</label>
                                         </div>
+                                    ))}
                                     </div>
                                 </div>
                                 <div className="mb-5">

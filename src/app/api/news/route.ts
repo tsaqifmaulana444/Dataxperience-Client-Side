@@ -32,7 +32,7 @@ export async function POST(req: Request) {
         news_body: data.news_body,
         news_image: data.news_image
         // author_id: data.author_id
-        // author_id: data.author_id
+        // category_id: data.category_id
       },
     })
 
