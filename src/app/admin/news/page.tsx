@@ -16,22 +16,18 @@ interface News {
     title: string
     news_body: string
     news_image: string
-    category_id?: number | null // Marking category_id as optional
+    category_id?: number | null
     author_id?: number
-    created_at?: string // Assuming the DateTime will be converted to a string
-    updated_at?: string // Assuming the DateTime will be converted to a string
-    deleted_at?: string | null // Marking deleted_at as optional
+    created_at?: string
+    updated_at?: string
+    deleted_at?: string | null
     // Define foreign key relationships
 }
 
-interface FormNews {
-    title: string
-    news_body: string
-    news_image: string
-    category_id?: number | null // Marking category_id as optional
-    author_id?: number
+interface Category {
+    id?: number
+    name: string
 }
-
 
 export default function NewsPage() {
     const [news, setNews] = useState<News[]>([])
@@ -40,16 +36,18 @@ export default function NewsPage() {
     const [openModalCreate, setOpenModalCreate] = useState(false)
     const [openModalUpdate, setOpenModalUpdate] = useState(false)
     const [editingNews, setEditingNews] = useState<News | null>(null)
+    const [categories, setCategories] = useState<Category[]>([])
 
     // create
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
 
         const formData = new FormData(event.currentTarget)
-        const data: FormNews = {
+        const data: News = {
             title: formData.get("title") as string,
             news_body: formData.get("news_body") as string,
             news_image: formData.get("news_image") as string,
+            author_id: 1,
         }
 
         try {
@@ -98,40 +96,40 @@ export default function NewsPage() {
         }
     }
 
-    // update, put the frontend function here
+    // update
     const handleUpdate = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
-      
+
         const formData = new FormData(event.currentTarget)
         const data: News = {
-          id: parseInt(formData.get("id") as string),
-          title: formData.get("title") as string,
-          news_body: formData.get("news_body") as string,
-          news_image: formData.get("news_image") as string,
+            id: parseInt(formData.get("id") as string),
+            title: formData.get("title") as string,
+            news_body: formData.get("news_body") as string,
+            news_image: formData.get("news_image") as string,
         }
-      
+
         try {
-          const response = await fetch(`/api/account/${data.id}`, {
-            method: "PATCH",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data),
-          })
-      
-          if (response.ok) {
-            await fetchNews()
-            setOpenModalUpdate(false)
-            console.log("News updated successfully")
-          } else {
-            const error = await response.json()
-            console.error("Failed to update news:", error.message)
-          }
+            const response = await fetch(`/api/account/${data.id}`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            })
+
+            if (response.ok) {
+                await fetchNews()
+                setOpenModalUpdate(false)
+                console.log("News updated successfully")
+            } else {
+                const error = await response.json()
+                console.error("Failed to update news:", error.message)
+            }
         } catch (error) {
-          console.error("Error:", error)
+            console.error("Error:", error)
         }
-      }
-      
+    }
+
 
     // delete
     const handleDelete = async (id?: number) => {
@@ -155,8 +153,31 @@ export default function NewsPage() {
         }
     }
 
+    const fetchCategories = async () => {
+        try {
+            const response = await fetch('/api/categories', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+
+            if (response.ok) {
+                const { categories } = await response.json()
+                setCategories(categories)
+            } else {
+                const error = await response.json()
+                setError(error.message)
+            }
+        } catch (error) {
+            console.error('Error fetching categories:', error)
+            setError('Internal Server Error')
+        }
+    }
+
     useEffect(() => {
         fetchNews()
+        fetchCategories()
     }, [])
 
     return (
@@ -174,16 +195,25 @@ export default function NewsPage() {
                         <div className="space-y-6">
                             <form className="mx-auto" onSubmit={handleSubmit} method="POST">
                                 <div className="mb-3">
-                                    <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">News Name</label>
-                                    <input autoComplete="off" type="text" id="name" name="name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" required />
+                                    <label htmlFor="title" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">News Title</label>
+                                    <input autoComplete="off" type="text" id="title" name="title" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" required />
                                 </div>
                                 <div className="mb-3">
-                                    <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-                                    <input autoComplete="off" type="email" id="email" name="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" required />
+                                    <label htmlFor="news_image" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Thumbnail Image</label>
+                                    <input autoComplete="off" type="text" id="news_image" name="news_image" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" required placeholder='Please Use URL Image' />
+                                </div>
+                                <div className="mb-3">
+                                    <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Categories</label>
+                                    <div className="">
+                                        <div className="flex items-center mb-4">
+                                            <input id="default-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                                                <label htmlFor="default-checkbox" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default checkbox</label>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div className="mb-5">
-                                    <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Default Password</label>
-                                    <input autoComplete="off" type="text" id="password" name="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" required />
+                                    <label htmlFor="news_body" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Content</label>
+                                    <textarea autoComplete="off" name="news_body" id="news_body" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 h-[150px]" required></textarea>
                                 </div>
                                 <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Submit</button>
                             </form>
@@ -228,7 +258,7 @@ export default function NewsPage() {
                                                 setOpenModalUpdate(true)
                                             }}
                                             className="text-yellow-500 font-bold ml-3"
-                                            >
+                                        >
                                             Edit
                                         </button>
                                     </td>
