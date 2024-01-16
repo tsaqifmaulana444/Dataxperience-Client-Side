@@ -33,13 +33,16 @@ export async function POST(req: Request) {
         news_image: data.news_image,
         author_id: data.author_id,
         category_ids: data.category_ids,
+        categories: {
+          connect: data.category_ids.map((categoryId: number) => ({ id: categoryId })),
+        },
       },
-    })
+    })    
 
     return NextResponse.json(
       {
         success: true,
-        message: "News Created!",
+        message: {"News Created!": data},
       },
       {
         status: 200,

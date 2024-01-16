@@ -108,7 +108,7 @@ export default function NewsPage() {
             title: formData.get("title") as string,
             news_body: formData.get("news_body") as string,
             news_image: formData.get("news_image") as string,
-            category_ids: Array.from(formData.getAll("category_ids") as FormDataEntryValue[]).map(Number),
+            category_ids: Array.from(formData.getAll("category_ids[]") as FormDataEntryValue[]).map(Number),
         }
 
         try {
@@ -207,16 +207,22 @@ export default function NewsPage() {
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Categories</label>
-                                    {/* loop categories data here */}
                                     <div className="">
                                         {categories.map((category, index) => (
                                             <div key={category.id} className="flex items-center mb-4">
-                                                <input id={`category-checkbox-${index}`} type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 " defaultValue={category.id} name="category_ids" />
+                                                <input
+                                                    id={`category-checkbox-${index}`}
+                                                    type="checkbox"
+                                                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 "
+                                                    value={category.id}
+                                                    name="category_ids[]"
+                                                />
                                                 <label htmlFor={`category-checkbox-${index}`} className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{category.name}</label>
                                             </div>
                                         ))}
                                     </div>
                                 </div>
+
                                 <div className="mb-5">
                                     <label htmlFor="news_body" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Content</label>
                                     <textarea autoComplete="off" name="news_body" id="news_body" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 h-[150px]" required></textarea>
@@ -313,7 +319,7 @@ export default function NewsPage() {
                                         <div className="">
                                             {categories.map((category, index) => (
                                                 <div key={category.id} className="flex items-center mb-4">
-                                                    <input id={`category-checkbox-${index}`} type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 " defaultValue={category.id} name="category_ids" />
+                                                    <input id={`category-checkbox-${index}`} type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 " defaultValue={category.id} name="category_ids[]" />
                                                     <label htmlFor={`category-checkbox-${index}`} className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{category.name}</label>
                                                 </div>
                                             ))}

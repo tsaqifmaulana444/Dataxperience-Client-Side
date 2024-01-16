@@ -36,6 +36,7 @@ export async function PATCH(request: Request, { params }: { params: { id: string
       title: data.title,
       news_body: data.news_body,
       news_image: data.news_image,
+      category_ids: data.category_ids,
       categories: {
         set: data.category_ids?.map((id: number) => ({ id })) || [], // Make sure to handle category_ids correctly
       },
