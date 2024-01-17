@@ -23,12 +23,12 @@ export default function Navbar() {
                 </Link>
             </div>
             <div className="sm:flex hidden text-[#141414] w-[52%] justify-between text-sm text-center mt-[25px] font-medium">
-                <Link href="/categories">Inspirational</Link>
-                <p>Data Analytics</p>
-                <p>Data Science</p>
-                <p>AI</p>
-                <p>ML</p>
-                <p>Cloud Computing</p>
+                <Link href="/categories">All Categories</Link>
+                <Link href="/#">Data Analytics</Link>
+                <Link href="/#">Data Science</Link>
+                <Link href="/#">AI</Link>
+                <Link href="/#">ML</Link>
+                <Link href="/#">Cloud Computing</Link>
                 <div className="w-fit flex">
                     <p>More</p>
                     <FontAwesomeIcon icon={faCaretDown} style={{ color: "#141414", }} className="ml-[12px]" />
