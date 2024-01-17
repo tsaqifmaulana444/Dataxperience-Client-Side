@@ -38,57 +38,90 @@ export default function CategoriesPage() {
 
   const fetchNews = async () => {
     try {
-        const response = await fetch('/api/news', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-        console.log(response)
-        if (response.ok) {
-            const { news } = await response.json()
-            setNews(news)
-        } else {
-            const error = await response.json()
-            setError(error.message)
-        }
+      const response = await fetch('/api/news', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      console.log(response)
+      if (response.ok) {
+        const { news } = await response.json()
+        setNews(news)
+      } else {
+        const error = await response.json()
+        setError(error.message)
+      }
     } catch (error) {
-        console.error('Error fetching news:', error)
-        setError('Internal Server Error')
+      console.error('Error fetching news:', error)
+      setError('Internal Server Error')
     }
   }
 
   const fetchCategories = async () => {
     try {
-        const response = await fetch('/api/categories', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
+      const response = await fetch('/api/categories', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
 
-        if (response.ok) {
-            const { categories } = await response.json()
-            setCategories(categories)
-        } else {
-            const error = await response.json()
-            setError(error.message)
-        }
+      if (response.ok) {
+        const { categories } = await response.json()
+        setCategories(categories)
+      } else {
+        const error = await response.json()
+        setError(error.message)
+      }
     } catch (error) {
-        console.error('Error fetching categories:', error)
-        setError('Internal Server Error')
+      console.error('Error fetching categories:', error)
+      setError('Internal Server Error')
     }
-}
+  }
+
+  const getCategoryName = (categoryIds?: number[] | null): string => {
+    if (!categoryIds || categoryIds.length === 0) return ''
+
+    const category = categories.find((c) => c.id === categoryIds[0])
+
+    return category ? category.name : ''
+  }
+
+  
+  const formatDate = (timestamp: string | number | Date | undefined) => {
+    const date = new Date(timestamp)
+    return date.toLocaleDateString('en-GB')
+  }
+
+  const getCategoryColour = (categoryIds?: number[] | null): string => {
+    if (!categoryIds || categoryIds.length === 0) return '#1E7610'
+
+    const primaryCategoryId = categoryIds[0]
+    const category = categories.find((c) => c.id === primaryCategoryId)
+
+    const colourMap: Record<number, string> = {
+      1: '#1E7610',
+      2: '#FF5733',
+      3: '#CCCCCC',
+      4: '#0066cc',
+    }
+
+    return category && colourMap[category.id] ? colourMap[category.id] : '#1E7610'
+  }
+
+  const data_analytics = news.filter((data) => getCategoryName(data.category_ids) === getCategoryName([1]))
+  const data_science = news.filter((data) => getCategoryName(data.category_ids) === getCategoryName([2]))
+  const machine_learning = news.filter((data) => getCategoryName(data.category_ids) === getCategoryName([3]))
+  const inspirational = news.filter((data) => getCategoryName(data.category_ids) === getCategoryName([4]))
+  const data_engineer = news.filter((data) => getCategoryName(data.category_ids) === getCategoryName([5]))
+  const ai = news.filter((data) => getCategoryName(data.category_ids) === getCategoryName([6]))
+  const true_story = news.filter((data) => getCategoryName(data.category_ids) === getCategoryName([7]))
 
   useEffect(() => {
     fetchNews()
     fetchCategories()
   }, [])
-
-  const formatDate = (timestamp: string | number | Date | undefined) => {
-    const date = new Date(timestamp);
-    return date.toLocaleDateString('en-GB')
-  }
 
   return (
     <div>
@@ -110,7 +143,7 @@ export default function CategoriesPage() {
             modules={[Autoplay, Navigation]}
             className="px-[200px]"
           >
-            {news.map((data, index) => (
+            {data_analytics.map((data, index) => (
               <SwiperSlide key={data.id}>
                 <div className="flex flex-col w-[100%] cursor-pointer">
                   <div className="w-[100%]">
@@ -124,7 +157,7 @@ export default function CategoriesPage() {
                     />
                   </div>
                   <div className="-mt-[20px] mx-[8px] p-1 mb-3">
-                    <div className="w-fit bg-[#1E7610] text-white px-3 py-2 text-xs font-bold">{data.category_ids}</div>
+                    <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
                     <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
                     <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
                   </div>
@@ -143,114 +176,150 @@ export default function CategoriesPage() {
             slidesPerView={4}
             navigation={true}
             autoplay={{
-              delay: 5000,
+              delay: 4000,
               disableOnInteraction: false,
             }}
             modules={[Autoplay, Navigation]}
             className="px-[200px]"
           >
-            <SwiperSlide>
-              <div className="flex flex-col w-[100%] cursor-pointer">
-                <div className="w-[100%]">
-                  <Image
-                    src={Cars}
-                    alt="cars"
-                    className="w-full"
-                    loading="lazy"
-                  />
+            {data_science.map((data, index) => (
+              <SwiperSlide key={data.id}>
+                <div className="flex flex-col w-[100%] cursor-pointer">
+                  <div className="w-[100%]">
+                    <Image
+                      src={data.news_image}
+                      width={500}
+                      height={500}
+                      alt="news image"
+                      className="w-full"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="-mt-[20px] mx-[8px] p-1 mb-3">
+                    <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
+                    <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                    <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
+                  </div>
                 </div>
-                <div className="-mt-[20px] mx-[8px] p-1 mb-3">
-                  <div className="w-fit bg-[#1E7610] text-white px-3 py-2 text-xs font-bold">Inspirational</div>
-                  <h1 className="mt-[18px] text-[15px] font-bold leading-6">Meet Zhang Fengxiao, Inspirational ML Engineer At Google Cloud.</h1>
-                  <p className="text-[15px] opacity-70 mt-[7px]">30 October 2023</p>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+        <div className="mt-[30px]">
+          <h1 className="font-bold text-[21px] mb-[20px]">Machine Learning</h1>
+          <Swiper
+            spaceBetween={15}
+            style={{
+              '--swiper-navigation-color': '#141414',
+            }}
+            slidesPerView={4}
+            navigation={true}
+            autoplay={{
+              delay: 4000,
+              disableOnInteraction: false,
+            }}
+            modules={[Autoplay, Navigation]}
+            className="px-[200px]"
+          >
+            {machine_learning.map((data, index) => (
+              <SwiperSlide key={data.id}>
+                <div className="flex flex-col w-[100%] cursor-pointer">
+                  <div className="w-[100%]">
+                    <Image
+                      src={data.news_image}
+                      width={500}
+                      height={500}
+                      alt="news image"
+                      className="w-full"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="-mt-[20px] mx-[8px] p-1 mb-3">
+                    <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
+                    <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                    <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
+                  </div>
                 </div>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="flex flex-col w-[100%] cursor-pointer">
-                <div className="w-[100%]">
-                  <Image
-                    src={Cars}
-                    alt="cars"
-                    className="w-full"
-                    loading="lazy"
-                  />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+        <div className="mt-[30px]">
+          <h1 className="font-bold text-[21px] mb-[20px]">Inspirational</h1>
+          <Swiper
+            spaceBetween={15}
+            style={{
+              '--swiper-navigation-color': '#141414',
+            }}
+            slidesPerView={4}
+            navigation={true}
+            autoplay={{
+              delay: 4000,
+              disableOnInteraction: false,
+            }}
+            modules={[Autoplay, Navigation]}
+            className="px-[200px]"
+          >
+            {inspirational.map((data, index) => (
+              <SwiperSlide key={data.id}>
+                <div className="flex flex-col w-[100%] cursor-pointer">
+                  <div className="w-[100%]">
+                    <Image
+                      src={data.news_image}
+                      width={500}
+                      height={500}
+                      alt="news image"
+                      className="w-full"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="-mt-[20px] mx-[8px] p-1 mb-3">
+                    <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
+                    <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                    <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
+                  </div>
                 </div>
-                <div className="-mt-[20px] mx-[8px] p-1 mb-3">
-                  <div className="w-fit bg-[#1E7610] text-white px-3 py-2 text-xs font-bold">Inspirational</div>
-                  <h1 className="mt-[18px] text-[15px] font-bold leading-6">Meet Zhang Fengxiao, Inspirational ML Engineer At Google Cloud.</h1>
-                  <p className="text-[15px] opacity-70 mt-[7px]">30 October 2023</p>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+        <div className="mt-[30px]">
+          <h1 className="font-bold text-[21px] mb-[20px]">Data Engineering</h1>
+          <Swiper
+            spaceBetween={15}
+            style={{
+              '--swiper-navigation-color': '#141414',
+            }}
+            slidesPerView={4}
+            navigation={true}
+            autoplay={{
+              delay: 4000,
+              disableOnInteraction: false,
+            }}
+            modules={[Autoplay, Navigation]}
+            className="px-[200px]"
+          >
+            {data_engineer.map((data, index) => (
+              <SwiperSlide key={data.id}>
+                <div className="flex flex-col w-[100%] cursor-pointer">
+                  <div className="w-[100%]">
+                    <Image
+                      src={data.news_image}
+                      width={500}
+                      height={500}
+                      alt="news image"
+                      className="w-full"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="-mt-[20px] mx-[8px] p-1 mb-3">
+                    <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
+                    <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                    <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
+                  </div>
                 </div>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="flex flex-col w-[100%] cursor-pointer">
-                <div className="w-[100%]">
-                  <Image
-                    src={Cars}
-                    alt="cars"
-                    className="w-full"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="-mt-[20px] mx-[8px] p-1 mb-3">
-                  <div className="w-fit bg-[#1E7610] text-white px-3 py-2 text-xs font-bold">Inspirational</div>
-                  <h1 className="mt-[18px] text-[15px] font-bold leading-6">Meet Zhang Fengxiao, Inspirational ML Engineer At Google Cloud.</h1>
-                  <p className="text-[15px] opacity-70 mt-[7px]">30 October 2023</p>
-                </div>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="flex flex-col w-[100%] cursor-pointer">
-                <div className="w-[100%]">
-                  <Image
-                    src={Cars}
-                    alt="cars"
-                    className="w-full"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="-mt-[20px] mx-[8px] p-1 mb-3">
-                  <div className="w-fit bg-[#1E7610] text-white px-3 py-2 text-xs font-bold">Inspirational</div>
-                  <h1 className="mt-[18px] text-[15px] font-bold leading-6">Meet Zhang Fengxiao, Inspirational ML Engineer At Google Cloud.</h1>
-                  <p className="text-[15px] opacity-70 mt-[7px]">30 October 2023</p>
-                </div>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="flex flex-col w-[100%] cursor-pointer">
-                <div className="w-[100%]">
-                  <Image
-                    src={Cars}
-                    alt="cars"
-                    className="w-full"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="-mt-[20px] mx-[8px] p-1 mb-3">
-                  <div className="w-fit bg-[#1E7610] text-white px-3 py-2 text-xs font-bold">Inspirational</div>
-                  <h1 className="mt-[18px] text-[15px] font-bold leading-6">Meet Zhang Fengxiao, Inspirational ML Engineer At Google Cloud.</h1>
-                  <p className="text-[15px] opacity-70 mt-[7px]">30 October 2023</p>
-                </div>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="flex flex-col w-[100%] cursor-pointer">
-                <div className="w-[100%]">
-                  <Image
-                    src={Cars}
-                    alt="cars"
-                    className="w-full"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="-mt-[20px] mx-[8px] p-1 mb-3">
-                  <div className="w-fit bg-[#1E7610] text-white px-3 py-2 text-xs font-bold">Inspirational</div>
-                  <h1 className="mt-[18px] text-[15px] font-bold leading-6">Meet Zhang Fengxiao, Inspirational ML Engineer At Google Cloud.</h1>
-                  <p className="text-[15px] opacity-70 mt-[7px]">30 October 2023</p>
-                </div>
-              </div>
-            </SwiperSlide>
+              </SwiperSlide>
+            ))}
           </Swiper>
         </div>
         <div className="mt-[30px]">
@@ -269,228 +338,27 @@ export default function CategoriesPage() {
             modules={[Autoplay, Navigation]}
             className="px-[200px]"
           >
-            <SwiperSlide>
-              <div className="flex flex-col w-[100%] cursor-pointer">
-                <div className="w-[100%]">
-                  <Image
-                    src={Cars}
-                    alt="cars"
-                    className="w-full"
-                    loading="lazy"
-                  />
+            {ai.map((data, index) => (
+              <SwiperSlide key={data.id}>
+                <div className="flex flex-col w-[100%] cursor-pointer">
+                  <div className="w-[100%]">
+                    <Image
+                      src={data.news_image}
+                      width={500}
+                      height={500}
+                      alt="news image"
+                      className="w-full"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="-mt-[20px] mx-[8px] p-1 mb-3">
+                    <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
+                    <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                    <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
+                  </div>
                 </div>
-                <div className="-mt-[20px] mx-[8px] p-1 mb-3">
-                  <div className="w-fit bg-[#1E7610] text-white px-3 py-2 text-xs font-bold">Inspirational</div>
-                  <h1 className="mt-[18px] text-[15px] font-bold leading-6">Meet Zhang Fengxiao, Inspirational ML Engineer At Google Cloud.</h1>
-                  <p className="text-[15px] opacity-70 mt-[7px]">30 October 2023</p>
-                </div>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="flex flex-col w-[100%] cursor-pointer">
-                <div className="w-[100%]">
-                  <Image
-                    src={Cars}
-                    alt="cars"
-                    className="w-full"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="-mt-[20px] mx-[8px] p-1 mb-3">
-                  <div className="w-fit bg-[#1E7610] text-white px-3 py-2 text-xs font-bold">Inspirational</div>
-                  <h1 className="mt-[18px] text-[15px] font-bold leading-6">Meet Zhang Fengxiao, Inspirational ML Engineer At Google Cloud.</h1>
-                  <p className="text-[15px] opacity-70 mt-[7px]">30 October 2023</p>
-                </div>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="flex flex-col w-[100%] cursor-pointer">
-                <div className="w-[100%]">
-                  <Image
-                    src={Cars}
-                    alt="cars"
-                    className="w-full"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="-mt-[20px] mx-[8px] p-1 mb-3">
-                  <div className="w-fit bg-[#1E7610] text-white px-3 py-2 text-xs font-bold">Inspirational</div>
-                  <h1 className="mt-[18px] text-[15px] font-bold leading-6">Meet Zhang Fengxiao, Inspirational ML Engineer At Google Cloud.</h1>
-                  <p className="text-[15px] opacity-70 mt-[7px]">30 October 2023</p>
-                </div>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="flex flex-col w-[100%] cursor-pointer">
-                <div className="w-[100%]">
-                  <Image
-                    src={Cars}
-                    alt="cars"
-                    className="w-full"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="-mt-[20px] mx-[8px] p-1 mb-3">
-                  <div className="w-fit bg-[#1E7610] text-white px-3 py-2 text-xs font-bold">Inspirational</div>
-                  <h1 className="mt-[18px] text-[15px] font-bold leading-6">Meet Zhang Fengxiao, Inspirational ML Engineer At Google Cloud.</h1>
-                  <p className="text-[15px] opacity-70 mt-[7px]">30 October 2023</p>
-                </div>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="flex flex-col w-[100%] cursor-pointer">
-                <div className="w-[100%]">
-                  <Image
-                    src={Cars}
-                    alt="cars"
-                    className="w-full"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="-mt-[20px] mx-[8px] p-1 mb-3">
-                  <div className="w-fit bg-[#1E7610] text-white px-3 py-2 text-xs font-bold">Inspirational</div>
-                  <h1 className="mt-[18px] text-[15px] font-bold leading-6">Meet Zhang Fengxiao, Inspirational ML Engineer At Google Cloud.</h1>
-                  <p className="text-[15px] opacity-70 mt-[7px]">30 October 2023</p>
-                </div>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="flex flex-col w-[100%] cursor-pointer">
-                <div className="w-[100%]">
-                  <Image
-                    src={Cars}
-                    alt="cars"
-                    className="w-full"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="-mt-[20px] mx-[8px] p-1 mb-3">
-                  <div className="w-fit bg-[#1E7610] text-white px-3 py-2 text-xs font-bold">Inspirational</div>
-                  <h1 className="mt-[18px] text-[15px] font-bold leading-6">Meet Zhang Fengxiao, Inspirational ML Engineer At Google Cloud.</h1>
-                  <p className="text-[15px] opacity-70 mt-[7px]">30 October 2023</p>
-                </div>
-              </div>
-            </SwiperSlide>
-          </Swiper>
-        </div>
-        <div className="mt-[30px]">
-          <h1 className="font-bold text-[21px] mb-[20px]">Machine Learning</h1>
-          <Swiper
-            spaceBetween={15}
-            style={{
-              '--swiper-navigation-color': '#141414',
-            }}
-            slidesPerView={4}
-            navigation={true}
-            autoplay={{
-              delay: 5000,
-              disableOnInteraction: false,
-            }}
-            modules={[Autoplay, Navigation]}
-            className="px-[200px]"
-          >
-            <SwiperSlide>
-              <div className="flex flex-col w-[100%] cursor-pointer">
-                <div className="w-[100%]">
-                  <Image
-                    src={Cars}
-                    alt="cars"
-                    className="w-full"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="-mt-[20px] mx-[8px] p-1 mb-3">
-                  <div className="w-fit bg-[#1E7610] text-white px-3 py-2 text-xs font-bold">Inspirational</div>
-                  <h1 className="mt-[18px] text-[15px] font-bold leading-6">Meet Zhang Fengxiao, Inspirational ML Engineer At Google Cloud.</h1>
-                  <p className="text-[15px] opacity-70 mt-[7px]">30 October 2023</p>
-                </div>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="flex flex-col w-[100%] cursor-pointer">
-                <div className="w-[100%]">
-                  <Image
-                    src={Cars}
-                    alt="cars"
-                    className="w-full"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="-mt-[20px] mx-[8px] p-1 mb-3">
-                  <div className="w-fit bg-[#1E7610] text-white px-3 py-2 text-xs font-bold">Inspirational</div>
-                  <h1 className="mt-[18px] text-[15px] font-bold leading-6">Meet Zhang Fengxiao, Inspirational ML Engineer At Google Cloud.</h1>
-                  <p className="text-[15px] opacity-70 mt-[7px]">30 October 2023</p>
-                </div>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="flex flex-col w-[100%] cursor-pointer">
-                <div className="w-[100%]">
-                  <Image
-                    src={Cars}
-                    alt="cars"
-                    className="w-full"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="-mt-[20px] mx-[8px] p-1 mb-3">
-                  <div className="w-fit bg-[#1E7610] text-white px-3 py-2 text-xs font-bold">Inspirational</div>
-                  <h1 className="mt-[18px] text-[15px] font-bold leading-6">Meet Zhang Fengxiao, Inspirational ML Engineer At Google Cloud.</h1>
-                  <p className="text-[15px] opacity-70 mt-[7px]">30 October 2023</p>
-                </div>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="flex flex-col w-[100%] cursor-pointer">
-                <div className="w-[100%]">
-                  <Image
-                    src={Cars}
-                    alt="cars"
-                    className="w-full"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="-mt-[20px] mx-[8px] p-1 mb-3">
-                  <div className="w-fit bg-[#1E7610] text-white px-3 py-2 text-xs font-bold">Inspirational</div>
-                  <h1 className="mt-[18px] text-[15px] font-bold leading-6">Meet Zhang Fengxiao, Inspirational ML Engineer At Google Cloud.</h1>
-                  <p className="text-[15px] opacity-70 mt-[7px]">30 October 2023</p>
-                </div>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="flex flex-col w-[100%] cursor-pointer">
-                <div className="w-[100%]">
-                  <Image
-                    src={Cars}
-                    alt="cars"
-                    className="w-full"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="-mt-[20px] mx-[8px] p-1 mb-3">
-                  <div className="w-fit bg-[#1E7610] text-white px-3 py-2 text-xs font-bold">Inspirational</div>
-                  <h1 className="mt-[18px] text-[15px] font-bold leading-6">Meet Zhang Fengxiao, Inspirational ML Engineer At Google Cloud.</h1>
-                  <p className="text-[15px] opacity-70 mt-[7px]">30 October 2023</p>
-                </div>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="flex flex-col w-[100%] cursor-pointer">
-                <div className="w-[100%]">
-                  <Image
-                    src={Cars}
-                    alt="cars"
-                    className="w-full"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="-mt-[20px] mx-[8px] p-1 mb-3">
-                  <div className="w-fit bg-[#1E7610] text-white px-3 py-2 text-xs font-bold">Inspirational</div>
-                  <h1 className="mt-[18px] text-[15px] font-bold leading-6">Meet Zhang Fengxiao, Inspirational ML Engineer At Google Cloud.</h1>
-                  <p className="text-[15px] opacity-70 mt-[7px]">30 October 2023</p>
-                </div>
-              </div>
-            </SwiperSlide>
+              </SwiperSlide>
+            ))}
           </Swiper>
         </div>
       </section>
