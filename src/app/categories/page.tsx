@@ -8,12 +8,87 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, Navigation } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/navigation'
+import { useEffect, useState } from "react"
 
 // export const metadata = {
 //   title: 'Categories | Dataxperience'
 // }
 
+interface News {
+  id?: number
+  title: string
+  news_body: string
+  news_image: string
+  category_ids?: number[] | null
+  author_id?: number
+  created_at?: string
+  updated_at?: string
+  deleted_at?: string | null
+}
+
+interface Category {
+  id: number
+  name: string
+}
+
 export default function CategoriesPage() {
+  const [news, setNews] = useState<News[]>([])
+  const [error, setError] = useState('')
+  const [categories, setCategories] = useState<Category[]>([])
+
+  const fetchNews = async () => {
+    try {
+        const response = await fetch('/api/news', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+        console.log(response)
+        if (response.ok) {
+            const { news } = await response.json()
+            setNews(news)
+        } else {
+            const error = await response.json()
+            setError(error.message)
+        }
+    } catch (error) {
+        console.error('Error fetching news:', error)
+        setError('Internal Server Error')
+    }
+  }
+
+  const fetchCategories = async () => {
+    try {
+        const response = await fetch('/api/categories', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+
+        if (response.ok) {
+            const { categories } = await response.json()
+            setCategories(categories)
+        } else {
+            const error = await response.json()
+            setError(error.message)
+        }
+    } catch (error) {
+        console.error('Error fetching categories:', error)
+        setError('Internal Server Error')
+    }
+}
+
+  useEffect(() => {
+    fetchNews()
+    fetchCategories()
+  }, [])
+
+  const formatDate = (timestamp: string | number | Date | undefined) => {
+    const date = new Date(timestamp);
+    return date.toLocaleDateString('en-GB')
+  }
 
   return (
     <div>
@@ -35,23 +110,27 @@ export default function CategoriesPage() {
             modules={[Autoplay, Navigation]}
             className="px-[200px]"
           >
-            <SwiperSlide>
-              <div className="flex flex-col w-[100%] cursor-pointer">
-                <div className="w-[100%]">
-                  <Image
-                    src={Cars}
-                    alt="cars"
-                    className="w-full"
-                    loading="lazy"
-                  />
+            {news.map((data, index) => (
+              <SwiperSlide key={data.id}>
+                <div className="flex flex-col w-[100%] cursor-pointer">
+                  <div className="w-[100%]">
+                    <Image
+                      src={data.news_image}
+                      width={500}
+                      height={500}
+                      alt="news image"
+                      className="w-full"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="-mt-[20px] mx-[8px] p-1 mb-3">
+                    <div className="w-fit bg-[#1E7610] text-white px-3 py-2 text-xs font-bold">{data.category_ids}</div>
+                    <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                    <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
+                  </div>
                 </div>
-                <div className="-mt-[20px] mx-[8px] p-1 mb-3">
-                  <div className="w-fit bg-[#1E7610] text-white px-3 py-2 text-xs font-bold">Inspirational</div>
-                  <h1 className="mt-[18px] text-[15px] font-bold leading-6">Meet Zhang Fengxiao, Inspirational ML Engineer At Google Cloud.</h1>
-                  <p className="text-[15px] opacity-70 mt-[7px]">30 October 2023</p>
-                </div>
-              </div>
-            </SwiperSlide>
+              </SwiperSlide>
+            ))}
           </Swiper>
         </div>
         <div className="mt-[30px]">
