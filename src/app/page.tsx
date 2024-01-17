@@ -122,7 +122,7 @@ export default function HomePage() {
   const data_analytics = news.filter((data) => getCategoryName(data.category_ids) === getCategoryName([1]))
   const data_science = news.filter((data) => getCategoryName(data.category_ids) === getCategoryName([2]))
   const machine_learning = news.filter((data) => getCategoryName(data.category_ids) === getCategoryName([3]))
-  const inspirational = getLimitedNews(news.filter((data) => getCategoryName(data.category_ids) === getCategoryName([4])), 2)
+  const inspirational = getLimitedNews(news.filter((data) => getCategoryName(data.category_ids) === getCategoryName([4])), 3)
   const data_engineer = news.filter((data) => getCategoryName(data.category_ids) === getCategoryName([5]))
   const ai = news.filter((data) => getCategoryName(data.category_ids) === getCategoryName([6]))
   const true_story = news.filter((data) => getCategoryName(data.category_ids) === getCategoryName([7]))
@@ -204,7 +204,6 @@ export default function HomePage() {
           >
             {news.map((data, index) => (
               <SwiperSlide key={data.id}>
-                <Link href="#">
                   <div className="flex flex-col w-[100%] cursor-pointer">
                     <div className="w-full">
                       <Image
@@ -218,24 +217,26 @@ export default function HomePage() {
                     </div>
                     <div className="-mt-[20px] mx-[8px] p-1 mb-3">
                       <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
-                      <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                      <Link href="#">
+                        <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                      </Link>
                       <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
                     </div>
                   </div>
-                </Link>
               </SwiperSlide>
             ))}
           </Swiper>
         </div>
       </section>
       {/* Advertisement Section*/}
-      {/* <section className="w-[83%] mx-auto mt-[30px] text-[#141414]">
+      <section className="w-[83%] h-[630px] mx-auto mt-[30px] text-[#141414]">
         <div className="flex mt-[20px] justify-between">
           <div>
             <h1 className="font-bold text-[21px]">Interesting</h1>
             <Swiper
               direction={'vertical'}
               className="mySwiper"
+              slidesPerView={2}
             >
               {inspirational.map((data, index) => (
                 <SwiperSlide key={data.id}>
@@ -271,7 +272,7 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-      </section> */}
+      </section>
       {/* Categorical Section */}
       <section className=" mt-[30px] text-[#141414] mb-24 w-[83%] mx-auto">
         <div className="flex">
@@ -295,7 +296,6 @@ export default function HomePage() {
                 >
                   {news.map((data, index) => (
                     <SwiperSlide key={data.id}>
-                      <Link href="#">
                         <div className="flex flex-col w-[100%] cursor-pointer">
                           <div className="w-full">
                             <Image
@@ -309,11 +309,12 @@ export default function HomePage() {
                           </div>
                           <div className="-mt-[20px] mx-[8px] p-1 mb-3">
                             <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
-                            <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                            <Link href="#">
+                              <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                            </Link>
                             <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
                           </div>
                         </div>
-                      </Link>
                     </SwiperSlide>
                   ))}
                 </Swiper>
@@ -338,7 +339,6 @@ export default function HomePage() {
                 >
                   {news.map((data, index) => (
                     <SwiperSlide key={data.id}>
-                      <Link href="#">
                         <div className="flex flex-col w-[100%] cursor-pointer">
                           <div className="w-full">
                             <Image
@@ -352,11 +352,12 @@ export default function HomePage() {
                           </div>
                           <div className="-mt-[20px] mx-[8px] p-1 mb-3">
                             <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
-                            <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                            <Link href="#">
+                              <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                            </Link>
                             <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
                           </div>
                         </div>
-                      </Link>
                     </SwiperSlide>
                   ))}
                 </Swiper>
@@ -381,7 +382,6 @@ export default function HomePage() {
                 >
                   {news.map((data, index) => (
                     <SwiperSlide key={data.id}>
-                      <Link href="#">
                         <div className="flex flex-col w-[100%] cursor-pointer">
                           <div className="w-full">
                             <Image
@@ -395,11 +395,12 @@ export default function HomePage() {
                           </div>
                           <div className="-mt-[20px] mx-[8px] p-1 mb-3">
                             <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
-                            <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                            <Link href="#">
+                              <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                            </Link>
                             <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
                           </div>
                         </div>
-                      </Link>
                     </SwiperSlide>
                   ))}
                 </Swiper>
