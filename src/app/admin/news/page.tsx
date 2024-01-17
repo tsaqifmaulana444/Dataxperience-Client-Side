@@ -254,9 +254,9 @@ export default function NewsPage() {
                         <tbody>
                             {news.map((data, index) => (
                                 <tr key={data.id} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
-                                    <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{data.title}</td>
-                                    <td className="px-6 py-4">{data.news_body}</td>
-                                    <td className="px-6 py-4">{data.news_image}</td>
+                                    <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{`${data.title.substring(0, 25)}...`}</td>
+                                    <td className="px-6 py-4">{`${data.news_body.substring(0, 50)}...`}</td>
+                                    <td className="px-6 py-4">{`${data.news_image.substring(0, 15)}...`}</td>
                                     <td className="px-6 py-4">
                                         <button
                                             onClick={() => handleDelete(data.id)}

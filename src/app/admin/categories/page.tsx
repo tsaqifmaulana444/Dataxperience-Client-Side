@@ -111,11 +111,11 @@ export default function Categories() {
                             name="name"
                             id=""
                             placeholder='Enter New Category Name'
-                            className='p-2 rounded-l-md text-[13px] h-full'
+                            className='rounded-l-md text-[13px] h-[41px]'
                             value={newCategory}
                             onChange={(e) => setNewCategory(e.target.value)}
                         />
-                        <button type='submit' className="bg-[#262524] text-white py-2 px-4 rounded-r-md w-[7vw] text-[13px] font-medium">Add</button>
+                        <button type='submit' className="bg-[#262524] text-white px-4 rounded-r-md w-[7vw] text-[13px] font-medium h-[40px]">Add</button>
                     </form>
                 </div>
 
