@@ -98,13 +98,13 @@ export default function HomePage() {
 
 
   const formatDate = (timestamp: string | number | Date | undefined): string => {
-		if (!timestamp) {
-			return "N/A"
-		}
+    if (!timestamp) {
+      return "N/A"
+    }
 
-		const date = new Date(timestamp)
-		return date.toLocaleDateString('en-GB')
-	}
+    const date = new Date(timestamp)
+    return date.toLocaleDateString('en-GB')
+  }
 
   const getCategoryColour = (categoryIds?: number[] | null): string => {
     if (!categoryIds || categoryIds.length === 0) return '#1E7610'
@@ -157,41 +157,32 @@ export default function HomePage() {
           <div className="w-[72%]">
             <iframe src="https://www.youtube.com/embed/D2vj0WcvH5c?si=s4ErRK_Jv9hcUd6n" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" className="sm:w-[100%] sm:h-[400px] sm:mx-0 mx-auto w-full h-[25.2%]"></iframe>
           </div>
-          <div className="w-[26%] h-[555px]">
-            <Swiper
-              direction={'vertical'}
-              className="mySwiper"
-              slidesPerView={2}
-              autoHeight={false}
-            >
-              {machine_learning.map((data, index) => (
-                <SwiperSlide key={data.id}>
-                  <div className="card-1 mb-3 h-[255px]">
-                    <div className="flex">
-                      <div className="w-[46%]">
-                        <Image
-                          src={data.news_image}
-                          width={150}
-                          height={150}
-                          alt="news image"
-                          className=""
-                        />
-                      </div>
-                      <div className="ml-[10px] mt-[16px]">
-                        <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
-                        <div className="mt-2 text-sm opacity-70 mx-auto">{formatDate(data.created_at)}</div>
-                      </div>
-                    </div>
-                    <div className="mt-[13px]">
-                      <Link href={`/${encodeURIComponent(data.title)}/${data.id}`}>
-                        <h1 className="font-bold text-[15px]">{data.title}</h1>
-                        <p className="text-[12px] mt-1 opacity-70">{`${data.news_body.substring(0, 120)}...`}</p>
-                      </Link>
-                    </div>
+          <div className="w-[26%]">
+            {machine_learning.map((data, index) => (
+              <div className="card-1 mb-5" key={data.id}>
+                <div className="flex">
+                  <div className="w-[46%]">
+                    <Image
+                      src={data.news_image}
+                      width={150}
+                      height={150}
+                      alt="news image"
+                      className=""
+                    />
                   </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
+                  <div className="ml-[10px] mt-[16px]">
+                    <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
+                    <div className="mt-2 text-sm opacity-70 mx-auto">{formatDate(data.created_at)}</div>
+                  </div>
+                </div>
+                <div className="mt-[13px]">
+                  <Link href={`/${encodeURIComponent(data.title)}/${data.id}`}>
+                    <h1 className="font-bold text-[15px]">{data.title}</h1>
+                    <p className="text-[12px] mt-1 opacity-70">{`${data.news_body.substring(0, 120)}...`}</p>
+                  </Link>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
         <div className="w-[83%] mx-auto mt-4">
@@ -236,40 +227,33 @@ export default function HomePage() {
         </div>
       </section>
       {/* Advertisement Section*/}
-      <section className="w-[83%] h-[630px] mx-auto mt-[30px] text-[#141414]">
+      <section className="w-[83%] h-[630px] mx-auto mt-[20px] text-[#141414]">
         <div className="flex mt-[20px] justify-between">
           <div>
             <h1 className="font-bold text-[21px]">Interesting</h1>
-            <Swiper
-              direction={'vertical'}
-              className="mySwiper"
-              slidesPerView={2}
-              style={{ 'height': '555px' }}
-            >
-              {inspirational.map((data, index) => (
-                <SwiperSlide key={data.id}>
-                  <Link href={`/${encodeURIComponent(data.title)}/${data.id}`}>
-                    <div className="flex mt-[15px]">
-                      <div className="w-[390px]">
-                        <Image
-                          src={data.news_image}
-                          width={500}
-                          height={500}
-                          alt="news image"
-                          className="w-full h-full"
-                        />
-                      </div>
-                      <div className="ml-[30px] w-[45%]">
-                        <div className="w-fit bg-[#1E7610] text-white px-3 py-2 text-xs font-bold mt-[15px]">Inspirational</div>
-                        <h1 className="font-bold text-[17px] mt-[10px]">{data.title}</h1>
-                        <p className="text-[12px] opacity-70 mt-[10px]">{`${data.news_body.substring(0, 150)}...`}</p>
-                        <p className="text-[17px] opacity-70 mt-[20px]">{formatDate(data.created_at)}</p>
-                      </div>
+            {inspirational.map((data, index) => (
+              <div key={data.id}>
+                <Link href={`/${encodeURIComponent(data.title)}/${data.id}`}>
+                  <div className="flex mt-[15px]">
+                    <div className="w-[390px]">
+                      <Image
+                        src={data.news_image}
+                        width={500}
+                        height={500}
+                        alt="news image"
+                        className="w-full h-full"
+                      />
                     </div>
-                  </Link>
-                </SwiperSlide>
-              ))}
-            </Swiper>
+                    <div className="ml-[30px] w-[45%]">
+                      <div className="w-fit bg-[#1E7610] text-white px-3 py-2 text-xs font-bold mt-[15px]">Inspirational</div>
+                      <h1 className="font-bold text-[17px] mt-[10px]">{data.title}</h1>
+                      <p className="text-[12px] opacity-70 mt-[10px]">{`${data.news_body.substring(0, 150)}...`}</p>
+                      <p className="text-[17px] opacity-70 mt-[20px]">{formatDate(data.created_at)}</p>
+                    </div>
+                  </div>
+                </Link>
+              </div>
+            ))}
           </div>
           <div className="ml-[20px]">
             <p className="font-bold text-[21px]">Advertisement</p>
@@ -294,7 +278,7 @@ export default function HomePage() {
                   spaceBetween={15}
                   style={{
                     '--swiper-navigation-color': '#141414',
-                  }as CustomStyle}
+                  } as CustomStyle}
                   slidesPerView={3}
                   navigation={true}
                   autoplay={{
@@ -337,7 +321,7 @@ export default function HomePage() {
                   spaceBetween={15}
                   style={{
                     '--swiper-navigation-color': '#141414',
-                  }as CustomStyle}
+                  } as CustomStyle}
                   slidesPerView={3}
                   navigation={true}
                   autoplay={{
@@ -380,7 +364,7 @@ export default function HomePage() {
                   spaceBetween={15}
                   style={{
                     '--swiper-navigation-color': '#141414',
-                  }as CustomStyle}
+                  } as CustomStyle}
                   slidesPerView={3}
                   navigation={true}
                   autoplay={{
@@ -422,40 +406,31 @@ export default function HomePage() {
             <div>
               <h1 className="font-bold text-[21px] mb-[20px]">Latest News</h1>
               <div className="">
-                <Swiper
-                  direction={'vertical'}
-                  className="mySwiper"
-                  slidesPerView={2}
-                  autoHeight={false}
-                >
-                  {ai.map((data, index) => (
-                    <SwiperSlide key={data.id}>
-                      <div className="card-1 mb-3 h-[255px]">
-                        <div className="flex">
-                          <div className="w-[46%]">
-                            <Image
-                              src={data.news_image}
-                              width={150}
-                              height={150}
-                              alt="news image"
-                              className=""
-                            />
-                          </div>
-                          <div className="ml-[10px] mt-[16px]">
-                            <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
-                            <div className="mt-2 text-sm opacity-70 mx-auto">{formatDate(data.created_at)}</div>
-                          </div>
-                        </div>
-                        <div className="mt-[13px]">
-                          <Link href={`/${encodeURIComponent(data.title)}/${data.id}`}>
-                            <h1 className="font-bold text-[15px]">{data.title}</h1>
-                            <p className="text-[12px] mt-1 opacity-70">{`${data.news_body.substring(0, 120)}...`}</p>
-                          </Link>
-                        </div>
+                {ai.map((data, index) => (
+                  <div className="card-1 mb-6" key={data.id}>
+                    <div className="flex">
+                      <div className="w-[46%]">
+                        <Image
+                          src={data.news_image}
+                          width={150}
+                          height={150}
+                          alt="news image"
+                          className=""
+                        />
                       </div>
-                    </SwiperSlide>
-                  ))}
-                </Swiper>
+                      <div className="ml-[10px] mt-[16px]">
+                        <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
+                        <div className="mt-2 text-sm opacity-70 mx-auto">{formatDate(data.created_at)}</div>
+                      </div>
+                    </div>
+                    <div className="mt-[13px]">
+                      <Link href={`/${encodeURIComponent(data.title)}/${data.id}`}>
+                        <h1 className="font-bold text-[15px]">{data.title}</h1>
+                        <p className="text-[12px] mt-1 opacity-70">{`${data.news_body.substring(0, 120)}...`}</p>
+                      </Link>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
             <div>
