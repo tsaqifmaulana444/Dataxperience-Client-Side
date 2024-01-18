@@ -12,7 +12,7 @@ import { faCaretDown } from "@fortawesome/free-solid-svg-icons"
 export default function Navbar() {
     return (
         <div className="flex justify-between text-[#141414] sm:w-[83%] w-[90%] mx-auto">
-            <div className="sm:w-[230px] w-[180px] my-auto cursor-pointer sm:mt-[15px] mt-[20px]">
+            <div className="sm:w-[230px] w-[180px] my-auto cursor-pointer mt-[10px]">
                 <Link href="/">
                     <Image
                         src={Logo}
@@ -22,26 +22,41 @@ export default function Navbar() {
                     />
                 </Link>
             </div>
-            <div className="sm:flex hidden text-[#141414] w-[52%] justify-between text-sm text-center mt-[25px] font-medium">
-                <Link href="/categories">All Categories</Link>
-                <Link href="/#">Data Analytics</Link>
-                <Link href="/#">Data Science</Link>
-                <Link href="/#">AI</Link>
-                <Link href="/#">ML</Link>
-                <Link href="/#">Cloud Computing</Link>
-                <div className="w-fit flex">
-                    <p>More</p>
-                    <FontAwesomeIcon icon={faCaretDown} style={{ color: "#141414", }} className="ml-[12px]" />
+            <div className="sm:flex hidden text-[#141414] w-[52%] justify-between text-sm text-center font-medium mt-[25px]">
+                <div className="flex flex-col justify-center items-center">
+                    <Link href="/categories" className='align-middle'>All Categories</Link>
+                </div>
+                <div className="flex flex-col justify-center items-center">
+                    <Link href="/categories#data_analytics" className='align-middle'>Data Analytics</Link>
+                </div>
+                <div className="flex flex-col justify-center items-center">
+                    <Link href="/categories#data_science" className='align-middle'>Data Science</Link>
+                </div>
+                <div className="flex flex-col justify-center items-center">
+                    <Link href="/categories#ai" className='align-middle'>AI</Link>
+                </div>
+                <div className="flex flex-col justify-center items-center">
+                    <Link href="/categories#machine_learning" className='align-middle'>ML</Link>
+                </div>
+                <div className="flex flex-col justify-center items-center">
+                    <Link href="/categories#cloud_computing" className='align-middle'>Cloud Computing</Link>
+                </div>
+                <div className="flex flex-col justify-center items-center">
+                    <div className="flex">
+                        <p>More</p>
+                        <FontAwesomeIcon icon={faCaretDown} style={{ color: "#141414" }} className="ml-[12px]" />
+                    </div>
                 </div>
             </div>
-            <div className="sm:flex hidden ml-[55px] mt-1">
-                <div className="w-fit my-3">
+
+            <div className="sm:flex hidden ml-[55px] mt-5">
+                <div className="w-fit my-auto">
                     <Image
                         src={Profile}
                         alt="User"
                         width={35}
                         height={35}
-                        className="rounded-full"
+                        className="rounded-full my-auto"
                     />
                 </div>
                 <div className="my-auto w-fit ml-[20px]">

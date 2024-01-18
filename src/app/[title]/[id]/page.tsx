@@ -53,7 +53,7 @@ export default function DetailPage({ params }: { params: { id: string } }) {
 		}
 	}
 
-	const getCategoryName = (categoryIds?: number[] | null): string => {
+	const getCategoryNames = (categoryIds?: number[] | null): string => {
 		if (!categoryIds || categoryIds.length === 0) return ''
 
 		const category = categories.find((c) => c.id === categoryIds[0])
@@ -146,15 +146,19 @@ export default function DetailPage({ params }: { params: { id: string } }) {
 								className="w-full h-full object-cover"
 							/>
 						</div>
-						<div className="mt-[40px]">
-							<p className="text-[18px]">
-								{newsDetail.news_body}
-							</p>
+						<div className="mt-[40px] text-[18px]" dangerouslySetInnerHTML={{ __html: newsDetail.news_body }}>
 						</div>
 						<p className="text-[18px] mt-[30px]">Read Also: <u className="font-bold">Lorem ipsum dolor sit amet consectetur adipisicing.</u></p>
 						<div className="flex mt-[60px] mb-[90px]">
-							<div className="w-fit bg-[#1E7610] text-white px-3 py-2 text-xs font-bold">Inspirational</div>
-							<div className="w-fit bg-[#1E7610] text-white px-3 py-2 text-xs font-bold ml-[10px]">Inspirational</div>
+							{newsDetail.category_ids && newsDetail.category_ids.map((categoryId, index) => (
+								<div
+									key={index}
+									className={`w-fit text-white px-3 py-2 text-xs font-bold ${index > 0 ? 'ml-[10px]' : ''}`}
+									style={{ backgroundColor: getCategoryColour([categoryId]) }}
+								>
+									{getCategoryNames([categoryId])}
+								</div>
+							))}
 						</div>
 					</div>
 					<aside className="w-[20%]">

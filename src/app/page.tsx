@@ -172,7 +172,7 @@ export default function HomePage() {
                       </div>
                     </div>
                     <div className="mt-[13px]">
-                      <Link href="#">
+                      <Link href={`/${encodeURIComponent(data.title)}/${data.id}`}>
                         <h1 className="font-bold text-[15px]">{data.title}</h1>
                         <p className="text-[12px] mt-1 opacity-70">{`${data.news_body.substring(0, 120)}...`}</p>
                       </Link>
@@ -237,7 +237,7 @@ export default function HomePage() {
             >
               {inspirational.map((data, index) => (
                 <SwiperSlide key={data.id}>
-                  <Link href="#">
+                  <Link href={`/${encodeURIComponent(data.title)}/${data.id}`}>
                     <div className="flex mt-[15px]">
                       <div className="w-[390px]">
                         <Image
@@ -308,7 +308,7 @@ export default function HomePage() {
                         </div>
                         <div className="-mt-[20px] mx-[8px] p-1 mb-3">
                           <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
-                          <Link href="#">
+                          <Link href={`/${encodeURIComponent(data.title)}/${data.id}`}>
                             <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
                           </Link>
                           <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
@@ -351,7 +351,7 @@ export default function HomePage() {
                         </div>
                         <div className="-mt-[20px] mx-[8px] p-1 mb-3">
                           <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
-                          <Link href="#">
+                          <Link href={`/${encodeURIComponent(data.title)}/${data.id}`}>
                             <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
                           </Link>
                           <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
@@ -394,7 +394,7 @@ export default function HomePage() {
                         </div>
                         <div className="-mt-[20px] mx-[8px] p-1 mb-3">
                           <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
-                          <Link href="#">
+                          <Link href={`/${encodeURIComponent(data.title)}/${data.id}`}>
                             <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
                           </Link>
                           <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
@@ -436,7 +436,7 @@ export default function HomePage() {
                           </div>
                         </div>
                         <div className="mt-[13px]">
-                          <Link href="#">
+                          <Link href={`/${encodeURIComponent(data.title)}/${data.id}`}>
                             <h1 className="font-bold text-[15px]">{data.title}</h1>
                             <p className="text-[12px] mt-1 opacity-70">{`${data.news_body.substring(0, 120)}...`}</p>
                           </Link>

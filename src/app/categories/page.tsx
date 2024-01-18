@@ -127,7 +127,7 @@ export default function CategoriesPage() {
     <div>
       <Navbar />
       <section className="w-[82%] mx-auto mt-[50px] mb-[100px]">
-        <div className="mt-[30px]">
+        <div className="mt-[30px]" id="data_analytics">
           <h1 className="font-bold text-[21px] mb-[20px]">Data Analyst</h1>
           <Swiper
             spaceBetween={15}
@@ -166,7 +166,7 @@ export default function CategoriesPage() {
             ))}
           </Swiper>
         </div>
-        <div className="mt-[30px]">
+        <div className="mt-[30px]" id="data_science">
           <h1 className="font-bold text-[21px] mb-[20px]">Data Science</h1>
           <Swiper
             spaceBetween={15}
@@ -205,7 +205,7 @@ export default function CategoriesPage() {
             ))}
           </Swiper>
         </div>
-        <div className="mt-[30px]">
+        <div className="mt-[30px]" id="machine_learning">
           <h1 className="font-bold text-[21px] mb-[20px]">Machine Learning</h1>
           <Swiper
             spaceBetween={15}
@@ -244,7 +244,7 @@ export default function CategoriesPage() {
             ))}
           </Swiper>
         </div>
-        <div className="mt-[30px]">
+        <div className="mt-[30px]" id="inspirational">
           <h1 className="font-bold text-[21px] mb-[20px]">Inspirational</h1>
           <Swiper
             spaceBetween={15}
@@ -283,7 +283,7 @@ export default function CategoriesPage() {
             ))}
           </Swiper>
         </div>
-        <div className="mt-[30px]">
+        <div className="mt-[30px]" id="data_engineering">
           <h1 className="font-bold text-[21px] mb-[20px]">Data Engineering</h1>
           <Swiper
             spaceBetween={15}
@@ -322,7 +322,7 @@ export default function CategoriesPage() {
             ))}
           </Swiper>
         </div>
-        <div className="mt-[30px]">
+        <div className="mt-[30px]" id="ai">
           <h1 className="font-bold text-[21px] mb-[20px]">Artificial Intelligence</h1>
           <Swiper
             spaceBetween={15}
@@ -361,7 +361,7 @@ export default function CategoriesPage() {
             ))}
           </Swiper>
         </div>
-        <div className="mt-[30px]">
+        <div className="mt-[30px]" id="true_story">
           <h1 className="font-bold text-[21px] mb-[20px]">True Story</h1>
           <Swiper
             spaceBetween={15}
@@ -400,7 +400,7 @@ export default function CategoriesPage() {
             ))}
           </Swiper>
         </div>
-        <div className="mt-[30px]">
+        <div className="mt-[30px]" id="cloud_computing">
           <h1 className="font-bold text-[21px] mb-[20px]">Cloud Computing</h1>
           <Swiper
             spaceBetween={15}
