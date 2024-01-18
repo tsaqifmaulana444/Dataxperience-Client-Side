@@ -56,3 +56,39 @@ export async function PATCH(request: Request, { params }: { params: { id: string
     }
   )
 }
+
+export async function GET(req: Request, { params }: { params: { id: string } }) {
+  if (req.method === "GET") {
+    const id = parseInt(params.id)
+
+    try {
+      const news = await prisma.news.findUnique({
+        where: {
+          id: Number(id),
+        },
+      })
+      return NextResponse.json({ news })
+    } catch (error) {
+      console.error("Error fetching news:", error)
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Something Went Wrong",
+        },
+        {
+          status: 500,
+        }
+      )
+    }
+  } else {
+    return NextResponse.json(
+      {
+        success: false,
+        message: "Method Not Allowed",
+      },
+      {
+        status: 405,
+      }
+    )
+  }
+}
