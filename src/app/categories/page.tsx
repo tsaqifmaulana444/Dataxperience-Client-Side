@@ -8,6 +8,13 @@ import { Autoplay, Navigation } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import { useEffect, useState } from "react"
+import { CSSProperties } from 'react'
+
+interface CustomCSSProperties {
+  '--swiper-navigation-color'?: string
+}
+
+type CustomStyle = CSSProperties & CustomCSSProperties
 
 // export const metadata = {
 //   title: 'Categories | Dataxperience'
@@ -87,8 +94,12 @@ export default function CategoriesPage() {
     return category ? category.name : ''
   }
 
-  
-  const formatDate = (timestamp: string | number | Date | undefined) => {
+
+  const formatDate = (timestamp: string | number | Date | undefined): string => {
+    if (!timestamp) {
+      return "N/A"
+    }
+
     const date = new Date(timestamp)
     return date.toLocaleDateString('en-GB')
   }
@@ -133,7 +144,7 @@ export default function CategoriesPage() {
             spaceBetween={15}
             style={{
               '--swiper-navigation-color': '#141414',
-            }}
+            } as CustomStyle}
             slidesPerView={4}
             navigation={true}
             autoplay={{
@@ -172,7 +183,7 @@ export default function CategoriesPage() {
             spaceBetween={15}
             style={{
               '--swiper-navigation-color': '#141414',
-            }}
+            } as CustomStyle}
             slidesPerView={4}
             navigation={true}
             autoplay={{
@@ -211,7 +222,7 @@ export default function CategoriesPage() {
             spaceBetween={15}
             style={{
               '--swiper-navigation-color': '#141414',
-            }}
+            } as CustomStyle}
             slidesPerView={4}
             navigation={true}
             autoplay={{
@@ -250,7 +261,7 @@ export default function CategoriesPage() {
             spaceBetween={15}
             style={{
               '--swiper-navigation-color': '#141414',
-            }}
+            } as CustomStyle}
             slidesPerView={4}
             navigation={true}
             autoplay={{
@@ -289,7 +300,7 @@ export default function CategoriesPage() {
             spaceBetween={15}
             style={{
               '--swiper-navigation-color': '#141414',
-            }}
+            } as CustomStyle}
             slidesPerView={4}
             navigation={true}
             autoplay={{
@@ -328,7 +339,7 @@ export default function CategoriesPage() {
             spaceBetween={15}
             style={{
               '--swiper-navigation-color': '#141414',
-            }}
+            } as CustomStyle}
             slidesPerView={4}
             navigation={true}
             autoplay={{
@@ -367,7 +378,7 @@ export default function CategoriesPage() {
             spaceBetween={15}
             style={{
               '--swiper-navigation-color': '#141414',
-            }}
+            } as CustomStyle}
             slidesPerView={4}
             navigation={true}
             autoplay={{
@@ -406,7 +417,7 @@ export default function CategoriesPage() {
             spaceBetween={15}
             style={{
               '--swiper-navigation-color': '#141414',
-            }}
+            } as CustomStyle}
             slidesPerView={4}
             navigation={true}
             autoplay={{

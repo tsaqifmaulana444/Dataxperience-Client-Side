@@ -14,6 +14,13 @@ import { Autoplay, Navigation } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import { useEffect, useState } from "react"
+import { CSSProperties } from 'react'
+
+interface CustomCSSProperties {
+  '--swiper-navigation-color'?: string
+}
+
+type CustomStyle = CSSProperties & CustomCSSProperties
 
 interface News {
   id?: number
@@ -90,10 +97,14 @@ export default function HomePage() {
   }
 
 
-  const formatDate = (timestamp: string | number | Date | undefined) => {
-    const date = new Date(timestamp)
-    return date.toLocaleDateString('en-GB')
-  }
+  const formatDate = (timestamp: string | number | Date | undefined): string => {
+		if (!timestamp) {
+			return "N/A"
+		}
+
+		const date = new Date(timestamp)
+		return date.toLocaleDateString('en-GB')
+	}
 
   const getCategoryColour = (categoryIds?: number[] | null): string => {
     if (!categoryIds || categoryIds.length === 0) return '#1E7610'
@@ -188,7 +199,7 @@ export default function HomePage() {
             spaceBetween={15}
             style={{
               '--swiper-navigation-color': '#141414',
-            }}
+            } as CustomStyle}
             slidesPerView={4}
             navigation={true}
             autoplay={{
@@ -283,7 +294,7 @@ export default function HomePage() {
                   spaceBetween={15}
                   style={{
                     '--swiper-navigation-color': '#141414',
-                  }}
+                  }as CustomStyle}
                   slidesPerView={3}
                   navigation={true}
                   autoplay={{
@@ -326,7 +337,7 @@ export default function HomePage() {
                   spaceBetween={15}
                   style={{
                     '--swiper-navigation-color': '#141414',
-                  }}
+                  }as CustomStyle}
                   slidesPerView={3}
                   navigation={true}
                   autoplay={{
@@ -369,7 +380,7 @@ export default function HomePage() {
                   spaceBetween={15}
                   style={{
                     '--swiper-navigation-color': '#141414',
-                  }}
+                  }as CustomStyle}
                   slidesPerView={3}
                   navigation={true}
                   autoplay={{

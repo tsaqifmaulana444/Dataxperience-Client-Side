@@ -4,8 +4,6 @@ import Footer from "../../components/frontend/Footer"
 import Navbar from "../../components/frontend/Navbar"
 import Image from "next/image"
 import Profile from "../../images/blank_profile.jpeg"
-import Cars from "../../images/car.jpeg"
-import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 interface News {
@@ -62,10 +60,15 @@ export default function DetailPage({ params }: { params: { id: string } }) {
 	}
 
 
-	const formatDate = (timestamp: string | number | Date | undefined) => {
+	const formatDate = (timestamp: string | number | Date | undefined): string => {
+		if (!timestamp) {
+			return "N/A"
+		}
+
 		const date = new Date(timestamp)
 		return date.toLocaleDateString('en-GB')
 	}
+
 
 	const getCategoryColour = (categoryIds?: number[] | null): string => {
 		if (!categoryIds || categoryIds.length === 0) return '#1E7610'
