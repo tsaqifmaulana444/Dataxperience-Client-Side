@@ -121,10 +121,10 @@ export default function HomePage() {
 
   const data_analytics = news.filter((data) => getCategoryName(data.category_ids) === getCategoryName([1]))
   const data_science = news.filter((data) => getCategoryName(data.category_ids) === getCategoryName([2]))
-  const machine_learning = news.filter((data) => getCategoryName(data.category_ids) === getCategoryName([3]))
+  const machine_learning = getLimitedNews(news.filter((data) => getCategoryName(data.category_ids) === getCategoryName([3])), 3)
   const inspirational = getLimitedNews(news.filter((data) => getCategoryName(data.category_ids) === getCategoryName([4])), 3)
   const data_engineer = news.filter((data) => getCategoryName(data.category_ids) === getCategoryName([5]))
-  const ai = news.filter((data) => getCategoryName(data.category_ids) === getCategoryName([6]))
+  const ai = getLimitedNews(news.filter((data) => getCategoryName(data.category_ids) === getCategoryName([6])), 3)
   const true_story = news.filter((data) => getCategoryName(data.category_ids) === getCategoryName([7]))
   const cloud = news.filter((data) => getCategoryName(data.category_ids) === getCategoryName([8]))
 
@@ -142,52 +142,48 @@ export default function HomePage() {
           <h1 className="font-bold sm:text-2xl text-[14px]">Welcome To Dataxpetrise!</h1>
           <p className="text-[14px]">We Discuss Everything About Data.</p>
         </div>
-        <div className="w-[83%] mx-auto sm:flex block mt-[25px]">
+        <div className="w-[83%] mx-auto justify-between sm:flex block mt-[25px]">
           <div className="w-[72%]">
             <iframe src="https://www.youtube.com/embed/D2vj0WcvH5c?si=s4ErRK_Jv9hcUd6n" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" className="sm:w-[100%] sm:h-[400px] sm:mx-0 mx-auto w-full h-[25.2%]"></iframe>
           </div>
-          <div className="ml-[30px] w-[24%]">
-            <div className="card-1">
-              <div className="flex">
-                <div className="w-[46%]">
-                  <Image
-                    src={Cars}
-                    alt="cars"
-                    className=""
-                  />
-                </div>
-                <div className="ml-[10px] mt-[16px]">
-                  <div className="w-fit bg-[#134074] text-white px-3 py-2 text-xs font-bold">Machine Learning</div>
-                  <div className="mt-2 text-sm opacity-70 mx-auto">2 Days Ago</div>
-                </div>
-              </div>
-              <div className="mt-[13px]">
-                <h1 className="font-bold text-[15px]">OpenCV 6 Update Now Support Fast Object Detection.</h1>
-                <p className="text-[12px] mt-1 opacity-70">In OpenCV 6 update release, OpenCV latest feature can be integrated into a camera with high fps. Such as Nikon 3000 and Canon...</p>
-              </div>
-            </div>
-            <div className="card-2 mt-[23px]">
-              <div className="flex">
-                <div className="w-[46%]">
-                  <Image
-                    src={Cars}
-                    alt="cars"
-                    className=""
-                  />
-                </div>
-                <div className="ml-[10px] mt-[16px]">
-                  <div className="w-fit bg-[#134074] text-white px-3 py-2 text-xs font-bold">Machine Learning</div>
-                  <div className="mt-2 text-sm opacity-70 mx-auto">2 Days Ago</div>
-                </div>
-              </div>
-              <div className="mt-[13px]">
-                <h1 className="font-bold text-[15px]">OpenCV 6 Update Now Support Fast Object Detection.</h1>
-                <p className="text-[12px] mt-1 opacity-70">In OpenCV 6 update release, OpenCV latest feature can be integrated into a camera with high fps. Such as Nikon 3000 and Canon...</p>
-              </div>
-            </div>
+          <div className="w-[26%] h-[555px]">
+            <Swiper
+              direction={'vertical'}
+              className="mySwiper"
+              slidesPerView={2}
+              autoHeight={false}
+            >
+              {machine_learning.map((data, index) => (
+                <SwiperSlide key={data.id}>
+                  <div className="card-1 mb-3 h-[255px]">
+                    <div className="flex">
+                      <div className="w-[46%]">
+                        <Image
+                          src={data.news_image}
+                          width={150}
+                          height={150}
+                          alt="news image"
+                          className=""
+                        />
+                      </div>
+                      <div className="ml-[10px] mt-[16px]">
+                        <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
+                        <div className="mt-2 text-sm opacity-70 mx-auto">{formatDate(data.created_at)}</div>
+                      </div>
+                    </div>
+                    <div className="mt-[13px]">
+                      <Link href="#">
+                        <h1 className="font-bold text-[15px]">{data.title}</h1>
+                        <p className="text-[12px] mt-1 opacity-70">{`${data.news_body.substring(0, 120)}...`}</p>
+                      </Link>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </div>
         </div>
-        <div className="w-[83%] mx-auto mt-6">
+        <div className="w-[83%] mx-auto mt-4">
           <Swiper
             spaceBetween={15}
             style={{
@@ -204,25 +200,25 @@ export default function HomePage() {
           >
             {news.map((data, index) => (
               <SwiperSlide key={data.id}>
-                  <div className="flex flex-col w-[100%] cursor-pointer">
-                    <div className="w-full">
-                      <Image
-                        src={data.news_image}
-                        width={500}
-                        height={500}
-                        alt="news image"
-                        loading="lazy"
-                        className="w-full"
-                      />
-                    </div>
-                    <div className="-mt-[20px] mx-[8px] p-1 mb-3">
-                      <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
-                      <Link href="#">
-                        <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
-                      </Link>
-                      <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
-                    </div>
+                <div className="flex flex-col w-[100%] cursor-pointer">
+                  <div className="w-full">
+                    <Image
+                      src={data.news_image}
+                      width={500}
+                      height={500}
+                      alt="news image"
+                      loading="lazy"
+                      className="w-full"
+                    />
                   </div>
+                  <div className="-mt-[20px] mx-[8px] p-1 mb-3">
+                    <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
+                    <Link href="#">
+                      <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                    </Link>
+                    <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
+                  </div>
+                </div>
               </SwiperSlide>
             ))}
           </Swiper>
@@ -237,6 +233,7 @@ export default function HomePage() {
               direction={'vertical'}
               className="mySwiper"
               slidesPerView={2}
+              style={{ 'height': '555px' }}
             >
               {inspirational.map((data, index) => (
                 <SwiperSlide key={data.id}>
@@ -244,8 +241,10 @@ export default function HomePage() {
                     <div className="flex mt-[15px]">
                       <div className="w-[390px]">
                         <Image
-                          src={Cars}
-                          alt="cars"
+                          src={data.news_image}
+                          width={500}
+                          height={500}
+                          alt="news image"
                           className="w-full h-full"
                         />
                       </div>
@@ -296,25 +295,25 @@ export default function HomePage() {
                 >
                   {news.map((data, index) => (
                     <SwiperSlide key={data.id}>
-                        <div className="flex flex-col w-[100%] cursor-pointer">
-                          <div className="w-full">
-                            <Image
-                              src={data.news_image}
-                              width={500}
-                              height={500}
-                              alt="news image"
-                              loading="lazy"
-                              className="w-full"
-                            />
-                          </div>
-                          <div className="-mt-[20px] mx-[8px] p-1 mb-3">
-                            <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
-                            <Link href="#">
-                              <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
-                            </Link>
-                            <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
-                          </div>
+                      <div className="flex flex-col w-[100%] cursor-pointer">
+                        <div className="w-full">
+                          <Image
+                            src={data.news_image}
+                            width={500}
+                            height={500}
+                            alt="news image"
+                            loading="lazy"
+                            className="w-full"
+                          />
                         </div>
+                        <div className="-mt-[20px] mx-[8px] p-1 mb-3">
+                          <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
+                          <Link href="#">
+                            <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                          </Link>
+                          <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
+                        </div>
+                      </div>
                     </SwiperSlide>
                   ))}
                 </Swiper>
@@ -339,25 +338,25 @@ export default function HomePage() {
                 >
                   {news.map((data, index) => (
                     <SwiperSlide key={data.id}>
-                        <div className="flex flex-col w-[100%] cursor-pointer">
-                          <div className="w-full">
-                            <Image
-                              src={data.news_image}
-                              width={500}
-                              height={500}
-                              alt="news image"
-                              loading="lazy"
-                              className="w-full"
-                            />
-                          </div>
-                          <div className="-mt-[20px] mx-[8px] p-1 mb-3">
-                            <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
-                            <Link href="#">
-                              <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
-                            </Link>
-                            <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
-                          </div>
+                      <div className="flex flex-col w-[100%] cursor-pointer">
+                        <div className="w-full">
+                          <Image
+                            src={data.news_image}
+                            width={500}
+                            height={500}
+                            alt="news image"
+                            loading="lazy"
+                            className="w-full"
+                          />
                         </div>
+                        <div className="-mt-[20px] mx-[8px] p-1 mb-3">
+                          <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
+                          <Link href="#">
+                            <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                          </Link>
+                          <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
+                        </div>
+                      </div>
                     </SwiperSlide>
                   ))}
                 </Swiper>
@@ -382,25 +381,25 @@ export default function HomePage() {
                 >
                   {news.map((data, index) => (
                     <SwiperSlide key={data.id}>
-                        <div className="flex flex-col w-[100%] cursor-pointer">
-                          <div className="w-full">
-                            <Image
-                              src={data.news_image}
-                              width={500}
-                              height={500}
-                              alt="news image"
-                              loading="lazy"
-                              className="w-full"
-                            />
-                          </div>
-                          <div className="-mt-[20px] mx-[8px] p-1 mb-3">
-                            <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
-                            <Link href="#">
-                              <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
-                            </Link>
-                            <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
-                          </div>
+                      <div className="flex flex-col w-[100%] cursor-pointer">
+                        <div className="w-full">
+                          <Image
+                            src={data.news_image}
+                            width={500}
+                            height={500}
+                            alt="news image"
+                            loading="lazy"
+                            className="w-full"
+                          />
                         </div>
+                        <div className="-mt-[20px] mx-[8px] p-1 mb-3">
+                          <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
+                          <Link href="#">
+                            <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                          </Link>
+                          <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
+                        </div>
+                      </div>
                     </SwiperSlide>
                   ))}
                 </Swiper>
@@ -411,83 +410,45 @@ export default function HomePage() {
           <div className="ml-[20px] w-[27%]">
             <div>
               <h1 className="font-bold text-[21px] mb-[20px]">Latest News</h1>
-              <div className="card-1">
-                <div className="flex">
-                  <div className="w-[35%]">
-                    <Image
-                      src={Cars}
-                      alt="cars"
-                      className=""
-                    />
-                  </div>
-                  <div className="ml-[10px] mt-[16px]">
-                    <div className="w-fit bg-[#134074] text-white px-3 py-2 text-xs font-bold">Machine Learning</div>
-                    <div className="mt-2 text-sm opacity-70 mx-auto">2 Days Ago</div>
-                  </div>
-                </div>
-                <div className="mt-[13px]">
-                  <h1 className="font-bold text-[15px]">OpenCV 6 Update Now Support Fast Object Detection.</h1>
-                  <p className="text-[12px] mt-1 opacity-70">In OpenCV 6 update release, OpenCV latest feature can be integrated into a camera with high fps. Such as Nikon 3000 and Canon...</p>
-                </div>
-              </div>
-              <div className="card-2 mt-[23px]">
-                <div className="flex">
-                  <div className="w-[35%]">
-                    <Image
-                      src={Cars}
-                      alt="cars"
-                      className=""
-                    />
-                  </div>
-                  <div className="ml-[10px] mt-[16px]">
-                    <div className="w-fit bg-[#134074] text-white px-3 py-2 text-xs font-bold">Machine Learning</div>
-                    <div className="mt-2 text-sm opacity-70 mx-auto">2 Days Ago</div>
-                  </div>
-                </div>
-                <div className="mt-[13px]">
-                  <h1 className="font-bold text-[15px]">OpenCV 6 Update Now Support Fast Object Detection.</h1>
-                  <p className="text-[12px] mt-1 opacity-70">In OpenCV 6 update release, OpenCV latest feature can be integrated into a camera with high fps. Such as Nikon 3000 and Canon...</p>
-                </div>
+              <div className="">
+                <Swiper
+                  direction={'vertical'}
+                  className="mySwiper"
+                  slidesPerView={2}
+                  autoHeight={false}
+                >
+                  {ai.map((data, index) => (
+                    <SwiperSlide key={data.id}>
+                      <div className="card-1 mb-3 h-[255px]">
+                        <div className="flex">
+                          <div className="w-[46%]">
+                            <Image
+                              src={data.news_image}
+                              width={150}
+                              height={150}
+                              alt="news image"
+                              className=""
+                            />
+                          </div>
+                          <div className="ml-[10px] mt-[16px]">
+                            <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
+                            <div className="mt-2 text-sm opacity-70 mx-auto">{formatDate(data.created_at)}</div>
+                          </div>
+                        </div>
+                        <div className="mt-[13px]">
+                          <Link href="#">
+                            <h1 className="font-bold text-[15px]">{data.title}</h1>
+                            <p className="text-[12px] mt-1 opacity-70">{`${data.news_body.substring(0, 120)}...`}</p>
+                          </Link>
+                        </div>
+                      </div>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
               </div>
             </div>
-            <div className="mt-[35px]">
-              <h1 className="font-bold text-[21px] mb-[20px]">Tweets</h1>
-              <div className="card-1 mb-[30px]">
-                <div className="flex">
-                  <div className="w-[50px] h-[50px]">
-                    <Image
-                      src={Cars}
-                      alt="cars"
-                      className="w-fit h-full object-cover"
-                    />
-                  </div>
-                  <div className="ml-[10px]">
-                    <p className="font-bold">@wang_lichen44</p>
-                    <p className="mt-1 text-sm opacity-70">2 Days Ago</p>
-                  </div>
-                </div>
-                <div className="mt-[25px]">
-                  <p className="text-[12px] opacity-70">We delighted to announce that Dataxperience just open a new office branch in Ho Chi Minh City, Vietnam. We hiring 20 data enthusiast...</p>
-                </div>
-              </div>
-              <div className="card-1">
-                <div className="flex">
-                  <div className="w-[50px] h-[50px]">
-                    <Image
-                      src={Cars}
-                      alt="cars"
-                      className="w-fit h-full object-cover"
-                    />
-                  </div>
-                  <div className="ml-[10px]">
-                    <p className="font-bold">@wang_lichen44</p>
-                    <p className="mt-1 text-sm opacity-70">2 Days Ago</p>
-                  </div>
-                </div>
-                <div className="mt-[25px]">
-                  <p className="text-[12px] opacity-70">We delighted to announce that Dataxperience just open a new office branch in Ho Chi Minh City, Vietnam. We hiring 20 data enthusiast...</p>
-                </div>
-              </div>
+            <div>
+              {/* bisa buat iklan */}
             </div>
           </div>
         </div>
