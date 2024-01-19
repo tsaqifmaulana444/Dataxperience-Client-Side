@@ -33,14 +33,14 @@ export default function StatsPage() {
                 calc: "stringify",
             },
         ],
-        ["Copper", 8.94, "#b87333", null],
-        ["Silver", 10.49, "silver", null],
-        ["Gold", 19.3, "gold", null],
-        ["Platinum", 21.45, "color: #e5e4e2", null],
+        ["Cloud Computing", 8.94, "#b87333", null],
+        ["Inspirational", 10.49, "silver", null],
+        ["ML", 19.3, "gold", null],
+        ["AI", 21.45, "color: #e5e4e2", null],
     ]
 
     const options = {
-        title: "Density of Precious Metals, in g/cm^3",
+        title: "Content Interest",
         width: 500,
         height: 250,
         bar: { groupWidth: "95%" },

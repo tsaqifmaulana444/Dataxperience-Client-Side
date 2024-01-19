@@ -135,7 +135,7 @@ export default function HomePage() {
   const machine_learning = getLimitedNews(news.filter((data) => getCategoryName(data.category_ids) === getCategoryName([3])), 3)
   const inspirational = getLimitedNews(news.filter((data) => getCategoryName(data.category_ids) === getCategoryName([4])), 3)
   const data_engineer = news.filter((data) => getCategoryName(data.category_ids) === getCategoryName([5]))
-  const ai = getLimitedNews(news.filter((data) => getCategoryName(data.category_ids) === getCategoryName([6])), 3)
+  const ai = getLimitedNews(news.filter((data) => getCategoryName(data.category_ids) === getCategoryName([6])), 5)
   const true_story = news.filter((data) => getCategoryName(data.category_ids) === getCategoryName([7]))
   const cloud = news.filter((data) => getCategoryName(data.category_ids) === getCategoryName([8]))
 

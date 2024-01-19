@@ -8,6 +8,7 @@ import '@fortawesome/fontawesome-svg-core/styles.css'
 config.autoAddCss = false
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons"
+import { Dropdown } from 'flowbite-react'
 
 export default function Navbar() {
     return (
@@ -42,10 +43,13 @@ export default function Navbar() {
                     <Link href="/categories#cloud_computing" className='align-middle'>Cloud Computing</Link>
                 </div>
                 <div className="flex flex-col justify-center items-center">
-                    <div className="flex">
-                        <p>More</p>
-                        <FontAwesomeIcon icon={faCaretDown} style={{ color: "#141414" }} className="ml-[12px]" />
-                    </div>
+                    <Dropdown label="More" inline>
+                        <Dropdown.Item>Contact Us</Dropdown.Item>
+                        <Dropdown.Item>Settings</Dropdown.Item>
+                        <Dropdown.Item>Earnings</Dropdown.Item>
+                        <Dropdown.Divider />
+                        <Dropdown.Item>Separated link</Dropdown.Item>
+                    </Dropdown>
                 </div>
             </div>
 
