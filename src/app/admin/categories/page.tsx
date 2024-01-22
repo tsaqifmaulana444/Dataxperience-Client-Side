@@ -5,6 +5,8 @@ import '../../../../public/styles/style.css'
 import AdminNavbar from '@/app/components/backend/AdminNavbar'
 import router from "next/navigation"
 import { useEffect, useState } from 'react'
+import { Button, Modal } from 'flowbite-react'
+import { HiOutlineExclamationCircle } from 'react-icons/hi'
 
 interface Category {
     id?: number
@@ -14,7 +16,8 @@ interface Category {
 export default function Categories() {
     const [categories, setCategories] = useState<Category[]>([])
     const [error, setError] = useState('')
-    const [newCategory, setNewCategory] = useState('');
+    const [newCategory, setNewCategory] = useState('')
+    const [openModalDelete, setOpenModalDelete] = useState(false)
 
     // create
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -145,11 +148,32 @@ export default function Categories() {
                                     <td className="px-6 py-4">{category.id}</td>
                                     <td className="px-6 py-4">
                                         <button
-                                            onClick={() => handleDelete(category.id)}
+                                            onClick={() => setOpenModalDelete(true)}
+                                            // onClick={() => handleDelete(category.id)}
                                             className="text-red-500 font-bold"
                                         >
                                             Delete
                                         </button>
+                                        <Modal show={openModalDelete} size="md" onClose={() => setOpenModalDelete(false)} popup>
+                                            <Modal.Header />
+                                            <Modal.Body>
+                                                <div className="text-center">
+                                                    <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
+                                                    <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
+                                                        Are you sure you want to delete this data?
+                                                    </h3>
+                                                    <div className="flex justify-center gap-4">
+                                                        <Button color="failure" onClick={() => { setOpenModalDelete(false); handleDelete(category.id) }}>
+                                                            {"Yes, I'm sure"}
+                                                        </Button>
+
+                                                        <Button color="gray" onClick={() => setOpenModalDelete(false)}>
+                                                            No, cancel
+                                                        </Button>
+                                                    </div>
+                                                </div>
+                                            </Modal.Body>
+                                        </Modal>
                                     </td>
                                 </tr>
                             ))}
