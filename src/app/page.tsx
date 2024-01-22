@@ -204,7 +204,7 @@ export default function HomePage() {
               {news.map((data, index) => (
                 <SwiperSlide key={data.id}>
                   <div className="flex flex-col w-[100%] cursor-pointer">
-                    <div className="w-full h-[200px]">
+                    <div className="w-full h-[180px]">
                       <Image
                         src={data.news_image}
                         width={500}
@@ -244,7 +244,7 @@ export default function HomePage() {
               {news.map((data, index) => (
                 <SwiperSlide key={data.id}>
                   <div className="flex flex-col w-[100%] cursor-pointer">
-                    <div className="w-full h-[200px]">
+                    <div className="w-full h-[180px]">
                       <Image
                         src={data.news_image}
                         width={500}
@@ -374,7 +374,7 @@ export default function HomePage() {
                   {news.map((data, index) => (
                     <SwiperSlide key={data.id}>
                       <div className="flex flex-col w-[100%] cursor-pointer">
-                        <div className="w-full h-[200px]">
+                        <div className="w-full h-[180px]">
                           <Image
                             src={data.news_image}
                             width={500}
@@ -414,7 +414,7 @@ export default function HomePage() {
                   {news.map((data, index) => (
                     <SwiperSlide key={data.id}>
                       <div className="flex flex-col w-[100%] cursor-pointer">
-                        <div className="w-full h-[200px]">
+                        <div className="w-full h-[180px]">
                           <Image
                             src={data.news_image}
                             width={500}
@@ -457,7 +457,7 @@ export default function HomePage() {
                   {news.map((data, index) => (
                     <SwiperSlide key={data.id}>
                       <div className="flex flex-col w-[100%] cursor-pointer">
-                        <div className="w-full h-[200px]">
+                        <div className="w-full h-[180px]">
                           <Image
                             src={data.news_image}
                             width={500}
@@ -497,7 +497,7 @@ export default function HomePage() {
                   {news.map((data, index) => (
                     <SwiperSlide key={data.id}>
                       <div className="flex flex-col w-[100%] cursor-pointer">
-                        <div className="w-full h-[200px]">
+                        <div className="w-full h-[180px]">
                           <Image
                             src={data.news_image}
                             width={500}
@@ -540,7 +540,7 @@ export default function HomePage() {
                   {news.map((data, index) => (
                     <SwiperSlide key={data.id}>
                       <div className="flex flex-col w-[100%] cursor-pointer">
-                        <div className="w-full h-[200px]">
+                        <div className="w-full h-[180px]">
                           <Image
                             src={data.news_image}
                             width={500}
@@ -580,7 +580,7 @@ export default function HomePage() {
                   {news.map((data, index) => (
                     <SwiperSlide key={data.id}>
                       <div className="flex flex-col w-[100%] cursor-pointer">
-                        <div className="w-full h-[200px]">
+                        <div className="w-full h-[180px]">
                           <Image
                             src={data.news_image}
                             width={500}
