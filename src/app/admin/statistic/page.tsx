@@ -72,8 +72,12 @@ export default function StatsPage() {
                     <h1 className="font-bold text-[24px]">Statistic</h1>
                 </div>
                 <div className="grid grid-cols-2 mx-[3vw] mt-[2vh]">
-                    <div className="bg-white w-[37vw] h-[40vh] rounded-md">
-                        <div className="w-[200px] h-[200px]">
+                    <div className="bg-white w-[37vw] h-[40vh] rounded-md flex justify-evenly">
+                        <div className="w-[50%] my-auto">
+                            <h1 className="font-bold text-[20px]">Level Of Subscription</h1>
+                            <p className="mt-2">Statistic based on support us and contributing.</p>
+                        </div>
+                        <div className="w-[200px] h-[200px] my-auto">
                             <CircularProgressbar
                                 value={60}
                                 strokeWidth={50}
@@ -83,8 +87,12 @@ export default function StatsPage() {
                             />
                         </div>
                     </div>
-                    <div className="bg-white w-[37vw] h-[40vh] rounded-md ml-[0.6vw]">
-                        <div className="w-[200px] h-[200px]">
+                    <div className="bg-white w-[37vw] h-[40vh] rounded-md ml-[0.6vw] flex justify-evenly">
+                        <div className="w-[50%] my-auto">
+                            <h1 className="font-bold text-[20px]">Level Of Satisfaction</h1>
+                            <p className="mt-2">Statistic based on people rating through rate us form.</p>
+                        </div>
+                        <div className="w-[200px] h-[200px] my-auto">
                             <CircularProgressbar
                                 value={70}
                                 text={`70%`}

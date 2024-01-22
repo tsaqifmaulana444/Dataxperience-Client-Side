@@ -10,31 +10,33 @@ import { faInstagram, faLinkedin, faTiktok, faXTwitter, faYoutube } from "@forta
 export default function Footer() {
   return (
     <footer className="bg-[#343434] text-white">
-        <div className="w-[82%] flex justify-between py-[60px] mx-auto">
+        <div className="w-[82%] justify-between py-[60px] mx-auto sm:flex block">
           <div className="">
-            <div className="w-[57%]">
+            <div className="flex justify-center sm:block sm:w-[57%] w-[100%]">
               <Image
                 src={LogoWhite}
                 alt="Logo White"
-                className="w-fit object-cover"
+                className="w-fit object-cover my-auto"
               />
             </div>
-            <div className="social-media w-[38%] flex justify-between ml-[5px] my-[20px]">
-              <FontAwesomeIcon icon={faInstagram} size="lg" />
-              <FontAwesomeIcon icon={faXTwitter} size="lg" />
-              <FontAwesomeIcon icon={faTiktok} size="lg" />
-              <FontAwesomeIcon icon={faLinkedin} size="lg" />
-              <FontAwesomeIcon icon={faYoutube} size="lg" />
+            <div className="flex justify-center sm:block">
+              <div className="social-media sm:w-[38%] w-[60%] flex justify-between sm:ml-[5px] ml-0 sm:my-[20px] my-[10px] -mt-0 sm:-mt-0">
+                <FontAwesomeIcon icon={faInstagram} size="lg" />
+                <FontAwesomeIcon icon={faXTwitter} size="lg" />
+                <FontAwesomeIcon icon={faTiktok} size="lg" />
+                <FontAwesomeIcon icon={faLinkedin} size="lg" />
+                <FontAwesomeIcon icon={faYoutube} size="lg" />
+              </div>
             </div>
-            <div className="w-[80%]">
-              <p className="w-fit opacity-75 text-[13px]">Xin Cheng Zhong Lu, Dong Guan Shi, Guang Dong Sheng, China, 523070</p>
-              <div className="w-[60%] my-[10px]">
+            <div className="sm:w-[80%] w-[100%]">
+              <p className="w-fit opacity-75 text-[13px] text-center sm:text-left">Xin Cheng Zhong Lu, Dong Guan Shi, Guang Dong Sheng, China, 523070</p>
+              <div className="sm:w-[60%] w-[100%] my-[10px]">
                 <hr className="opacity-75" />
               </div>
-              <p className="w-fit opacity-75 text-[13px]">Part Of Jawaraat Innovation Group - Copyright &copy; 2024</p>
+              <p className="w-fit opacity-75 text-[13px] text-center sm:text-left">Part Of Jawaraat Innovation Group - Copyright &copy; 2024</p>
             </div>
           </div>
-          <div className="flex w-[52%] justify-between">
+          <div className="sm:flex sm:w-[52%] w-[100%] justify-between grid grid-cols-2 gap-4 sm:mt-0 mt-6">
             <div>
               <h1 className="font-bold text-[18px] mb-[10px]">Category</h1>
               <p className="text-[12px] opacity-75 mb-1">Data Analytics</p>

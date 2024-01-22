@@ -46,9 +46,11 @@ export default function Navbar() {
                     <Dropdown label="More" inline>
                         <Dropdown.Item>Contact Us</Dropdown.Item>
                         <Dropdown.Item>Settings</Dropdown.Item>
-                        <Dropdown.Item>Earnings</Dropdown.Item>
+                        <Dropdown.Item>Privacy Policy</Dropdown.Item>
                         <Dropdown.Divider />
-                        <Dropdown.Item>Separated link</Dropdown.Item>
+                        <Dropdown.Item>English</Dropdown.Item>
+                        <Dropdown.Item>Bahasa Indonesia</Dropdown.Item>
+                        <Dropdown.Item>中文</Dropdown.Item>
                     </Dropdown>
                 </div>
             </div>

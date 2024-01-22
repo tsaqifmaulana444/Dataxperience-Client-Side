@@ -66,66 +66,66 @@ export default function SignUpPage() {
           <div className="sm:w-[64%] w-[80%] mx-auto mt-[20px] sm:pb-0 pb-10">
             <form onSubmit={handleSubmit} method="POST">
               <div>
-                <label className="sm:text-[17px] text-[13px] font-bold">Name <span className="text-[#D12626]">*</span></label>
+                <label className="sm:text-[17px] text-[11px] font-bold">Name <span className="text-[#D12626]">*</span></label>
                 <br />
                 <input
                   autoComplete="off"
                   type="text"
                   placeholder="Enter your name"
-                  className="border border-[#A1A1A1] px-3 py-2.5 rounded-md w-full sm:text-[13px] text-[11px] mt-2 h-[38px]"
+                  className="border border-[#A1A1A1] px-3 py-2.5 rounded-md w-full sm:text-[13px] text-[11px] mt-1 h-[38px]"
                   name="name"
 
                 />
               </div>
-              <div className="mt-3">
-                <label className="sm:text-[17px] text-[13px] font-bold">Email <span className="text-[#D12626]">*</span></label>
+              <div className="mt-1">
+                <label className="sm:text-[17px] text-[11px] font-bold">Email <span className="text-[#D12626]">*</span></label>
                 <br />
                 <input
                   autoComplete="off"
                   type="text"
                   placeholder="Enter your email address"
-                  className="border border-[#A1A1A1] px-3 py-2.5 rounded-md w-full sm:text-[13px] text-[11px] mt-2 h-[38px]"
+                  className="border border-[#A1A1A1] px-3 py-2.5 rounded-md w-full sm:text-[13px] text-[11px] mt-1 h-[38px]"
                   name="email"
 
                 />
               </div>
-              <div className="mt-3">
-                <label className="sm:text-[17px] text-[13px] font-bold">Country <span className="text-[#D12626]">*</span></label>
+              <div className="mt-1">
+                <label className="sm:text-[17px] text-[11px] font-bold">Country <span className="text-[#D12626]">*</span></label>
                 <br />
-                <select name="country" id="" className="border border-[#A1A1A1] px-3 rounded-md w-full sm:text-[13px] text-[11px] mt-2 h-[38px]">
+                <select name="country" id="" className="border border-[#A1A1A1] px-3 rounded-md w-full sm:text-[13px] text-[11px] mt-1 h-[38px]">
                   <option value="">Select Your Country</option>
                   <option value="China">China</option>
                   <option value="India">India</option>
                   <option value="Pakistan">Pakistan</option>
                 </select>
               </div>
-              <div className="mt-3">
-                <label className="sm:text-[17px] text-[13px] font-bold">Password <span className="text-[#D12626]">*</span></label>
+              <div className="mt-1">
+                <label className="sm:text-[17px] text-[11px] font-bold">Password <span className="text-[#D12626]">*</span></label>
                 <br />
                 <input
                   autoComplete="off"
                   type="password"
                   placeholder="Enter your password"
-                  className="border border-[#A1A1A1] px-3 py-2.5 rounded-md w-full sm:text-[13px] text-[11px] mt-2 h-[38px]"
+                  className="border border-[#A1A1A1] px-3 py-2.5 rounded-md w-full sm:text-[13px] text-[11px] mt-1 h-[38px]"
                   name="password"
 
                 />
               </div>
-              <div className="mt-3">
-                <label className="sm:text-[17px] text-[13px] font-bold">Confirm Password <span className="text-[#D12626]">*</span></label>
+              <div className="mt-1">
+                <label className="sm:text-[17px] text-[11px] font-bold">Confirm Password <span className="text-[#D12626]">*</span></label>
                 <br />
                 <input
                   autoComplete="off"
                   type="password"
                   placeholder="Confirm your password"
-                  className="border border-[#A1A1A1] px-3 py-2.5 rounded-md w-full sm:text-[13px] text-[11px] mt-2 h-[38px]"
+                  className="border border-[#A1A1A1] px-3 py-2.5 rounded-md w-full sm:text-[13px] text-[11px] mt-1 h-[38px]"
                   name="confirm_password"
 
                 />
               </div>
-              <div className="flex my-5 justify-between">
+              <div className="flex my-3 justify-between">
                 <div className="flex">
-                  <input type="checkbox" name="" id="" className=" sm:rounded-lg rounded-sm" />
+                  <input type="checkbox" name="" id="" className="sm:rounded-sm rounded-sm mt-[3px]" />
                   <p className="sm:text-[14px] text-[11px] ml-3">Agree to <a href="" className="font-bold">Privacy & Policy</a></p>
                 </div>
               </div>

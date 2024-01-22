@@ -68,3 +68,14 @@ model Agenda {
   updated_at   DateTime     @default(now()) @db.Timestamptz(3)
   deleted_at   DateTime?
 }
+
+model Feedback {
+  id          Int    @id @default(autoincrement())
+  title       String
+  name        String
+  email       String
+  description String
+  created_at   DateTime     @default(now()) @db.Timestamptz(3)
+  updated_at   DateTime     @default(now()) @db.Timestamptz(3)
+  deleted_at   DateTime?
+}

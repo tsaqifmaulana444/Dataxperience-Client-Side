@@ -140,315 +140,635 @@ export default function CategoriesPage() {
       <section className="w-[82%] mx-auto mt-[50px] mb-[100px]">
         <div className="mt-[30px]" id="data_analytics">
           <h1 className="font-bold text-[21px] mb-[20px]">Data Analyst</h1>
-          <Swiper
-            spaceBetween={15}
-            style={{
-              '--swiper-navigation-color': '#141414',
-            } as CustomStyle}
-            slidesPerView={4}
-            navigation={true}
-            autoplay={{
-              delay: 4000,
-              disableOnInteraction: false,
-            }}
-            modules={[Autoplay, Navigation]}
-            className="px-[200px]"
-          >
-            {data_analytics.map((data, index) => (
-              <SwiperSlide key={data.id}>
-                <div className="flex flex-col w-[100%] cursor-pointer">
-                  <div className="w-[100%]">
-                    <Image
-                      src={data.news_image}
-                      width={500}
-                      height={500}
-                      alt="news image"
-                      className="w-full"
-                      loading="lazy"
-                    />
+          <div className="hidden sm:block">
+            <Swiper
+              spaceBetween={15}
+              style={{
+                '--swiper-navigation-color': '#141414',
+              } as CustomStyle}
+              slidesPerView={4}
+              navigation={true}
+              autoplay={{
+                delay: 4000,
+                disableOnInteraction: false,
+              }}
+              modules={[Autoplay, Navigation]}
+              className="px-[200px]"
+            >
+              {data_analytics.map((data, index) => (
+                <SwiperSlide key={data.id}>
+                  <div className="flex flex-col w-[100%] cursor-pointer">
+                    <div className="w-[100%] h-[200px]">
+                      <Image
+                        src={data.news_image}
+                        width={500}
+                        height={500}
+                        alt="news image"
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className="-mt-[20px] mx-[8px] p-1 mb-3">
+                      <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
+                      <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                      <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
+                    </div>
                   </div>
-                  <div className="-mt-[20px] mx-[8px] p-1 mb-3">
-                    <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
-                    <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
-                    <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+          <div className="sm:hidden block">
+            <Swiper
+              spaceBetween={15}
+              style={{
+                '--swiper-navigation-color': '#141414',
+              } as CustomStyle}
+              slidesPerView={1}
+              navigation={true}
+              autoplay={{
+                delay: 4000,
+                disableOnInteraction: false,
+              }}
+              modules={[Autoplay, Navigation]}
+              className="px-[200px]"
+            >
+              {data_analytics.map((data, index) => (
+                <SwiperSlide key={data.id}>
+                  <div className="flex flex-col w-[100%] cursor-pointer">
+                    <div className="w-[100%] h-[200px]">
+                      <Image
+                        src={data.news_image}
+                        width={500}
+                        height={500}
+                        alt="news image"
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className="-mt-[20px] mx-[8px] p-1 mb-3">
+                      <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
+                      <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                      <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
+                    </div>
                   </div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
         </div>
         <div className="mt-[30px]" id="data_science">
           <h1 className="font-bold text-[21px] mb-[20px]">Data Science</h1>
-          <Swiper
-            spaceBetween={15}
-            style={{
-              '--swiper-navigation-color': '#141414',
-            } as CustomStyle}
-            slidesPerView={4}
-            navigation={true}
-            autoplay={{
-              delay: 4000,
-              disableOnInteraction: false,
-            }}
-            modules={[Autoplay, Navigation]}
-            className="px-[200px]"
-          >
-            {data_science.map((data, index) => (
-              <SwiperSlide key={data.id}>
-                <div className="flex flex-col w-[100%] cursor-pointer">
-                  <div className="w-[100%]">
-                    <Image
-                      src={data.news_image}
-                      width={500}
-                      height={500}
-                      alt="news image"
-                      className="w-full"
-                      loading="lazy"
-                    />
+          <div className="hidden sm:block">
+            <Swiper
+              spaceBetween={15}
+              style={{
+                '--swiper-navigation-color': '#141414',
+              } as CustomStyle}
+              slidesPerView={4}
+              navigation={true}
+              autoplay={{
+                delay: 4000,
+                disableOnInteraction: false,
+              }}
+              modules={[Autoplay, Navigation]}
+              className="px-[200px]"
+            >
+              {data_science.map((data, index) => (
+                <SwiperSlide key={data.id}>
+                  <div className="flex flex-col w-[100%] cursor-pointer">
+                    <div className="w-[100%] h-[200px]">
+                      <Image
+                        src={data.news_image}
+                        width={500}
+                        height={500}
+                        alt="news image"
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className="-mt-[20px] mx-[8px] p-1 mb-3">
+                      <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
+                      <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                      <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
+                    </div>
                   </div>
-                  <div className="-mt-[20px] mx-[8px] p-1 mb-3">
-                    <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
-                    <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
-                    <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+          <div className="sm:hidden block">
+            <Swiper
+              spaceBetween={15}
+              style={{
+                '--swiper-navigation-color': '#141414',
+              } as CustomStyle}
+              slidesPerView={1}
+              navigation={true}
+              autoplay={{
+                delay: 4000,
+                disableOnInteraction: false,
+              }}
+              modules={[Autoplay, Navigation]}
+              className="px-[200px]"
+            >
+              {data_science.map((data, index) => (
+                <SwiperSlide key={data.id}>
+                  <div className="flex flex-col w-[100%] cursor-pointer">
+                    <div className="w-[100%] h-[200px]">
+                      <Image
+                        src={data.news_image}
+                        width={500}
+                        height={500}
+                        alt="news image"
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className="-mt-[20px] mx-[8px] p-1 mb-3">
+                      <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
+                      <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                      <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
+                    </div>
                   </div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
         </div>
         <div className="mt-[30px]" id="machine_learning">
           <h1 className="font-bold text-[21px] mb-[20px]">Machine Learning</h1>
-          <Swiper
-            spaceBetween={15}
-            style={{
-              '--swiper-navigation-color': '#141414',
-            } as CustomStyle}
-            slidesPerView={4}
-            navigation={true}
-            autoplay={{
-              delay: 4000,
-              disableOnInteraction: false,
-            }}
-            modules={[Autoplay, Navigation]}
-            className="px-[200px]"
-          >
-            {machine_learning.map((data, index) => (
-              <SwiperSlide key={data.id}>
-                <div className="flex flex-col w-[100%] cursor-pointer">
-                  <div className="w-[100%]">
-                    <Image
-                      src={data.news_image}
-                      width={500}
-                      height={500}
-                      alt="news image"
-                      className="w-full"
-                      loading="lazy"
-                    />
+          <div className="hidden sm:block">
+            <Swiper
+              spaceBetween={15}
+              style={{
+                '--swiper-navigation-color': '#141414',
+              } as CustomStyle}
+              slidesPerView={4}
+              navigation={true}
+              autoplay={{
+                delay: 4000,
+                disableOnInteraction: false,
+              }}
+              modules={[Autoplay, Navigation]}
+              className="px-[200px]"
+            >
+              {machine_learning.map((data, index) => (
+                <SwiperSlide key={data.id}>
+                  <div className="flex flex-col w-[100%] cursor-pointer">
+                    <div className="w-[100%] h-[200px]">
+                      <Image
+                        src={data.news_image}
+                        width={500}
+                        height={500}
+                        alt="news image"
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className="-mt-[20px] mx-[8px] p-1 mb-3">
+                      <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
+                      <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                      <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
+                    </div>
                   </div>
-                  <div className="-mt-[20px] mx-[8px] p-1 mb-3">
-                    <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
-                    <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
-                    <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+          <div className="sm:hidden block">
+            <Swiper
+              spaceBetween={15}
+              style={{
+                '--swiper-navigation-color': '#141414',
+              } as CustomStyle}
+              slidesPerView={1}
+              navigation={true}
+              autoplay={{
+                delay: 4000,
+                disableOnInteraction: false,
+              }}
+              modules={[Autoplay, Navigation]}
+              className="px-[200px]"
+            >
+              {machine_learning.map((data, index) => (
+                <SwiperSlide key={data.id}>
+                  <div className="flex flex-col w-[100%] cursor-pointer">
+                    <div className="w-[100%] h-[200px]">
+                      <Image
+                        src={data.news_image}
+                        width={500}
+                        height={500}
+                        alt="news image"
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className="-mt-[20px] mx-[8px] p-1 mb-3">
+                      <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
+                      <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                      <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
+                    </div>
                   </div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
         </div>
         <div className="mt-[30px]" id="inspirational">
           <h1 className="font-bold text-[21px] mb-[20px]">Inspirational</h1>
-          <Swiper
-            spaceBetween={15}
-            style={{
-              '--swiper-navigation-color': '#141414',
-            } as CustomStyle}
-            slidesPerView={4}
-            navigation={true}
-            autoplay={{
-              delay: 4000,
-              disableOnInteraction: false,
-            }}
-            modules={[Autoplay, Navigation]}
-            className="px-[200px]"
-          >
-            {inspirational.map((data, index) => (
-              <SwiperSlide key={data.id}>
-                <div className="flex flex-col w-[100%] cursor-pointer">
-                  <div className="w-[100%]">
-                    <Image
-                      src={data.news_image}
-                      width={500}
-                      height={500}
-                      alt="news image"
-                      className="w-full"
-                      loading="lazy"
-                    />
+          <div className="hidden sm:block">
+            <Swiper
+              spaceBetween={15}
+              style={{
+                '--swiper-navigation-color': '#141414',
+              } as CustomStyle}
+              slidesPerView={4}
+              navigation={true}
+              autoplay={{
+                delay: 4000,
+                disableOnInteraction: false,
+              }}
+              modules={[Autoplay, Navigation]}
+              className="px-[200px]"
+            >
+              {inspirational.map((data, index) => (
+                <SwiperSlide key={data.id}>
+                  <div className="flex flex-col w-[100%] cursor-pointer">
+                    <div className="w-[100%] h-[200px]">
+                      <Image
+                        src={data.news_image}
+                        width={500}
+                        height={500}
+                        alt="news image"
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className="-mt-[20px] mx-[8px] p-1 mb-3">
+                      <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
+                      <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                      <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
+                    </div>
                   </div>
-                  <div className="-mt-[20px] mx-[8px] p-1 mb-3">
-                    <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
-                    <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
-                    <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+          <div className="sm:hidden block">
+            <Swiper
+              spaceBetween={15}
+              style={{
+                '--swiper-navigation-color': '#141414',
+              } as CustomStyle}
+              slidesPerView={1}
+              navigation={true}
+              autoplay={{
+                delay: 4000,
+                disableOnInteraction: false,
+              }}
+              modules={[Autoplay, Navigation]}
+              className="px-[200px]"
+            >
+              {inspirational.map((data, index) => (
+                <SwiperSlide key={data.id}>
+                  <div className="flex flex-col w-[100%] cursor-pointer">
+                    <div className="w-[100%] h-[200px]">
+                      <Image
+                        src={data.news_image}
+                        width={500}
+                        height={500}
+                        alt="news image"
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className="-mt-[20px] mx-[8px] p-1 mb-3">
+                      <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
+                      <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                      <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
+                    </div>
                   </div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
         </div>
         <div className="mt-[30px]" id="data_engineering">
           <h1 className="font-bold text-[21px] mb-[20px]">Data Engineering</h1>
-          <Swiper
-            spaceBetween={15}
-            style={{
-              '--swiper-navigation-color': '#141414',
-            } as CustomStyle}
-            slidesPerView={4}
-            navigation={true}
-            autoplay={{
-              delay: 4000,
-              disableOnInteraction: false,
-            }}
-            modules={[Autoplay, Navigation]}
-            className="px-[200px]"
-          >
-            {data_engineer.map((data, index) => (
-              <SwiperSlide key={data.id}>
-                <div className="flex flex-col w-[100%] cursor-pointer">
-                  <div className="w-[100%]">
-                    <Image
-                      src={data.news_image}
-                      width={500}
-                      height={500}
-                      alt="news image"
-                      className="w-full"
-                      loading="lazy"
-                    />
+          <div className="hidden sm:block">
+            <Swiper
+              spaceBetween={15}
+              style={{
+                '--swiper-navigation-color': '#141414',
+              } as CustomStyle}
+              slidesPerView={4}
+              navigation={true}
+              autoplay={{
+                delay: 4000,
+                disableOnInteraction: false,
+              }}
+              modules={[Autoplay, Navigation]}
+              className="px-[200px]"
+            >
+              {data_engineer.map((data, index) => (
+                <SwiperSlide key={data.id}>
+                  <div className="flex flex-col w-[100%] cursor-pointer">
+                    <div className="w-[100%] h-[200px]">
+                      <Image
+                        src={data.news_image}
+                        width={500}
+                        height={500}
+                        alt="news image"
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className="-mt-[20px] mx-[8px] p-1 mb-3">
+                      <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
+                      <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                      <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
+                    </div>
                   </div>
-                  <div className="-mt-[20px] mx-[8px] p-1 mb-3">
-                    <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
-                    <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
-                    <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+          <div className="sm:hidden block">
+            <Swiper
+              spaceBetween={15}
+              style={{
+                '--swiper-navigation-color': '#141414',
+              } as CustomStyle}
+              slidesPerView={1}
+              navigation={true}
+              autoplay={{
+                delay: 4000,
+                disableOnInteraction: false,
+              }}
+              modules={[Autoplay, Navigation]}
+              className="px-[200px]"
+            >
+              {data_engineer.map((data, index) => (
+                <SwiperSlide key={data.id}>
+                  <div className="flex flex-col w-[100%] cursor-pointer">
+                    <div className="w-[100%] h-[200px]">
+                      <Image
+                        src={data.news_image}
+                        width={500}
+                        height={500}
+                        alt="news image"
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className="-mt-[20px] mx-[8px] p-1 mb-3">
+                      <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
+                      <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                      <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
+                    </div>
                   </div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
         </div>
         <div className="mt-[30px]" id="ai">
           <h1 className="font-bold text-[21px] mb-[20px]">Artificial Intelligence</h1>
-          <Swiper
-            spaceBetween={15}
-            style={{
-              '--swiper-navigation-color': '#141414',
-            } as CustomStyle}
-            slidesPerView={4}
-            navigation={true}
-            autoplay={{
-              delay: 4000,
-              disableOnInteraction: false,
-            }}
-            modules={[Autoplay, Navigation]}
-            className="px-[200px]"
-          >
-            {ai.map((data, index) => (
-              <SwiperSlide key={data.id}>
-                <div className="flex flex-col w-[100%] cursor-pointer">
-                  <div className="w-[100%]">
-                    <Image
-                      src={data.news_image}
-                      width={500}
-                      height={500}
-                      alt="news image"
-                      className="w-full"
-                      loading="lazy"
-                    />
+          <div className="hidden sm:block">
+            <Swiper
+              spaceBetween={15}
+              style={{
+                '--swiper-navigation-color': '#141414',
+              } as CustomStyle}
+              slidesPerView={4}
+              navigation={true}
+              autoplay={{
+                delay: 4000,
+                disableOnInteraction: false,
+              }}
+              modules={[Autoplay, Navigation]}
+              className="px-[200px]"
+            >
+              {ai.map((data, index) => (
+                <SwiperSlide key={data.id}>
+                  <div className="flex flex-col w-[100%] cursor-pointer">
+                    <div className="w-[100%] h-[200px]">
+                      <Image
+                        src={data.news_image}
+                        width={500}
+                        height={500}
+                        alt="news image"
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className="-mt-[20px] mx-[8px] p-1 mb-3">
+                      <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
+                      <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                      <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
+                    </div>
                   </div>
-                  <div className="-mt-[20px] mx-[8px] p-1 mb-3">
-                    <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
-                    <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
-                    <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+          <div className="sm:hidden block">
+            <Swiper
+              spaceBetween={15}
+              style={{
+                '--swiper-navigation-color': '#141414',
+              } as CustomStyle}
+              slidesPerView={1}
+              navigation={true}
+              autoplay={{
+                delay: 4000,
+                disableOnInteraction: false,
+              }}
+              modules={[Autoplay, Navigation]}
+              className="px-[200px]"
+            >
+              {ai.map((data, index) => (
+                <SwiperSlide key={data.id}>
+                  <div className="flex flex-col w-[100%] cursor-pointer">
+                    <div className="w-[100%] h-[200px]">
+                      <Image
+                        src={data.news_image}
+                        width={500}
+                        height={500}
+                        alt="news image"
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className="-mt-[20px] mx-[8px] p-1 mb-3">
+                      <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
+                      <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                      <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
+                    </div>
                   </div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
         </div>
         <div className="mt-[30px]" id="true_story">
           <h1 className="font-bold text-[21px] mb-[20px]">True Story</h1>
-          <Swiper
-            spaceBetween={15}
-            style={{
-              '--swiper-navigation-color': '#141414',
-            } as CustomStyle}
-            slidesPerView={4}
-            navigation={true}
-            autoplay={{
-              delay: 4000,
-              disableOnInteraction: false,
-            }}
-            modules={[Autoplay, Navigation]}
-            className="px-[200px]"
-          >
-            {true_story.map((data, index) => (
-              <SwiperSlide key={data.id}>
-                <div className="flex flex-col w-[100%] cursor-pointer">
-                  <div className="w-[100%]">
-                    <Image
-                      src={data.news_image}
-                      width={500}
-                      height={500}
-                      alt="news image"
-                      className="w-full"
-                      loading="lazy"
-                    />
+          <div className="hidden sm:block">
+            <Swiper
+              spaceBetween={15}
+              style={{
+                '--swiper-navigation-color': '#141414',
+              } as CustomStyle}
+              slidesPerView={4}
+              navigation={true}
+              autoplay={{
+                delay: 4000,
+                disableOnInteraction: false,
+              }}
+              modules={[Autoplay, Navigation]}
+              className="px-[200px]"
+            >
+              {true_story.map((data, index) => (
+                <SwiperSlide key={data.id}>
+                  <div className="flex flex-col w-[100%] cursor-pointer">
+                    <div className="w-[100%] h-[200px]">
+                      <Image
+                        src={data.news_image}
+                        width={500}
+                        height={500}
+                        alt="news image"
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className="-mt-[20px] mx-[8px] p-1 mb-3">
+                      <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
+                      <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                      <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
+                    </div>
                   </div>
-                  <div className="-mt-[20px] mx-[8px] p-1 mb-3">
-                    <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
-                    <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
-                    <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+          <div className="sm:hidden block">
+            <Swiper
+              spaceBetween={15}
+              style={{
+                '--swiper-navigation-color': '#141414',
+              } as CustomStyle}
+              slidesPerView={1}
+              navigation={true}
+              autoplay={{
+                delay: 4000,
+                disableOnInteraction: false,
+              }}
+              modules={[Autoplay, Navigation]}
+              className="px-[200px]"
+            >
+              {true_story.map((data, index) => (
+                <SwiperSlide key={data.id}>
+                  <div className="flex flex-col w-[100%] cursor-pointer">
+                    <div className="w-[100%] h-[200px]">
+                      <Image
+                        src={data.news_image}
+                        width={500}
+                        height={500}
+                        alt="news image"
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className="-mt-[20px] mx-[8px] p-1 mb-3">
+                      <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
+                      <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                      <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
+                    </div>
                   </div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
         </div>
         <div className="mt-[30px]" id="cloud_computing">
           <h1 className="font-bold text-[21px] mb-[20px]">Cloud Computing</h1>
-          <Swiper
-            spaceBetween={15}
-            style={{
-              '--swiper-navigation-color': '#141414',
-            } as CustomStyle}
-            slidesPerView={4}
-            navigation={true}
-            autoplay={{
-              delay: 4000,
-              disableOnInteraction: false,
-            }}
-            modules={[Autoplay, Navigation]}
-            className="px-[200px]"
-          >
-            {cloud.map((data, index) => (
-              <SwiperSlide key={data.id}>
-                <div className="flex flex-col w-[100%] cursor-pointer">
-                  <div className="w-[100%]">
-                    <Image
-                      src={data.news_image}
-                      width={500}
-                      height={500}
-                      alt="news image"
-                      className="w-full"
-                      loading="lazy"
-                    />
+          <div className="hidden sm:block">
+            <Swiper
+              spaceBetween={15}
+              style={{
+                '--swiper-navigation-color': '#141414',
+              } as CustomStyle}
+              slidesPerView={4}
+              navigation={true}
+              autoplay={{
+                delay: 4000,
+                disableOnInteraction: false,
+              }}
+              modules={[Autoplay, Navigation]}
+              className="px-[200px]"
+            >
+              {cloud.map((data, index) => (
+                <SwiperSlide key={data.id}>
+                  <div className="flex flex-col w-[100%] cursor-pointer">
+                    <div className="w-[100%] h-[200px]">
+                      <Image
+                        src={data.news_image}
+                        width={500}
+                        height={500}
+                        alt="news image"
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className="-mt-[20px] mx-[8px] p-1 mb-3">
+                      <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
+                      <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                      <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
+                    </div>
                   </div>
-                  <div className="-mt-[20px] mx-[8px] p-1 mb-3">
-                    <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
-                    <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
-                    <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+          <div className="sm:hidden block">
+            <Swiper
+              spaceBetween={15}
+              style={{
+                '--swiper-navigation-color': '#141414',
+              } as CustomStyle}
+              slidesPerView={1}
+              navigation={true}
+              autoplay={{
+                delay: 4000,
+                disableOnInteraction: false,
+              }}
+              modules={[Autoplay, Navigation]}
+              className="px-[200px]"
+            >
+              {cloud.map((data, index) => (
+                <SwiperSlide key={data.id}>
+                  <div className="flex flex-col w-[100%] cursor-pointer">
+                    <div className="w-[100%] h-[200px]">
+                      <Image
+                        src={data.news_image}
+                        width={500}
+                        height={500}
+                        alt="news image"
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className="-mt-[20px] mx-[8px] p-1 mb-3">
+                      <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
+                      <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                      <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
+                    </div>
                   </div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
         </div>
       </section>
       <Footer />

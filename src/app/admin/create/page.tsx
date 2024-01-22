@@ -185,13 +185,13 @@ export default function AuthorPage() {
                                     #
                                 </th>
                                 <th scope="col" className="px-6 py-3">
-                                    Nama
+                                    NAME
                                 </th>
                                 <th scope="col" className="px-6 py-3">
-                                    Akun
+                                    ACCOUNT
                                 </th>
                                 <th scope="col" className="px-6 py-3">
-                                    Action
+                                    ACTION
                                 </th>
                             </tr>
                         </thead>

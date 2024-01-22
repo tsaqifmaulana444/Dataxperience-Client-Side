@@ -137,7 +137,7 @@ export default function DetailPage({ params }: { params: { id: string } }) {
 										className="rounded-full w-full object-cover"
 									/>
 								</div>
-								<p className="w-fit my-auto ml-[10px]">Li Chen Wang - 20 July 2020</p>
+								<p className="w-fit my-auto ml-[10px]">Wang Xiaotian - 20 July 2020</p>
 							</div>
 						</div>
 						<div className="w-full h-[25%]">
