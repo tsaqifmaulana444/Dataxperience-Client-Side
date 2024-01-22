@@ -204,14 +204,14 @@ export default function HomePage() {
               {news.map((data, index) => (
                 <SwiperSlide key={data.id}>
                   <div className="flex flex-col w-[100%] cursor-pointer">
-                    <div className="w-full">
+                    <div className="w-full h-[200px]">
                       <Image
                         src={data.news_image}
                         width={500}
                         height={500}
                         alt="news image"
                         loading="lazy"
-                        className="w-full"
+                        className="w-full h-full"
                       />
                     </div>
                     <div className="-mt-[20px] mx-[8px] p-1 mb-3">
@@ -244,14 +244,14 @@ export default function HomePage() {
               {news.map((data, index) => (
                 <SwiperSlide key={data.id}>
                   <div className="flex flex-col w-[100%] cursor-pointer">
-                    <div className="w-full">
+                    <div className="w-full h-[200px]">
                       <Image
                         src={data.news_image}
                         width={500}
                         height={500}
                         alt="news image"
                         loading="lazy"
-                        className="w-full"
+                        className="w-full h-full"
                       />
                     </div>
                     <div className="-mt-[20px] mx-[8px] p-1 mb-3">
@@ -374,14 +374,14 @@ export default function HomePage() {
                   {news.map((data, index) => (
                     <SwiperSlide key={data.id}>
                       <div className="flex flex-col w-[100%] cursor-pointer">
-                        <div className="w-full">
+                        <div className="w-full h-[200px]">
                           <Image
                             src={data.news_image}
                             width={500}
                             height={500}
                             alt="news image"
                             loading="lazy"
-                            className="w-full"
+                            className="w-full h-full"
                           />
                         </div>
                         <div className="-mt-[20px] mx-[8px] p-1 mb-3">
@@ -414,14 +414,14 @@ export default function HomePage() {
                   {news.map((data, index) => (
                     <SwiperSlide key={data.id}>
                       <div className="flex flex-col w-[100%] cursor-pointer">
-                        <div className="w-full">
+                        <div className="w-full h-[200px]">
                           <Image
                             src={data.news_image}
                             width={500}
                             height={500}
                             alt="news image"
                             loading="lazy"
-                            className="w-full"
+                            className="w-full h-full"
                           />
                         </div>
                         <div className="-mt-[20px] mx-[8px] p-1 mb-3">
@@ -457,14 +457,14 @@ export default function HomePage() {
                   {news.map((data, index) => (
                     <SwiperSlide key={data.id}>
                       <div className="flex flex-col w-[100%] cursor-pointer">
-                        <div className="w-full">
+                        <div className="w-full h-[200px]">
                           <Image
                             src={data.news_image}
                             width={500}
                             height={500}
                             alt="news image"
                             loading="lazy"
-                            className="w-full"
+                            className="w-full h-full"
                           />
                         </div>
                         <div className="-mt-[20px] mx-[8px] p-1 mb-3">
@@ -497,14 +497,14 @@ export default function HomePage() {
                   {news.map((data, index) => (
                     <SwiperSlide key={data.id}>
                       <div className="flex flex-col w-[100%] cursor-pointer">
-                        <div className="w-full">
+                        <div className="w-full h-[200px]">
                           <Image
                             src={data.news_image}
                             width={500}
                             height={500}
                             alt="news image"
                             loading="lazy"
-                            className="w-full"
+                            className="w-full h-full"
                           />
                         </div>
                         <div className="-mt-[20px] mx-[8px] p-1 mb-3">
@@ -540,14 +540,14 @@ export default function HomePage() {
                   {news.map((data, index) => (
                     <SwiperSlide key={data.id}>
                       <div className="flex flex-col w-[100%] cursor-pointer">
-                        <div className="w-full">
+                        <div className="w-full h-[200px]">
                           <Image
                             src={data.news_image}
                             width={500}
                             height={500}
                             alt="news image"
                             loading="lazy"
-                            className="w-full"
+                            className="w-full h-full"
                           />
                         </div>
                         <div className="-mt-[20px] mx-[8px] p-1 mb-3">
@@ -580,14 +580,14 @@ export default function HomePage() {
                   {news.map((data, index) => (
                     <SwiperSlide key={data.id}>
                       <div className="flex flex-col w-[100%] cursor-pointer">
-                        <div className="w-full">
+                        <div className="w-full h-[200px]">
                           <Image
                             src={data.news_image}
                             width={500}
                             height={500}
                             alt="news image"
                             loading="lazy"
-                            className="w-full"
+                            className="w-full h-full"
                           />
                         </div>
                         <div className="-mt-[20px] mx-[8px] p-1 mb-3">
