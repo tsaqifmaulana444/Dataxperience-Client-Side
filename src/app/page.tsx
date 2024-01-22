@@ -148,16 +148,16 @@ export default function HomePage() {
     <div className="">
       <Navbar />
       {/* Video Article Section*/}
-      <section className="mt-[3%] text-[#141414]">
+      <section className="sm:mt-[3%] mt-[40px] text-[#141414]">
         <div className="w-[83%] mx-auto">
           <h1 className="font-bold sm:text-2xl text-[14px]">Welcome To Dataxpetrise!</h1>
           <p className="text-[14px]">We Discuss Everything About Data.</p>
         </div>
         <div className="w-[83%] mx-auto justify-between sm:flex block mt-[25px]">
-          <div className="w-[72%]">
-            <iframe src="https://www.youtube.com/embed/D2vj0WcvH5c?si=s4ErRK_Jv9hcUd6n" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" className="sm:w-[100%] sm:h-[400px] sm:mx-0 mx-auto w-full h-[25.2%]"></iframe>
+          <div className="sm:w-[72%] w-[100%]">
+            <iframe src="https://www.youtube.com/embed/D2vj0WcvH5c?si=s4ErRK_Jv9hcUd6n" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" className="sm:w-[100%] sm:h-[400px] sm:mx-0 mx-auto w-full h-[200px]"></iframe>
           </div>
-          <div className="w-[26%]">
+          <div className="sm:w-[26%] w-[100%] mt-7 sm:mt-0">
             {machine_learning.map((data, index) => (
               <div className="card-1 mb-5" key={data.id}>
                 <div className="flex">
@@ -186,56 +186,98 @@ export default function HomePage() {
           </div>
         </div>
         <div className="w-[83%] mx-auto mt-4">
-          <Swiper
-            spaceBetween={15}
-            style={{
-              '--swiper-navigation-color': '#141414',
-            } as CustomStyle}
-            slidesPerView={4}
-            navigation={true}
-            autoplay={{
-              delay: 4000,
-              disableOnInteraction: false,
-            }}
-            modules={[Autoplay, Navigation]}
-            className="px-[200px]"
-          >
-            {news.map((data, index) => (
-              <SwiperSlide key={data.id}>
-                <div className="flex flex-col w-[100%] cursor-pointer">
-                  <div className="w-full">
-                    <Image
-                      src={data.news_image}
-                      width={500}
-                      height={500}
-                      alt="news image"
-                      loading="lazy"
-                      className="w-full"
-                    />
+          <div className="hidden sm:block">
+            <Swiper
+              spaceBetween={15}
+              style={{
+                '--swiper-navigation-color': '#141414',
+              } as CustomStyle}
+              slidesPerView={4}
+              navigation={true}
+              autoplay={{
+                delay: 4000,
+                disableOnInteraction: false,
+              }}
+              modules={[Autoplay, Navigation]}
+              className="px-[200px]"
+            >
+              {news.map((data, index) => (
+                <SwiperSlide key={data.id}>
+                  <div className="flex flex-col w-[100%] cursor-pointer">
+                    <div className="w-full">
+                      <Image
+                        src={data.news_image}
+                        width={500}
+                        height={500}
+                        alt="news image"
+                        loading="lazy"
+                        className="w-full"
+                      />
+                    </div>
+                    <div className="-mt-[20px] mx-[8px] p-1 mb-3">
+                      <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
+                      <Link href={`/${encodeURIComponent(data.title)}/${data.id}`}>
+                        <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                      </Link>
+                      <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
+                    </div>
                   </div>
-                  <div className="-mt-[20px] mx-[8px] p-1 mb-3">
-                    <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
-                    <Link href={`/${encodeURIComponent(data.title)}/${data.id}`}>
-                      <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
-                    </Link>
-                    <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+          <div className="sm:hidden block">
+            <Swiper
+              spaceBetween={15}
+              style={{
+                '--swiper-navigation-color': '#141414',
+              } as CustomStyle}
+              slidesPerView={1}
+              navigation={true}
+              autoplay={{
+                delay: 4000,
+                disableOnInteraction: false,
+              }}
+              modules={[Autoplay, Navigation]}
+              className="px-[200px]"
+            >
+              {news.map((data, index) => (
+                <SwiperSlide key={data.id}>
+                  <div className="flex flex-col w-[100%] cursor-pointer">
+                    <div className="w-full">
+                      <Image
+                        src={data.news_image}
+                        width={500}
+                        height={500}
+                        alt="news image"
+                        loading="lazy"
+                        className="w-full"
+                      />
+                    </div>
+                    <div className="-mt-[20px] mx-[8px] p-1 mb-3">
+                      <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
+                      <Link href={`/${encodeURIComponent(data.title)}/${data.id}`}>
+                        <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                      </Link>
+                      <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
+                    </div>
                   </div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
         </div>
       </section>
       {/* Advertisement Section*/}
-      <section className="w-[83%] h-[630px] mx-auto mt-[20px] text-[#141414]">
-        <div className="flex mt-[20px] justify-between">
-          <div>
+      <section className="w-[83%] sm:h-[630px] h-[880px] mx-auto mt-[20px] text-[#141414]">
+        <div className="flex mt-[20px] sm:justify-between sm:flex-row flex-col">
+          <div className="hidden sm:block">
             <h1 className="font-bold text-[21px]">Interesting</h1>
             {inspirational.map((data, index) => (
               <div key={data.id}>
                 <Link href={`/${encodeURIComponent(data.title)}/${data.id}`}>
                   <div className="flex mt-[15px]">
-                    <div className="w-[390px]">
+                    <div className="sm:w-[390px] w-[190px]">
                       <Image
                         src={data.news_image}
                         width={500}
@@ -255,9 +297,50 @@ export default function HomePage() {
               </div>
             ))}
           </div>
-          <div className="ml-[20px]">
+          <div className="sm:hidden block">
+            <h1 className="font-bold text-[21px] mb-3">Interesting</h1>
+            <Swiper
+              spaceBetween={15}
+              style={{
+                '--swiper-navigation-color': '#141414',
+              } as CustomStyle}
+              slidesPerView={1}
+              navigation={true}
+              autoplay={{
+                delay: 4000,
+                disableOnInteraction: false,
+              }}
+              modules={[Autoplay, Navigation]}
+              className="px-[200px]"
+            >
+              {inspirational.map((data, index) => (
+                <SwiperSlide key={data.id}>
+                  <div className="flex flex-col w-[100%] cursor-pointer">
+                    <div className="w-full">
+                      <Image
+                        src={data.news_image}
+                        width={500}
+                        height={500}
+                        alt="news image"
+                        loading="lazy"
+                        className="w-full"
+                      />
+                    </div>
+                    <div className="-mt-[20px] mx-[8px] p-1 mb-3">
+                      <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
+                      <Link href={`/${encodeURIComponent(data.title)}/${data.id}`}>
+                        <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                      </Link>
+                      <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+          <div className="sm:ml-[20px] ml-0 sm:mt-0 mt-3">
             <p className="font-bold text-[21px]">Advertisement</p>
-            <div className="w-[300px] mt-[15px]">
+            <div className="sm:w-[300px] w-full mt-[15px]">
               <Image
                 src={Poster}
                 alt="poster"
@@ -270,10 +353,10 @@ export default function HomePage() {
       {/* Categorical Section */}
       <section className=" mt-[30px] text-[#141414] mb-24 w-[83%] mx-auto">
         <div className="flex">
-          <div className="w-[73%]">
+          <div className="sm:w-[73%] w-[100%]">
             <div className="w-full">
               <h1 className="font-bold text-[21px] mb-[20px]">Popular News</h1>
-              <div className="w-full">
+              <div className="w-full sm:block hidden">
                 <Swiper
                   spaceBetween={15}
                   style={{
@@ -313,10 +396,50 @@ export default function HomePage() {
                   ))}
                 </Swiper>
               </div>
+              <div className="w-full block sm:hidden">
+                <Swiper
+                  spaceBetween={15}
+                  style={{
+                    '--swiper-navigation-color': '#141414',
+                  } as CustomStyle}
+                  slidesPerView={1}
+                  navigation={true}
+                  autoplay={{
+                    delay: 4000,
+                    disableOnInteraction: false,
+                  }}
+                  modules={[Autoplay, Navigation]}
+                  className="px-[200px]"
+                >
+                  {news.map((data, index) => (
+                    <SwiperSlide key={data.id}>
+                      <div className="flex flex-col w-[100%] cursor-pointer">
+                        <div className="w-full">
+                          <Image
+                            src={data.news_image}
+                            width={500}
+                            height={500}
+                            alt="news image"
+                            loading="lazy"
+                            className="w-full"
+                          />
+                        </div>
+                        <div className="-mt-[20px] mx-[8px] p-1 mb-3">
+                          <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
+                          <Link href={`/${encodeURIComponent(data.title)}/${data.id}`}>
+                            <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                          </Link>
+                          <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
+                        </div>
+                      </div>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              </div>
             </div>
             <div className="mt-[35px]">
               <h1 className="font-bold text-[21px] mb-[20px]">Old News</h1>
-              <div className="w-full">
+              <div className="w-full sm:block hidden">
                 <Swiper
                   spaceBetween={15}
                   style={{
@@ -356,10 +479,50 @@ export default function HomePage() {
                   ))}
                 </Swiper>
               </div>
+              <div className="w-full block sm:hidden">
+                <Swiper
+                  spaceBetween={15}
+                  style={{
+                    '--swiper-navigation-color': '#141414',
+                  } as CustomStyle}
+                  slidesPerView={1}
+                  navigation={true}
+                  autoplay={{
+                    delay: 5000,
+                    disableOnInteraction: false,
+                  }}
+                  modules={[Autoplay, Navigation]}
+                  className="px-[200px]"
+                >
+                  {news.map((data, index) => (
+                    <SwiperSlide key={data.id}>
+                      <div className="flex flex-col w-[100%] cursor-pointer">
+                        <div className="w-full">
+                          <Image
+                            src={data.news_image}
+                            width={500}
+                            height={500}
+                            alt="news image"
+                            loading="lazy"
+                            className="w-full"
+                          />
+                        </div>
+                        <div className="-mt-[20px] mx-[8px] p-1 mb-3">
+                          <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
+                          <Link href={`/${encodeURIComponent(data.title)}/${data.id}`}>
+                            <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                          </Link>
+                          <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
+                        </div>
+                      </div>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              </div>
             </div>
             <div className="mt-[35px]">
               <h1 className="font-bold text-[21px] mb-[20px]">All News</h1>
-              <div className="w-full">
+              <div className="w-full sm:block hidden">
                 <Swiper
                   spaceBetween={15}
                   style={{
@@ -399,10 +562,50 @@ export default function HomePage() {
                   ))}
                 </Swiper>
               </div>
+              <div className="w-full block sm:hidden">
+                <Swiper
+                  spaceBetween={15}
+                  style={{
+                    '--swiper-navigation-color': '#141414',
+                  } as CustomStyle}
+                  slidesPerView={1}
+                  navigation={true}
+                  autoplay={{
+                    delay: 4000,
+                    disableOnInteraction: false,
+                  }}
+                  modules={[Autoplay, Navigation]}
+                  className="px-[200px]"
+                >
+                  {news.map((data, index) => (
+                    <SwiperSlide key={data.id}>
+                      <div className="flex flex-col w-[100%] cursor-pointer">
+                        <div className="w-full">
+                          <Image
+                            src={data.news_image}
+                            width={500}
+                            height={500}
+                            alt="news image"
+                            loading="lazy"
+                            className="w-full"
+                          />
+                        </div>
+                        <div className="-mt-[20px] mx-[8px] p-1 mb-3">
+                          <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
+                          <Link href={`/${encodeURIComponent(data.title)}/${data.id}`}>
+                            <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                          </Link>
+                          <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
+                        </div>
+                      </div>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              </div>
             </div>
           </div>
           {/*Latest News */}
-          <div className="ml-[20px] w-[27%]">
+          <div className="ml-[20px] w-[27%] sm:block hidden">
             <div>
               <h1 className="font-bold text-[21px] mb-[20px]">Latest News</h1>
               <div className="">

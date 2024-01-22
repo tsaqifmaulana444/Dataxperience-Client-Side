@@ -125,22 +125,22 @@ export default function DetailPage({ params }: { params: { id: string } }) {
 		<div>
 			<Navbar />
 			<section className="w-[82%] mx-auto">
-				<div className="flex justify-between mt-[60px]">
-					<div className="w-[60%]">
+				<div className="flex justify-between sm:mt-[60px] mt-[40px]">
+					<div className="sm:w-[60%] w-[100%]">
 						<div>
-							<h1 className="font-bold text-[26px]">{newsDetail.title}</h1>
+							<h1 className="font-bold sm:text-[26px] text-[20px]">{newsDetail.title}</h1>
 							<div className="flex">
-								<div className="w-[35px] my-2.5">
+								<div className="sm:w-[35px] w-[30px] my-2.5">
 									<Image
 										src={Profile}
 										alt="news image"
 										className="rounded-full w-full object-cover"
 									/>
 								</div>
-								<p className="w-fit my-auto ml-[10px]">Wang Xiaotian - 20 July 2020</p>
+								<p className="w-fit my-auto ml-[10px] sm:text-[15px] text-[13px]">Wang Xiaotian - 20 July 2020</p>
 							</div>
 						</div>
-						<div className="w-full h-[25%]">
+						<div className="w-full sm:h-[25%] h-[200px]">
 							<Image
 								src={newsDetail.news_image}
 								width={500}
@@ -149,10 +149,10 @@ export default function DetailPage({ params }: { params: { id: string } }) {
 								className="w-full h-full object-cover"
 							/>
 						</div>
-						<div className="mt-[40px] text-[18px]" dangerouslySetInnerHTML={{ __html: newsDetail.news_body }}>
+						<div className="sm:mt-[40px] mt-[20px] sm:text-[18px] text-[15px]" dangerouslySetInnerHTML={{ __html: newsDetail.news_body }}>
 						</div>
-						<p className="text-[18px] mt-[30px]">Read Also: <u className="font-bold">Lorem ipsum dolor sit amet consectetur adipisicing.</u></p>
-						<div className="flex mt-[60px] mb-[90px]">
+						<p className="sm:text-[18px] text-[14px] mt-[30px]">Read Also: <u className="font-bold">Lorem ipsum dolor sit amet consectetur adipisicing.</u></p>
+						<div className="flex sm:mt-[60px] sm:mb-[90px] mt-[30px] mb-[60px]">
 							{newsDetail.category_ids && newsDetail.category_ids.map((categoryId, index) => (
 								<div
 									key={index}
@@ -164,7 +164,7 @@ export default function DetailPage({ params }: { params: { id: string } }) {
 							))}
 						</div>
 					</div>
-					<aside className="w-[20%]">
+					<aside className="w-[20%] sm:block hidden">
 						<p className="font-bold text-[18px] text-gray-400 text-center align-middle mt-40">Advertisement</p>
 					</aside>
 				</div>
