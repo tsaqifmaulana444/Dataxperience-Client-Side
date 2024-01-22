@@ -158,7 +158,7 @@ export default function CategoriesPage() {
               {data_analytics.map((data, index) => (
                 <SwiperSlide key={data.id}>
                   <div className="flex flex-col w-[100%] cursor-pointer">
-                    <div className="w-[100%] h-[200px]">
+                    <div className="w-[100%] h-[180px]">
                       <Image
                         src={data.news_image}
                         width={500}
@@ -196,7 +196,7 @@ export default function CategoriesPage() {
               {data_analytics.map((data, index) => (
                 <SwiperSlide key={data.id}>
                   <div className="flex flex-col w-[100%] cursor-pointer">
-                    <div className="w-[100%] h-[200px]">
+                    <div className="w-[100%] h-[180px]">
                       <Image
                         src={data.news_image}
                         width={500}
@@ -237,7 +237,7 @@ export default function CategoriesPage() {
               {data_science.map((data, index) => (
                 <SwiperSlide key={data.id}>
                   <div className="flex flex-col w-[100%] cursor-pointer">
-                    <div className="w-[100%] h-[200px]">
+                    <div className="w-[100%] h-[180px]">
                       <Image
                         src={data.news_image}
                         width={500}
@@ -275,7 +275,7 @@ export default function CategoriesPage() {
               {data_science.map((data, index) => (
                 <SwiperSlide key={data.id}>
                   <div className="flex flex-col w-[100%] cursor-pointer">
-                    <div className="w-[100%] h-[200px]">
+                    <div className="w-[100%] h-[180px]">
                       <Image
                         src={data.news_image}
                         width={500}
@@ -316,7 +316,7 @@ export default function CategoriesPage() {
               {machine_learning.map((data, index) => (
                 <SwiperSlide key={data.id}>
                   <div className="flex flex-col w-[100%] cursor-pointer">
-                    <div className="w-[100%] h-[200px]">
+                    <div className="w-[100%] h-[180px]">
                       <Image
                         src={data.news_image}
                         width={500}
@@ -354,7 +354,7 @@ export default function CategoriesPage() {
               {machine_learning.map((data, index) => (
                 <SwiperSlide key={data.id}>
                   <div className="flex flex-col w-[100%] cursor-pointer">
-                    <div className="w-[100%] h-[200px]">
+                    <div className="w-[100%] h-[180px]">
                       <Image
                         src={data.news_image}
                         width={500}
@@ -395,7 +395,7 @@ export default function CategoriesPage() {
               {inspirational.map((data, index) => (
                 <SwiperSlide key={data.id}>
                   <div className="flex flex-col w-[100%] cursor-pointer">
-                    <div className="w-[100%] h-[200px]">
+                    <div className="w-[100%] h-[180px]">
                       <Image
                         src={data.news_image}
                         width={500}
@@ -433,7 +433,7 @@ export default function CategoriesPage() {
               {inspirational.map((data, index) => (
                 <SwiperSlide key={data.id}>
                   <div className="flex flex-col w-[100%] cursor-pointer">
-                    <div className="w-[100%] h-[200px]">
+                    <div className="w-[100%] h-[180px]">
                       <Image
                         src={data.news_image}
                         width={500}
@@ -474,7 +474,7 @@ export default function CategoriesPage() {
               {data_engineer.map((data, index) => (
                 <SwiperSlide key={data.id}>
                   <div className="flex flex-col w-[100%] cursor-pointer">
-                    <div className="w-[100%] h-[200px]">
+                    <div className="w-[100%] h-[180px]">
                       <Image
                         src={data.news_image}
                         width={500}
@@ -512,7 +512,7 @@ export default function CategoriesPage() {
               {data_engineer.map((data, index) => (
                 <SwiperSlide key={data.id}>
                   <div className="flex flex-col w-[100%] cursor-pointer">
-                    <div className="w-[100%] h-[200px]">
+                    <div className="w-[100%] h-[180px]">
                       <Image
                         src={data.news_image}
                         width={500}
@@ -553,7 +553,7 @@ export default function CategoriesPage() {
               {ai.map((data, index) => (
                 <SwiperSlide key={data.id}>
                   <div className="flex flex-col w-[100%] cursor-pointer">
-                    <div className="w-[100%] h-[200px]">
+                    <div className="w-[100%] h-[180px]">
                       <Image
                         src={data.news_image}
                         width={500}
@@ -591,7 +591,7 @@ export default function CategoriesPage() {
               {ai.map((data, index) => (
                 <SwiperSlide key={data.id}>
                   <div className="flex flex-col w-[100%] cursor-pointer">
-                    <div className="w-[100%] h-[200px]">
+                    <div className="w-[100%] h-[180px]">
                       <Image
                         src={data.news_image}
                         width={500}
@@ -632,7 +632,7 @@ export default function CategoriesPage() {
               {true_story.map((data, index) => (
                 <SwiperSlide key={data.id}>
                   <div className="flex flex-col w-[100%] cursor-pointer">
-                    <div className="w-[100%] h-[200px]">
+                    <div className="w-[100%] h-[180px]">
                       <Image
                         src={data.news_image}
                         width={500}
@@ -670,7 +670,7 @@ export default function CategoriesPage() {
               {true_story.map((data, index) => (
                 <SwiperSlide key={data.id}>
                   <div className="flex flex-col w-[100%] cursor-pointer">
-                    <div className="w-[100%] h-[200px]">
+                    <div className="w-[100%] h-[180px]">
                       <Image
                         src={data.news_image}
                         width={500}
@@ -711,7 +711,7 @@ export default function CategoriesPage() {
               {cloud.map((data, index) => (
                 <SwiperSlide key={data.id}>
                   <div className="flex flex-col w-[100%] cursor-pointer">
-                    <div className="w-[100%] h-[200px]">
+                    <div className="w-[100%] h-[180px]">
                       <Image
                         src={data.news_image}
                         width={500}
@@ -749,7 +749,7 @@ export default function CategoriesPage() {
               {cloud.map((data, index) => (
                 <SwiperSlide key={data.id}>
                   <div className="flex flex-col w-[100%] cursor-pointer">
-                    <div className="w-[100%] h-[200px]">
+                    <div className="w-[100%] h-[180px]">
                       <Image
                         src={data.news_image}
                         width={500}
