@@ -1,7 +1,9 @@
 import { PrismaClient } from "@prisma/client"
 import { NextResponse } from "next/server"
+import bcrypt from 'bcryptjs'
 
 const prisma = new PrismaClient()
+const saltRounds = 10
 
 export async function POST(req: Request) {
   if (req.method !== "POST") {
@@ -24,6 +26,8 @@ export async function POST(req: Request) {
         }
       )
     }
+
+    const hashedPassword = await bcrypt.hash(data.password, saltRounds)
 
     await prisma.authors.create({
       data: {
