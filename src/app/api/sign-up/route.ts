@@ -15,13 +15,11 @@ export async function POST(req: Request) {
   try {
     console.log('Received data:', data)
 
-    // Validate data (add more validation as needed)
     if (!data.name || !data.email || !data.password) {
       return NextResponse.json({ message: 'Invalid input. Name, email, and password are required.' })
     }
 
-    // Check if the user with the provided email already exists
-    const existingUser = await prisma.authors.findUnique({
+    const existingUser = await prisma.users.findFirst({
       where: { email: data.email },
     })
 
@@ -29,14 +27,13 @@ export async function POST(req: Request) {
       return NextResponse.json({ message: 'Email already in use. Please use a different email address.' })
     }
 
-    // Hash the password
     const hashedPassword = await bcrypt.hash(data.password, saltRounds)
 
-    // Create the new user in the database with the hashed password
-    const newUser = await prisma.authors.create({
+    const newUser = await prisma.users.create({
       data: {
         name: data.name,
         email: data.email,
+        country: data.country,
         password: hashedPassword,
       },
     })
