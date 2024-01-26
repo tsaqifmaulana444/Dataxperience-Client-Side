@@ -9,16 +9,6 @@ import '@fortawesome/fontawesome-svg-core/styles.css'
 config.autoAddCss = false
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCheck, faEllipsisVertical, faPlus, faXmark } from "@fortawesome/free-solid-svg-icons"
-import Image from "next/image"
-import Profile from "../images/blank_profile.jpeg"
-import {
-    CircularProgressbar,
-    buildStyles
-} from "react-circular-progressbar"
-import { useRouter } from "next/navigation"
-import { Dropdown } from 'flowbite-react'
-import { useState } from "react"
-import { Button, Modal } from 'flowbite-react'
 
 export default function AdminPage() {
     return (
@@ -104,7 +94,7 @@ export default function AdminPage() {
                         <div className="flex w-full mx-[2vw] opacity-70 mt-[3vh] text-[16px] font-semibold">
                             <h1>Sponsorship Request</h1>
                         </div>
-                        <div className="mt-[3vh]">
+                        <div className="mt-[2vh] h-[180px]">
                             {/* loop */}
                             <div className="flex justify-between mx-[1vw] mt-[2vh]">
                                 <div className="ml-[1vw]">
@@ -122,6 +112,7 @@ export default function AdminPage() {
                                     </div>
                                 </div>
                             </div>
+                            
                         </div>
                     </div>
                 </div>
