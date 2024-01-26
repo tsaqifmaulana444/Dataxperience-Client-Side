@@ -45,7 +45,7 @@ export default function Navbar() {
                 <div className="flex flex-col justify-center items-center">
                     <Dropdown label="More" inline>
                         <Dropdown.Item>
-                            <Link href="/contact-7us">Contact Us</Link>
+                            <Link href="/contact-us">Contact Us</Link>
                         </Dropdown.Item>
                         <Dropdown.Item>
                             <Link href="/#">Privacy Policy</Link>
