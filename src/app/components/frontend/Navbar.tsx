@@ -45,7 +45,7 @@ export default function Navbar() {
                 <div className="flex flex-col justify-center items-center">
                     <Dropdown label="More" inline>
                         <Dropdown.Item>
-                            <Link href="/contact-us">Contact Us</Link>
+                            <Link href="/contact-7us">Contact Us</Link>
                         </Dropdown.Item>
                         <Dropdown.Item>
                             <Link href="/#">Privacy Policy</Link>
@@ -53,7 +53,7 @@ export default function Navbar() {
                         <Dropdown.Divider />
                         <Dropdown.Item>English</Dropdown.Item>
                         <Dropdown.Item>Bahasa Indonesia</Dropdown.Item>
-                        <Dropdown.Item>中文</Dropdown.Item>
+                        <Dropdown.Item>中文(简体)</Dropdown.Item>
                     </Dropdown>
                 </div>
             </div>
