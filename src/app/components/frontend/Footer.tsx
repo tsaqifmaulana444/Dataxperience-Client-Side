@@ -29,7 +29,7 @@ export default function Footer() {
               </div>
             </div>
             <div className="sm:w-[80%] w-[100%]">
-              <p className="w-fit opacity-75 text-[13px] text-center sm:text-left">Jl. Sutan Syahrir, Sungai Bangkong, Kota Pontianak, Kalimantan Barat 78113</p>
+              <p className="w-fit opacity-75 text-[13px] text-center sm:text-left">Jl. Sutan Syahrir, Sungai Bangkong, Kec. Pontianak Kota, Kota Pontianak, Kalimantan Barat 78113</p>
               <div className="sm:w-[60%] w-[100%] my-[10px]">
                 <hr className="opacity-75" />
               </div>

@@ -13,21 +13,10 @@ export async function POST(req: Request) {
   try {
     console.log("Received data:", data)
 
-    if (!data.title) {
-      return NextResponse.json(
-        {
-          success: false,
-          message: "Please fill all required fields.",
-        },
-        {
-          status: 400,
-        }
-      )
-    }
-
-    await prisma.agenda.create({
+    await prisma.feedback.create({
       data: {
-        title: data.title,
+        name: data.name,
+        email: data.email,
         description: data.description,
         type: data.type
       },
@@ -36,7 +25,7 @@ export async function POST(req: Request) {
     return NextResponse.json(
       {
         success: true,
-        message: "Author Created!",
+        message: "Feedback Submitted",
       },
       {
         status: 200,
