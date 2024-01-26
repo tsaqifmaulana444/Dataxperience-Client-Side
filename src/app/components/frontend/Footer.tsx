@@ -39,13 +39,30 @@ export default function Footer() {
           <div className="sm:flex sm:w-[52%] w-[100%] justify-between grid grid-cols-2 gap-4 sm:mt-0 mt-6">
             <div>
               <h1 className="font-bold text-[18px] mb-[10px]">Category</h1>
-              <p className="text-[12px] opacity-75 mb-1">Data Analytics</p>
-              <p className="text-[12px] opacity-75 mb-1">Data Engineering</p>
-              <p className="text-[12px] opacity-75 mb-1">Data Science</p>
-              <p className="text-[12px] opacity-75 mb-1">Artificial Intelligence</p>
-              <p className="text-[12px] opacity-75 mb-1">Machine Learning</p>
-              <p className="text-[12px] opacity-75 mb-1">Inspirational</p>
-              <p className="text-[12px] opacity-75 mb-1">True Story</p>
+              <Link href="/categories#data_analytics">
+                <p className="text-[12px] opacity-75 mb-1">Data Analytics</p>
+              </Link>
+              <Link href="/categories#data_science">
+                <p className="text-[12px] opacity-75 mb-1">Data Science</p>
+              </Link>
+              <Link href="/categories#data_engineering">
+                <p className="text-[12px] opacity-75 mb-1">Data Engineering</p>
+              </Link>
+              <Link href="/categories#data_ai">
+                <p className="text-[12px] opacity-75 mb-1">Artificial Intelligence</p>
+              </Link>
+              <Link href="/categories#machine_learning">
+                <p className="text-[12px] opacity-75 mb-1">Machine Learning</p>
+              </Link>
+              <Link href="/categories#inspirational">
+                <p className="text-[12px] opacity-75 mb-1">Inspirational</p>
+              </Link>
+              <Link href="/categories#true_story">
+                <p className="text-[12px] opacity-75 mb-1">True Story</p>
+              </Link>
+              <Link href="/categories#cloud_computing">
+                <p className="text-[12px] opacity-75 mb-1">Cloud Computing</p>
+              </Link>
             </div>
             <div>
               <h1 className="font-bold text-[18px] mb-[10px]">Feedback</h1>
@@ -70,9 +87,9 @@ export default function Footer() {
             </div>
             <div>
               <h1 className="font-bold text-[18px] mb-[10px]">Sponsorship</h1>
-              <p className="text-[12px] opacity-75 mb-1">Customer Service</p>
-              <p className="text-[12px] opacity-75 mb-1">Price List</p>
-              <p className="text-[12px] opacity-75 mb-1">Sponsorship Contract</p>
+              <Link href="/contact-us#cs">
+                <p className="text-[12px] opacity-75 mb-1">Customer Service</p>
+              </Link>
             </div>
           </div>
         </div>

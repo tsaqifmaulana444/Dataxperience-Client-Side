@@ -44,9 +44,12 @@ export default function Navbar() {
                 </div>
                 <div className="flex flex-col justify-center items-center">
                     <Dropdown label="More" inline>
-                        <Dropdown.Item>Contact Us</Dropdown.Item>
-                        <Dropdown.Item>Settings</Dropdown.Item>
-                        <Dropdown.Item>Privacy Policy</Dropdown.Item>
+                        <Dropdown.Item>
+                            <Link href="/contact-us">Contact Us</Link>
+                        </Dropdown.Item>
+                        <Dropdown.Item>
+                            <Link href="/#">Privacy Policy</Link>
+                        </Dropdown.Item>
                         <Dropdown.Divider />
                         <Dropdown.Item>English</Dropdown.Item>
                         <Dropdown.Item>Bahasa Indonesia</Dropdown.Item>

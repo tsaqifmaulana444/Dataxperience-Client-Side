@@ -211,22 +211,24 @@ export default function AdminPage() {
                                 </Modal.Body>
                             </Modal>
                         </div>
-                        <div className="mt-[2vh]">
-                            <div className="flex w-[33vw] mx-[2vw]">
-                                <div>
-                                    <p className="font-semibold w-fit mx-auto text-[24px]">05</p>
-                                    <p className="font-medium -mt-[0.8vh] text-[13px]">May</p>
+                        {agenda.map((data, index) => (
+                            <div className="mt-[2vh]" key={data.id}>
+                                <div className="flex w-[33vw] mx-[2vw]">
+                                    <div>
+                                        <p className="font-semibold w-fit mx-auto text-[24px]">05</p>
+                                        <p className="font-medium -mt-[0.8vh] text-[13px]">May</p>
+                                    </div>
+                                    <div className="ml-[1.3vw] mt-[1vh]">
+                                        <p className="opacity-70 text-[13px] font-semibold"></p>
+                                        <p className="font-semibold -ml-[0.1vw] text-[15px]">{data.title}</p>
+                                    </div>
+                                    <Dropdown label="" dismissOnClick={false} renderTrigger={() => <span><FontAwesomeIcon icon={faEllipsisVertical} style={{ color: "#2e333e" }} className="ml-[12vw] mt-[20px] my-auto" size="lg" /></span>}>
+                                        <Dropdown.Item>Details</Dropdown.Item>
+                                        {/* <Dropdown.Item onClick={() => handleDelete(author.id)}>Delete</Dropdown.Item> */}
+                                    </Dropdown>
                                 </div>
-                                <div className="ml-[1.3vw] mt-[1vh]">
-                                    <p className="opacity-70 text-[13px] font-semibold">Full Day</p>
-                                    <p className="font-semibold -ml-[0.1vw] text-[15px]">Business Expansion In Cambodia</p>
-                                </div>
-                                <Dropdown label="" dismissOnClick={false} renderTrigger={() => <span><FontAwesomeIcon icon={faEllipsisVertical} style={{ color: "#2e333e" }} className="ml-[12vw] mt-[20px] my-auto" size="lg" /></span>}>
-                                    <Dropdown.Item>Details</Dropdown.Item>
-                                    {/* <Dropdown.Item onClick={() => handleDelete(author.id)}>Delete</Dropdown.Item> */}
-                                </Dropdown>
                             </div>
-                        </div>
+                        ))}
                     </div>
                     <div className="bg-white w-[37vw] h-[40vh] rounded-md mt-[2.2vh] ml-[0.6vw]">
                         <div className="flex w-full mx-[2vw] opacity-70 mt-[3vh] text-[16px] font-semibold">
