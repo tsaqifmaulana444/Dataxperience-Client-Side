@@ -12,17 +12,27 @@ export async function POST(req: Request) {
   const data = await req.json()
 
   try {
-    const user = await prisma.authors.findUnique({
-      where: { email: data.email }
+    const user = await prisma.users.findFirst({
+      where: { email: data.email },
     })
 
-    if (!user || !bcrypt.compareSync(data.password, user.password)) {
+    if (!user) {
+      const author = await prisma.authors.findFirst({
+        where: { email: data.email },
+      })
+
+      if (!author || !bcrypt.compareSync(data.password, author.password)) {
+        return NextResponse.json({ message: 'Invalid email or password' })
+      }
+
+      return NextResponse.json({ message: 'Login successful', role: author.role })
+    }
+
+    if (!bcrypt.compareSync(data.password, user.password)) {
       return NextResponse.json({ message: 'Invalid email or password' })
     }
 
-    // If the user exists and the password is correct, you can generate an authentication token here.
-
-    return NextResponse.json({ message: 'Login successful' })
+    return NextResponse.json({ message: 'Login successful', role: user.role })
   } catch (error) {
     console.error('Login error:', error)
     return NextResponse.json({ message: 'Internal Server Error' })

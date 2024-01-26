@@ -15,6 +15,8 @@ export default function LoginPage() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
+  const isAdmin = (role: number | undefined) => role === 1
+  const isRegularUser = (role: number | undefined) => role === 2
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value)
@@ -28,7 +30,7 @@ export default function LoginPage() {
 
   const handleSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-
+  
     try {
       const response = await fetch('/api/sign-in', {
         method: 'POST',
@@ -37,9 +39,23 @@ export default function LoginPage() {
         },
         body: JSON.stringify({ email, password }),
       })
-
+  
       if (response.ok) {
-        router.push('/admin')
+        const data = await response.json()
+  
+        if (data.role !== undefined) {
+          if (isAdmin(data.role)) {
+            router.push('/admin')
+          } else if (isRegularUser(data.role)) {
+            router.push('/')
+          } else {
+            // Handle other roles or scenarios as needed
+            console.error('Unknown role:', data.role)
+          }
+        } else {
+          // Handle the case where the role property is undefined
+          console.error('Role is undefined in the response:', data)
+        }
       } else {
         const data = await response.json()
         setError(data.message)
@@ -49,7 +65,7 @@ export default function LoginPage() {
       setError('Internal Server Error')
     }
   }
- 
+
   return (
     <div className="w-full flex text-[#141414]">
       <div className="content sm:w-[50vw] w-full">
