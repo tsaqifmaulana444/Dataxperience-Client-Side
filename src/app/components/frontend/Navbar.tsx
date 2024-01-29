@@ -1,3 +1,4 @@
+"use client"
 import Link from 'next/link'
 import Logo from "../../images/logo.png"
 import Image from "next/image"
@@ -9,8 +10,19 @@ config.autoAddCss = false
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons"
 import { Dropdown } from 'flowbite-react'
+import { useState } from 'react';
+
 
 export default function Navbar() {
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+    const toggleSidebar = () => {
+        setIsSidebarOpen(!isSidebarOpen);
+    };
+
+    const closeSidebar = () => {
+        setIsSidebarOpen(false);
+    };
     return (
         <div className="flex justify-between text-[#141414] sm:w-[83%] w-[90%] mx-auto">
             <div className="sm:w-[230px] w-[180px] my-auto cursor-pointer mt-[10px]">
@@ -71,7 +83,7 @@ export default function Navbar() {
                     </Link>
                 </div>
             </div>
-            <div className="sm:hidden block mt-[25px]">
+            <div className="sm:hidden block mt-[25px]" onClick={toggleSidebar}>
                 <Image
                     src={Hamburger}
                     alt="hamburger"
@@ -80,6 +92,21 @@ export default function Navbar() {
                     className=""
                 />
             </div>
+            {isSidebarOpen && (
+                <div className={`sm:hidden fixed top-0 left-0 w-[70%] h-full bg-white z-50 transition-transform ease-in-out transform ${isSidebarOpen ? '' : 'translate-x-full'}`}>
+                    {/* Sidebar content */}
+                    <div className="p-4">
+                        <button onClick={closeSidebar} className="font-bold text-base underline cursor-pointer">
+                            Back
+                        </button>
+                        <p className="font-bold text-base">Not Signed In</p>
+                        <Link href="/sign-in" className="underline -mt-1 text-sm cursor-pointer font-medium">
+                            Sign In
+                        </Link>
+                        {/* Add other sidebar links as needed */}
+                    </div>
+                </div>
+            )}
         </div>
     )
 }
