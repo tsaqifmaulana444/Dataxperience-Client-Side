@@ -24,6 +24,7 @@ export default function AdminPage() {
     const [feedback, setFeedback] = useState<Feedback[]>([])
     const [error, setError] = useState('')
     const [openModal, setOpenModal] = useState(false)
+    const [feedbackRes, setFeedbackRes] = useState<Feedback | null>(null)
 
     const fetchFeedbacks = async () => {
         try {
@@ -44,6 +45,26 @@ export default function AdminPage() {
         } catch (error) {
             console.error('Error fetching feedbacks:', error)
             setError('Internal Server Error')
+        }
+    }
+    const handleDelete = async (id?: number) => {
+        try {
+            const response = await fetch(`/api/feedback/${id}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            })
+
+            if (response.ok) {
+                await fetchFeedbacks()
+                console.log("Feedback deleted successfully")
+            } else {
+                const error = await response.json()
+                console.error("Failed to delete feedback:", error.message)
+            }
+        } catch (error) {
+            console.error("Error:", error)
         }
     }
     useEffect(() => {
@@ -141,43 +162,46 @@ export default function AdminPage() {
                                         <p className="font-semibold text-[15px]">{`${data.description.substring(0, 20)}...`}</p>
                                     </div>
                                     <div className="flex mr-4">
-                                        <button className="flex text-green-500 my-auto ml-[1vw] cursor-pointer" onClick={() => setOpenModal(true)}>
-                                            <FontAwesomeIcon icon={faComment} size="xl" />
+                                        <button className="flex text-green-500 my-auto ml-[1vw] cursor-pointer" onClick={() => {setOpenModal(true); setFeedbackRes(data)}}>
                                             <p className="text-[14px] ml-[0.3vw]">Respond</p>
                                         </button>
-                                        <button className="flex text-red-500 my-auto ml-[1vw] cursor-pointer" onClick={() => setOpenModal(true)}>
-                                            <FontAwesomeIcon icon={faComment} size="xl" />
+                                        <button className="flex text-red-500 my-auto ml-[1vw] cursor-pointer" onClick={() => handleDelete(data.id)}>
                                             <p className="text-[14px] ml-[0.3vw]">Delete</p>
                                         </button>
                                     </div>
                                     <Modal show={openModal} onClose={() => setOpenModal(false)}>
-                                        <Modal.Header>Terms of Service</Modal.Header>
+                                        <Modal.Header>Respond</Modal.Header>
                                         <Modal.Body>
                                         <div className="space-y-6">
                                             <p className="text-base leading-relaxed text-black dark:text-gray-400">
                                                 type
                                             </p>
                                             <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                                                {data.type}
+                                                {feedbackRes?.type}
                                             </p>
                                             <p className="text-base leading-relaxed text-black dark:text-gray-400">
                                                 name
                                             </p>
                                             <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                                                {data.name}
+                                                {feedbackRes?.name}
                                             </p>
                                             <p className="text-base leading-relaxed text-black dark:text-gray-400">
                                                 email
                                             </p>
                                             <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                                                {data.email}
+                                                {feedbackRes?.email}
                                             </p>
                                             <p className="text-base leading-relaxed text-black dark:text-gray-400">
                                                 description
                                             </p>
-                                            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                                                {data.description}
-                                            </p>
+                                            <textarea
+                                                autoComplete="off"
+                                                name="news_body"
+                                                id="news_body"
+                                                defaultValue={feedbackRes?.description}
+                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 h-[150px]"
+                                                required
+                                            ></textarea>
                                         </div>
                                         </Modal.Body>
                                         <Modal.Footer>
