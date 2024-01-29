@@ -50,10 +50,6 @@ export default function Navbar() {
                         <Dropdown.Item>
                             <Link href="/#">Privacy Policy</Link>
                         </Dropdown.Item>
-                        <Dropdown.Divider />
-                        <Dropdown.Item>English</Dropdown.Item>
-                        <Dropdown.Item>Bahasa Indonesia</Dropdown.Item>
-                        <Dropdown.Item>中文(简体)</Dropdown.Item>
                     </Dropdown>
                 </div>
             </div>

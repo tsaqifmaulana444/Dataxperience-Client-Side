@@ -126,7 +126,7 @@ export default function SignUpPage() {
               <div className="flex my-3 justify-between">
                 <div className="flex">
                   <input type="checkbox" name="" id="" className="sm:rounded-sm rounded-sm mt-[3px]" />
-                  <p className="sm:text-[14px] text-[11px] ml-3">Agree to <a href="" className="font-bold">Privacy & Policy</a></p>
+                  <p className="sm:text-[14px] text-[11px] ml-3">Agree to <a href="/privacy-policy" className="font-bold">Privacy & Policy</a></p>
                 </div>
               </div>
               <button type="submit" className="w-full bg-[#D12626] p-2.5 rounded-md text-white font-bold sm:text-[16px] text-[13px]">

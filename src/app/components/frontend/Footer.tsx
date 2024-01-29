@@ -81,9 +81,15 @@ export default function Footer() {
             </div>
             <div>
               <h1 className="font-bold text-[18px] mb-[10px]">Privacy & Policy</h1>
-              <p className="text-[12px] opacity-75 mb-1">Terms & Condition</p>
-              <p className="text-[12px] opacity-75 mb-1">How We Get The News</p>
-              <p className="text-[12px] opacity-75 mb-1">FAQ</p>
+              <Link href="/privacy-policy#terms">
+                <p className="text-[12px] opacity-75 mb-1">Terms & Condition</p>
+              </Link>
+              <Link href="/privacy-policy#get-news">
+                <p className="text-[12px] opacity-75 mb-1">How We Get The News</p>
+              </Link>
+              <Link href="/privacy-policy#faq">
+                <p className="text-[12px] opacity-75 mb-1">FAQ</p>
+              </Link>
             </div>
             <div>
               <h1 className="font-bold text-[18px] mb-[10px]">Sponsorship</h1>
