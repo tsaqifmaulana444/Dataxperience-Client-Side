@@ -6,7 +6,7 @@ const prisma = new PrismaClient()
 export async function DELETE(req: Request, { params }: { params: { id: string } }) {
   const id = parseInt(params.id, 10)
 
-  await prisma.authors.delete({
+  await prisma.feedback.delete({
     where: {
       id: id,
     },
@@ -28,14 +28,15 @@ export async function PATCH(request: Request, { params }: { params: { id: string
 
   const  data  = await request.json()
 
-  const authors = await prisma.authors.update({
+  const feedback = await prisma.feedback.update({
     where: {
       id: id,
     },
     data: {
       name: data.name,
       email: data.email,
-      password: data.password,
+      type: data.type,
+      description: data.description,
       updated_at: new Date(),
     },
   })
@@ -44,8 +45,8 @@ export async function PATCH(request: Request, { params }: { params: { id: string
   return NextResponse.json(
     {
       success: true,
-      message: "Data Authors Updated!",
-      data: authors,
+      message: "Data Feedback Updated!",
+      data: feedback,
     },
     {
       status: 200,

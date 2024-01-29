@@ -9,6 +9,7 @@ import '@fortawesome/fontawesome-svg-core/styles.css'
 config.autoAddCss = false
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faComment } from "@fortawesome/free-solid-svg-icons"
+import { Button, Modal } from 'flowbite-react'
 import { useEffect, useState } from 'react'
 
 interface Feedback {
@@ -22,6 +23,7 @@ interface Feedback {
 export default function AdminPage() {
     const [feedback, setFeedback] = useState<Feedback[]>([])
     const [error, setError] = useState('')
+    const [openModal, setOpenModal] = useState(false)
 
     const fetchFeedbacks = async () => {
         try {
@@ -136,14 +138,52 @@ export default function AdminPage() {
                                 <div className="flex justify-between mx-[1vw] mt-[2vh]" key={data.id}>
                                     <div className="ml-[1vw]">
                                         <p className="opacity-70 text-[13px] font-semibold">{data.type}</p>
-                                        <p className="font-semibold text-[15px]">{`${data.description.substring(0, 70)}...`}</p>
+                                        <p className="font-semibold text-[15px]">{`${data.description.substring(0, 20)}...`}</p>
                                     </div>
                                     <div className="flex mr-4">
-                                        <div className="flex text-green-500 my-auto ml-[1vw] cursor-pointer">
+                                        <button className="flex text-green-500 my-auto ml-[1vw] cursor-pointer" onClick={() => setOpenModal(true)}>
                                             <FontAwesomeIcon icon={faComment} size="xl" />
                                             <p className="text-[14px] ml-[0.3vw]">Respond</p>
-                                        </div>
+                                        </button>
+                                        <button className="flex text-red-500 my-auto ml-[1vw] cursor-pointer" onClick={() => setOpenModal(true)}>
+                                            <FontAwesomeIcon icon={faComment} size="xl" />
+                                            <p className="text-[14px] ml-[0.3vw]">Delete</p>
+                                        </button>
                                     </div>
+                                    <Modal show={openModal} onClose={() => setOpenModal(false)}>
+                                        <Modal.Header>Terms of Service</Modal.Header>
+                                        <Modal.Body>
+                                        <div className="space-y-6">
+                                            <p className="text-base leading-relaxed text-black dark:text-gray-400">
+                                                type
+                                            </p>
+                                            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                                                {data.type}
+                                            </p>
+                                            <p className="text-base leading-relaxed text-black dark:text-gray-400">
+                                                name
+                                            </p>
+                                            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                                                {data.name}
+                                            </p>
+                                            <p className="text-base leading-relaxed text-black dark:text-gray-400">
+                                                email
+                                            </p>
+                                            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                                                {data.email}
+                                            </p>
+                                            <p className="text-base leading-relaxed text-black dark:text-gray-400">
+                                                description
+                                            </p>
+                                            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                                                {data.description}
+                                            </p>
+                                        </div>
+                                        </Modal.Body>
+                                        <Modal.Footer>
+                                            <Button onClick={() => setOpenModal(false)}>Reply</Button>
+                                        </Modal.Footer>
+                                    </Modal>
                                 </div>
                             ))}
                         </div>
