@@ -93,9 +93,9 @@ export default function Navbar() {
                 />
             </div>
             {isSidebarOpen && (
-                <div className={`sm:hidden fixed top-0 left-0 w-[70%] h-full bg-white z-50 transition-transform ease-in-out transform ${isSidebarOpen ? '' : 'translate-x-full'}`}>
+                <div className={`sm:hidden fixed top-0 left-0 w-[100%] h-full bg-[#0000007d] z-50 transition-transform ease-in-out transform ${isSidebarOpen ? '' : 'translate-x-full'}`}>
                     {/* Sidebar content */}
-                    <div className="p-4">
+                    <div className="p-4 bg-white w-[70%] h-full">
                         <button onClick={closeSidebar} className="font-bold text-base underline cursor-pointer">
                             Back
                         </button>
