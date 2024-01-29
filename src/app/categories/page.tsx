@@ -111,10 +111,14 @@ export default function CategoriesPage() {
     const category = categories.find((c) => c.id === primaryCategoryId)
 
     const colourMap: Record<number, string> = {
-      1: '#1E7610',
-      2: '#FF5733',
-      3: '#CCCCCC',
-      4: '#0066cc',
+      1: '#1E6D47',
+      2: '#134074',
+      3: '#D12626',
+      4: '#1E7610',
+      5: '#CD8210',
+      6: '#6FAE1E',
+      7: '#34A5AC',
+      8: '#141414'
     }
 
     return category && colourMap[category.id] ? colourMap[category.id] : '#1E7610'
