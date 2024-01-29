@@ -153,7 +153,7 @@ export default function AdminPage() {
                         <div className="flex w-full mx-[2vw] opacity-70 mt-[3vh] text-[16px] font-semibold">
                             <h1>Sponsorship Request</h1>
                         </div>
-                        <div className="mt-[2vh] h-[180px]">
+                        <div className="mt-[2vh] h-[180px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-300">
                             {/* loop */}
                             {feedback.map((data, index) => (
                                 <div className="flex justify-between mx-[1vw] mt-[2vh]" key={data.id}>
@@ -162,55 +162,57 @@ export default function AdminPage() {
                                         <p className="font-semibold text-[15px]">{`${data.description.substring(0, 20)}...`}</p>
                                     </div>
                                     <div className="flex mr-4">
-                                        <button className="flex text-green-500 my-auto ml-[1vw] cursor-pointer" onClick={() => {setOpenModal(true); setFeedbackRes(data)}}>
+                                        <button className="flex text-green-500 my-auto ml-[1vw] cursor-pointer" onClick={() => { setOpenModal(true); setFeedbackRes(data) }}>
                                             <p className="text-[14px] ml-[0.3vw]">Respond</p>
                                         </button>
                                         <button className="flex text-red-500 my-auto ml-[1vw] cursor-pointer" onClick={() => handleDelete(data.id)}>
                                             <p className="text-[14px] ml-[0.3vw]">Delete</p>
                                         </button>
                                     </div>
-                                    <Modal show={openModal} onClose={() => setOpenModal(false)}>
-                                        <Modal.Header>Respond</Modal.Header>
-                                        <Modal.Body>
-                                        <div className="space-y-6">
-                                            <p className="text-base leading-relaxed text-black dark:text-gray-400">
-                                                type
-                                            </p>
-                                            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                                                {feedbackRes?.type}
-                                            </p>
-                                            <p className="text-base leading-relaxed text-black dark:text-gray-400">
-                                                name
-                                            </p>
-                                            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                                                {feedbackRes?.name}
-                                            </p>
-                                            <p className="text-base leading-relaxed text-black dark:text-gray-400">
-                                                email
-                                            </p>
-                                            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                                                {feedbackRes?.email}
-                                            </p>
-                                            <p className="text-base leading-relaxed text-black dark:text-gray-400">
-                                                description
-                                            </p>
-                                            <textarea
-                                                autoComplete="off"
-                                                name="news_body"
-                                                id="news_body"
-                                                defaultValue={feedbackRes?.description}
-                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 h-[150px]"
-                                                required
-                                            ></textarea>
-                                        </div>
-                                        </Modal.Body>
-                                        <Modal.Footer>
-                                            <Button onClick={() => setOpenModal(false)}>Reply</Button>
-                                        </Modal.Footer>
-                                    </Modal>
                                 </div>
                             ))}
                         </div>
+                        <Modal show={openModal} onClose={() => setOpenModal(false)}>
+                            <Modal.Header>Respond</Modal.Header>
+                            <Modal.Body>
+                                <div className="space-y-6">
+                                    <p className="text-base leading-relaxed text-black dark:text-gray-400">
+                                        type
+                                    </p>
+                                    <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                                        {feedbackRes?.type}
+                                    </p>
+                                    <p className="text-base leading-relaxed text-black dark:text-gray-400">
+                                        name
+                                    </p>
+                                    <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                                        {feedbackRes?.name}
+                                    </p>
+                                    <p className="text-base leading-relaxed text-black dark:text-gray-400">
+                                        email
+                                    </p>
+                                    <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                                        {feedbackRes?.email}
+                                    </p>
+                                    <p className="text-base leading-relaxed text-black dark:text-gray-400">
+                                        description
+                                    </p>
+                                    <textarea
+                                        autoComplete="off"
+                                        name="news_body"
+                                        id="news_body"
+                                        defaultValue={feedbackRes?.description}
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 h-[150px]"
+                                        required
+                                    ></textarea>
+                                </div>
+                            </Modal.Body>
+                            <Modal.Footer>
+                                <a href={`mailto:${feedbackRes?.email}`} target="_blank" rel="noopener noreferrer">
+                                    <Button>Reply</Button>
+                                </a>
+                            </Modal.Footer>
+                        </Modal>
                     </div>
                 </div>
             </main>
