@@ -48,8 +48,8 @@ export async function POST(req: Request) {
 export async function GET(req: Request) {
   if (req.method === "GET") {
     try {
-      const authors = await prisma.authors.findMany()
-      return NextResponse.json({ authors })
+      const feedback = await prisma.feedback.findMany()
+      return NextResponse.json({ feedback })
     } catch (error) {
       console.error("Error fetching author:", error)
       return NextResponse.json(

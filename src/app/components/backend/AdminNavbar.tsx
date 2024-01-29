@@ -22,7 +22,6 @@ export default function AdminNavbar() {
                     <div className="ml-[0.3vw]">
                         <div className="flex justify-between mt-1">
                             <p className="font-semibold">李晓天</p>
-                            <FontAwesomeIcon icon={faCaretDown} style={{ color: "#141414" }} className="mr-[1.5vw]" />
                         </div>
                         <p className="text-[14px]">wangxiaotian@dataxperience.sea</p>
                     </div>

@@ -8,9 +8,45 @@ import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 config.autoAddCss = false
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faCheck, faEllipsisVertical, faPlus, faXmark } from "@fortawesome/free-solid-svg-icons"
+import { faComment } from "@fortawesome/free-solid-svg-icons"
+import { useEffect, useState } from 'react'
+
+interface Feedback {
+    id?: number
+    name: string
+    email: string
+    description: string
+    type: string
+}
 
 export default function AdminPage() {
+    const [feedback, setFeedback] = useState<Feedback[]>([])
+    const [error, setError] = useState('')
+
+    const fetchFeedbacks = async () => {
+        try {
+            const response = await fetch('/api/feedback', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+
+            if (response.ok) {
+                const { feedback } = await response.json()
+                setFeedback(feedback)
+            } else {
+                const error = await response.json()
+                setError(error.message)
+            }
+        } catch (error) {
+            console.error('Error fetching feedbacks:', error)
+            setError('Internal Server Error')
+        }
+    }
+    useEffect(() => {
+        fetchFeedbacks()
+    }, [])
     return (
         <div className='flex w-full '>
             <AdminSideBar />
@@ -96,23 +132,20 @@ export default function AdminPage() {
                         </div>
                         <div className="mt-[2vh] h-[180px]">
                             {/* loop */}
-                            <div className="flex justify-between mx-[1vw] mt-[2vh]">
-                                <div className="ml-[1vw]">
-                                    <p className="opacity-70 text-[13px] font-semibold">Freecodecamp</p>
-                                    <p className="font-semibold text-[15px]">3 Months Contract Offer</p>
-                                </div>
-                                <div className="flex mr-4">
-                                    <div className="flex text-red-600 my-auto cursor-pointer">
-                                        <FontAwesomeIcon icon={faXmark} size="xl" />
-                                        <p className="text-[14px] ml-[0.3vw]">Decline</p>
+                            {feedback.map((data, index) => (
+                                <div className="flex justify-between mx-[1vw] mt-[2vh]" key={data.id}>
+                                    <div className="ml-[1vw]">
+                                        <p className="opacity-70 text-[13px] font-semibold">{data.type}</p>
+                                        <p className="font-semibold text-[15px]">{`${data.description.substring(0, 70)}...`}</p>
                                     </div>
-                                    <div className="flex text-green-500 my-auto ml-[1vw] cursor-pointer">
-                                        <FontAwesomeIcon icon={faCheck} size="xl" />
-                                        <p className="text-[14px] ml-[0.3vw]">Accept</p>
+                                    <div className="flex mr-4">
+                                        <div className="flex text-green-500 my-auto ml-[1vw] cursor-pointer">
+                                            <FontAwesomeIcon icon={faComment} size="xl" />
+                                            <p className="text-[14px] ml-[0.3vw]">Respond</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            
+                            ))}
                         </div>
                     </div>
                 </div>
