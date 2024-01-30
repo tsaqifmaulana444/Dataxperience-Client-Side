@@ -8,9 +8,9 @@ import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 config.autoAddCss = false
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faCaretDown } from "@fortawesome/free-solid-svg-icons"
+import { faX } from "@fortawesome/free-solid-svg-icons"
 import { Dropdown } from 'flowbite-react'
-import { useState } from 'react';
+import { useState } from 'react'
 
 
 export default function Navbar() {
@@ -93,17 +93,62 @@ export default function Navbar() {
                 />
             </div>
             {isSidebarOpen && (
-                <div className={`sm:hidden fixed top-0 left-0 w-[100%] h-full bg-[#0000007d] z-50 transition-transform ease-in-out transform ${isSidebarOpen ? '' : 'translate-x-full'}`}>
+                <div className={`sm:hidden flex fixed top-0 left-0 w-[100%] h-full bg-[#0000007d] z-50 transition-transform ease-in-out transform ${isSidebarOpen ? '' : 'translate-x-full'}`}>
                     {/* Sidebar content */}
-                    <div className="p-4 bg-white w-[70%] h-full">
-                        <button onClick={closeSidebar} className="font-bold text-base underline cursor-pointer">
-                            Back
-                        </button>
-                        <p className="font-bold text-base">Not Signed In</p>
-                        <Link href="/sign-in" className="underline -mt-1 text-sm cursor-pointer font-medium">
+                    <div className="p-4 bg-white w-[75%] h-full">
+                        <div className="flex">
+                            <Link href="/">
+                                <Image
+                                    src={Logo}
+                                    alt="Logo"
+                                    className="w-[78%]"
+                                    priority
+                                />
+                            </Link>
+                            <button onClick={closeSidebar} className="cursor-pointer mt-2">
+                                <FontAwesomeIcon icon={faX} />
+                            </button>
+                        </div>
+                        <Link href="/">
+                            <p className="text-[13px] mb-2 mt-2">Home</p>
+                        </Link>
+                        <Link href="/categories#data_analytics">
+                            <p className="text-[13px] mb-2">Data Analytics</p>
+                        </Link>
+                        <Link href="/categories#data_science">
+                            <p className="text-[13px] mb-2">Data Science</p>
+                        </Link>
+                        <Link href="/categories#data_engineering">
+                            <p className="text-[13px] mb-2">Data Engineering</p>
+                        </Link>
+                        <Link href="/categories#data_ai">
+                            <p className="text-[13px] mb-2">Artificial Intelligence</p>
+                        </Link>
+                        <Link href="/categories#machine_learning">
+                            <p className="text-[13px] mb-2">Machine Learning</p>
+                        </Link>
+                        <Link href="/categories#inspirational">
+                            <p className="text-[13px] mb-2">Inspirational</p>
+                        </Link>
+                        <Link href="/categories#true_story">
+                            <p className="text-[13px] mb-2">True Story</p>
+                        </Link>
+                        <Link href="/categories#cloud_computing">
+                            <p className="text-[13px] mb-2">Cloud Computing</p>
+                        </Link>
+                        <Link href="/privacy-policy">
+                            <p className="text-[13px] mb-2">Privacy Policy</p>
+                        </Link>
+                        <Link href="/contact-us">
+                            <p className="text-[13px] mb-2">Contact Us</p>
+                        </Link>
+                        <Link href="/sign-in" className="underline cursor-pointer font-bold text-[13px]">
                             Sign In
                         </Link>
                         {/* Add other sidebar links as needed */}
+                    </div>
+                    <div className="bg-transparent w-[25%] h-full" onClick={closeSidebar}>
+                        &nbsp;
                     </div>
                 </div>
             )}
