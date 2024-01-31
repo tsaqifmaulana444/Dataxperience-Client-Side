@@ -10,6 +10,8 @@ config.autoAddCss = false
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { Button, Modal } from 'flowbite-react'
+import { HiOutlineExclamationCircle } from 'react-icons/hi'
+
 
 interface News {
     id?: number
@@ -37,6 +39,7 @@ export default function NewsPage() {
     const [openModalUpdate, setOpenModalUpdate] = useState(false)
     const [editingNews, setEditingNews] = useState<News | null>(null)
     const [categories, setCategories] = useState<Category[]>([])
+    const [openModalDelete, setOpenModalDelete] = useState(false)
 
     // create
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -259,11 +262,32 @@ export default function NewsPage() {
                                     <td className="px-6 py-4">{`${data.news_image.substring(0, 15)}...`}</td>
                                     <td className="px-6 py-4">
                                         <button
-                                            onClick={() => handleDelete(data.id)}
+                                            onClick={() => setOpenModalDelete(true)}
+                                            // onClick={() => handleDelete(category.id)}
                                             className="text-red-500 font-bold"
                                         >
                                             Delete
                                         </button>
+                                        <Modal show={openModalDelete} size="md" onClose={() => setOpenModalDelete(false)} popup>
+                                            <Modal.Header />
+                                            <Modal.Body>
+                                                <div className="text-center">
+                                                    <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
+                                                    <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
+                                                        Are you sure you want to delete this data?
+                                                    </h3>
+                                                    <div className="flex justify-center gap-4">
+                                                        <Button color="failure" onClick={() => { setOpenModalDelete(false); handleDelete(data.id) }}>
+                                                            {"Yes, I'm sure"}
+                                                        </Button>
+
+                                                        <Button color="gray" onClick={() => setOpenModalDelete(false)}>
+                                                            No, cancel
+                                                        </Button>
+                                                    </div>
+                                                </div>
+                                            </Modal.Body>
+                                        </Modal>
                                         <button
                                             onClick={() => {
                                                 setEditingNews(data)
