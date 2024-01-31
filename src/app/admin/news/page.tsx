@@ -11,7 +11,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { Button, Modal } from 'flowbite-react'
 import { HiOutlineExclamationCircle } from 'react-icons/hi'
-
+import toast, { Toaster } from 'react-hot-toast'
 
 interface News {
     id?: number
@@ -67,6 +67,7 @@ export default function NewsPage() {
                 await fetchNews()
                 setNewNews('')
                 setOpenModalCreate(false)
+                toast.success('Data Successfully Created!')
                 const result = await response.json()
                 console.log(result)
             } else {
@@ -126,7 +127,7 @@ export default function NewsPage() {
             if (response.ok) {
                 await fetchNews()
                 setOpenModalUpdate(false)
-                console.log("News updated successfully")
+                toast.success('Data Successfully Updated!')
             } else {
                 const error = await response.json()
                 console.error("Failed to update news:", error.message)
@@ -149,7 +150,7 @@ export default function NewsPage() {
 
             if (response.ok) {
                 await fetchNews()
-                console.log("News deleted successfully")
+                toast.success('Data Successfully Deleted!')
             } else {
                 const error = await response.json()
                 console.error("Failed to delete news:", error.message)
@@ -188,6 +189,10 @@ export default function NewsPage() {
 
     return (
         <div className='flex w-full '>
+            <Toaster
+                position="top-right"
+                reverseOrder={false}
+            />
             <AdminSideBar />
             <main className="ml-[19vw] w-full h-full">
                 <AdminNavbar />

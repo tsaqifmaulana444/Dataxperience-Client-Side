@@ -3,10 +3,10 @@
 import AdminSideBar from '@/app/components/backend/AdminSideBar'
 import '../../../../public/styles/style.css'
 import AdminNavbar from '@/app/components/backend/AdminNavbar'
-import router from "next/navigation"
 import { useEffect, useState } from 'react'
 import { Button, Modal } from 'flowbite-react'
 import { HiOutlineExclamationCircle } from 'react-icons/hi'
+import toast, { Toaster } from 'react-hot-toast'
 
 interface Category {
     id?: number
@@ -40,6 +40,7 @@ export default function Categories() {
             if (response.ok) {
                 await fetchCategories()
                 setNewCategory('')
+                toast.success('Data Successfully Created!')
                 const result = await response.json()
                 console.log(result)
             } else {
@@ -87,6 +88,8 @@ export default function Categories() {
 
             if (response.ok) {
                 await fetchCategories()
+                setOpenModalDelete(false)
+                toast.success('Data Successfully Deleted!')
                 console.log("Category deleted successfully")
             } else {
                 const error = await response.json()
@@ -103,6 +106,10 @@ export default function Categories() {
 
     return (
         <div className='flex w-full '>
+            <Toaster
+                position="top-right"
+                reverseOrder={false}
+            />
             <AdminSideBar />
             <main className="ml-[19vw] w-full h-full">
                 <AdminNavbar />
