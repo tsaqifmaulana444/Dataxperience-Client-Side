@@ -65,24 +65,25 @@ export default function Navbar() {
                     </Dropdown>
                 </div>
             </div>
-
-            <div className="sm:flex hidden ml-[55px] mt-5">
-                <div className="w-fit my-auto">
-                    <Image
-                        src={Profile}
-                        alt="User"
-                        width={35}
-                        height={35}
-                        className="rounded-full my-auto"
-                    />
+            <Link href="/profile">
+                <div className="sm:flex hidden ml-[55px] mt-5">
+                    <div className="w-fit my-auto">
+                        <Image
+                            src={Profile}
+                            alt="User"
+                            width={35}
+                            height={35}
+                            className="rounded-full my-auto"
+                        />
+                    </div>
+                    <div className="my-auto w-fit ml-[20px]">
+                        <p className="font-bold text-base">Not Signed In</p>
+                        <Link href="/sign-in" className="underline -mt-1 text-sm cursor-pointer font-medium">
+                            Sign In
+                        </Link>
+                    </div>
                 </div>
-                <div className="my-auto w-fit ml-[20px]">
-                    <p className="font-bold text-base">Not Signed In</p>
-                    <Link href="/sign-in" className="underline -mt-1 text-sm cursor-pointer font-medium">
-                        Sign In
-                    </Link>
-                </div>
-            </div>
+            </Link>
             <div className="sm:hidden block mt-[25px]" onClick={toggleSidebar}>
                 <Image
                     src={Hamburger}
