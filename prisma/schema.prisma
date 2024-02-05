@@ -15,6 +15,7 @@ model Authors {
   name       String
   email      String?   @unique
   password   String
+  profile    String?
   role       Int       @default(1)
   created_at DateTime  @default(now()) @db.Timestamptz(3)
   updated_at DateTime  @default(now()) @db.Timestamptz(3)
@@ -28,6 +29,7 @@ model Users {
   name       String
   email      String?   @unique
   password   String
+  profile    String?
   country    String
   role       Int       @default(2)
   created_at DateTime  @default(now()) @db.Timestamptz(3)

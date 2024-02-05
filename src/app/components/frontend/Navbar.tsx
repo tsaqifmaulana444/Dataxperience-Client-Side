@@ -60,12 +60,11 @@ export default function Navbar() {
                             <Link href="/contact-us">Contact Us</Link>
                         </Dropdown.Item>
                         <Dropdown.Item>
-                            <Link href="/#">Privacy Policy</Link>
+                            <Link href="/privacy-policy">Privacy Policy</Link>
                         </Dropdown.Item>
                     </Dropdown>
                 </div>
             </div>
-            <Link href="/profile">
                 <div className="sm:flex hidden ml-[55px] mt-5">
                     <div className="w-fit my-auto">
                         <Image
@@ -77,13 +76,14 @@ export default function Navbar() {
                         />
                     </div>
                     <div className="my-auto w-fit ml-[20px]">
-                        <p className="font-bold text-base">Not Signed In</p>
+                        <Link href="/profile">
+                            <p className="font-bold text-base">Not Signed In</p>
+                        </Link>
                         <Link href="/sign-in" className="underline -mt-1 text-sm cursor-pointer font-medium">
                             Sign In
                         </Link>
                     </div>
                 </div>
-            </Link>
             <div className="sm:hidden block mt-[25px]" onClick={toggleSidebar}>
                 <Image
                     src={Hamburger}
