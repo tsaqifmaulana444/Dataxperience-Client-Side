@@ -10,17 +10,12 @@ export async function PATCH(request: Request, { params }: { params: { id: string
 
   const  data  = await request.json()
   
-  const hashedPassword = await bcrypt.hash(data.password, saltRounds)
-
   const users = await prisma.users.update({
     where: {
       id: id,
     },
     data: {
-      name: data.name,
-      email: data.email,
-      country: data.country,
-      password: hashedPassword,
+      profile: data.profile,
       updated_at: new Date(),
     },
   })
