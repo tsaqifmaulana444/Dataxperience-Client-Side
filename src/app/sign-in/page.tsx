@@ -109,36 +109,15 @@ export default function LoginPage() {
                   onChange={handlePasswordChange}
                 />
               </div>
-              <div className="flex sm:my-4 my-3 justify-end">
-                <p className="font-bold sm:text-[15px] text-[12px] text-[#D12626]">
-                  Forgot Your Password?
-                </p>
-              </div>
               {error && <p className="text-red-500">{error}</p>}
               <button
                 type="submit"
-                className="w-full bg-[#D12626] px-2.5 sm:py-2.5 py-2 rounded-md text-white font-bold sm:text-[16px] text-[13px]"
+                className="w-full bg-[#D12626] px-2.5 sm:py-2.5 py-2 rounded-md text-white font-bold sm:text-[16px] text-[13px] mt-5"
               >
                 Sign In
               </button>
             </form>
-            <div className="flex justify-between my-5">
-              <div className="w-[35%] bg-[#141414] h-[1px] rounded-md opacity-40 my-auto"></div>
-              <p className="mx-[10px] sm:text-[14px] text-[10px] opacity-60 text-center">
-                Or, Sign In With
-              </p>
-              <div className="w-[35%] bg-[#141414] h-[1px] rounded-md opacity-40 my-auto"></div>
-            </div>
             <div>
-              <button
-                type="submit"
-                className="w-full bg-[#ffffff] sm:py-2.5 py-1.5 rounded-md text-[16px] border border-[#A1A1A1]"
-              >
-                <div className="flex mx-auto my-auto w-fit">
-                  <Image src={Google} alt="Login" className="w-[25px]" />
-                  <p className="ml-3 my-auto sm:text-[16px] text-[13px]">Sign In With Google</p>
-                </div>
-              </button>
               <p className="w-fit mx-auto mt-3 sm:text-[14px] text-[12px]">
                 Don&apos;t Have an Account?{" "}
                 <a href="/sign-up" className="text-[#D12626]">
