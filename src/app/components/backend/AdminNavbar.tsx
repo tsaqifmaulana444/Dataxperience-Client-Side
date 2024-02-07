@@ -17,19 +17,30 @@ export default function AdminNavbar() {
                 <Link href="/admin/profile">
                     <div className="flex ml-[34vw]">
                         <div className="w-[4vw]">
-                            <Image
-                                src={data ? data.author.profile : Profile}
-                                width={30}
-                                height={30}
-                                alt="User"
-                                className="rounded-full p-1 w-fit"
-                            />
+                            {/* Conditional rendering for the image */}
+                            {data && data.author.profile && data.author.profile.startsWith('/') ? (
+                                <Image
+                                    src={data.author.profile}
+                                    width={35}
+                                    height={35}
+                                    alt="User"
+                                    className="rounded-full p-1 w-fit"
+                                />
+                            ) : (
+                                <Image
+                                    src={Profile}
+                                    width={35}
+                                    height={35}
+                                    alt="Default Profile"
+                                    className="rounded-full p-1 w-fit"
+                                />
+                            )}
                         </div>
                         <div className="ml-[0.3vw]">
                             <div className="flex justify-between mt-1">
-                                <p className="font-semibold">{data ? data.author.name : 'data'}</p> {/* Access nested name property */}
+                                <p className="font-semibold">{data ? data.author.name : 'data'}</p>
                             </div>
-                            <p className="text-[14px]">{data ? data.author.email : ''}</p> {/* Access nested email property */}
+                            <p className="text-[14px]">{data ? data.author.email : ''}</p>
                         </div>
                     </div>
                 </Link>
@@ -37,3 +48,4 @@ export default function AdminNavbar() {
         </div>
     )
 }
+
