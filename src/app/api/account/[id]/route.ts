@@ -1,5 +1,7 @@
 import { PrismaClient } from "@prisma/client"
 import { NextResponse } from "next/server"
+import bcrypt from 'bcryptjs'
+const saltRounds = 10
 
 const prisma = new PrismaClient()
 
@@ -27,6 +29,7 @@ export async function PATCH(request: Request, { params }: { params: { id: string
   const id = parseInt(params.id)
 
   const  data  = await request.json()
+  const hashedPassword = await bcrypt.hash(data.password, saltRounds)
 
   const authors = await prisma.authors.update({
     where: {
@@ -35,7 +38,7 @@ export async function PATCH(request: Request, { params }: { params: { id: string
     data: {
       name: data.name,
       email: data.email,
-      password: data.password,
+      password: hashedPassword,
       updated_at: new Date(),
     },
   })
