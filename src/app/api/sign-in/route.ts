@@ -25,14 +25,14 @@ export async function POST(req: Request) {
         return NextResponse.json({ message: 'Invalid email or password' })
       }
 
-      return NextResponse.json({ message: 'Login successful', role: author.role })
+      return NextResponse.json({ message: 'Login successful', role: author.role, author })
     }
 
     if (!bcrypt.compareSync(data.password, user.password)) {
       return NextResponse.json({ message: 'Invalid email or password' })
     }
 
-    return NextResponse.json({ message: 'Login successful', role: user.role })
+    return NextResponse.json({ message: 'Login successful', role: user.role, user })
   } catch (error) {
     console.error('Login error:', error)
     return NextResponse.json({ message: 'Internal Server Error' })

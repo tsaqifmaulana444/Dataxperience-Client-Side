@@ -44,16 +44,17 @@ export default function LoginPage() {
         const data = await response.json()
   
         if (data.role !== undefined) {
+          // Store user data in session storage
+          sessionStorage.setItem('userData', JSON.stringify(data))
+  
           if (isAdmin(data.role)) {
             router.push('/admin')
           } else if (isRegularUser(data.role)) {
             router.push('/')
           } else {
-            // Handle other roles or scenarios as needed
             console.error('Unknown role:', data.role)
           }
         } else {
-          // Handle the case where the role property is undefined
           console.error('Role is undefined in the response:', data)
         }
       } else {
