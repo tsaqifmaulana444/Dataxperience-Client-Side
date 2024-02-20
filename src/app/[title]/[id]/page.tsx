@@ -126,7 +126,7 @@ export default function DetailPage({ params }: { params: { id: string } }) {
 			<Navbar />
 			<section className="w-[82%] mx-auto">
 				<div className="flex justify-between sm:mt-[60px] mt-[40px]">
-					<div className="sm:w-[60%] w-[100%]">
+					<div className="sm:w-[70%] w-[100%]">
 						<div>
 							<h1 className="font-bold sm:text-[26px] text-[20px]">{newsDetail.title}</h1>
 							<div className="flex">

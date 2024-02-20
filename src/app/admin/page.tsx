@@ -151,7 +151,7 @@ export default function AdminPage() {
                     </div>
                     <div className="bg-white w-[37vw] h-[40vh] rounded-md mt-[2.2vh] ml-[0.6vw]">
                         <div className="flex w-full mx-[2vw] opacity-70 mt-[3vh] text-[16px] font-semibold">
-                            <h1>Sponsorship Request</h1>
+                            <h1>Feedback</h1>
                         </div>
                         <div className="mt-[2vh] h-[180px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-300">
                             {/* loop */}
