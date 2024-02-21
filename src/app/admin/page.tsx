@@ -86,10 +86,10 @@ export default function AdminPage() {
                         <div className="mx-[1.5vw]">
                             <p className="text-[12px] opacity-70 font-semibold mt-[3.5vh]">Today Visitors</p>
                             <div className="flex mt-[2.5vh]">
-                                <p className="text-[26px] font-bold">550</p>
+                                <p className="text-[26px] font-bold">-</p>
                                 <div className="flex ml-[0.7vw]">
-                                    <p className="w-fit font-semibold text-green-500 my-auto text-[12px]">
-                                        & 10%
+                                    <p className="w-fit font-semibold text-red-500 my-auto text-[12px]">
+                                        0%
                                     </p>
                                 </div>
                             </div>
@@ -97,7 +97,7 @@ export default function AdminPage() {
                     </div>
                     <div className="bg-white w-[18vw] h-[18vh] rounded-md ml-[1vw]">
                         <div className="mx-[1.5vw]">
-                            <p className="text-[12px] opacity-70 font-semibold mt-[3.5vh]">Today Visitors</p>
+                            <p className="text-[12px] opacity-70 font-semibold mt-[3.5vh]">Total Users(Signed In)</p>
                             <div className="flex mt-[2.5vh]">
                                 <p className="text-[26px] font-bold">550</p>
                                 <div className="flex ml-[0.7vw]">
@@ -110,12 +110,12 @@ export default function AdminPage() {
                     </div>
                     <div className="bg-white w-[18vw] h-[18vh] rounded-md ml-[1vw]">
                         <div className="mx-[1.5vw]">
-                            <p className="text-[12px] opacity-70 font-semibold mt-[3.5vh]">Today Visitors</p>
+                            <p className="text-[12px] opacity-70 font-semibold mt-[3.5vh]">Ads Revenue</p>
                             <div className="flex mt-[2.5vh]">
-                                <p className="text-[26px] font-bold">550</p>
+                                <p className="text-[26px] font-bold">-</p>
                                 <div className="flex ml-[0.7vw]">
-                                    <p className="w-fit font-semibold text-green-500 my-auto text-[12px]">
-                                        & 10%
+                                    <p className="w-fit font-semibold text-red-500 my-auto text-[12px]">
+                                        0%
                                     </p>
                                 </div>
                             </div>
@@ -123,12 +123,12 @@ export default function AdminPage() {
                     </div>
                     <div className="bg-white w-[18vw] h-[18vh] rounded-md ml-[1vw]">
                         <div className="mx-[1.5vw]">
-                            <p className="text-[12px] opacity-70 font-semibold mt-[3.5vh]">Today Visitors</p>
+                            <p className="text-[12px] opacity-70 font-semibold mt-[3.5vh]">Total Author</p>
                             <div className="flex mt-[2.5vh]">
-                                <p className="text-[26px] font-bold">550</p>
+                                <p className="text-[26px] font-bold">2</p>
                                 <div className="flex ml-[0.7vw]">
                                     <p className="w-fit font-semibold text-green-500 my-auto text-[12px]">
-                                        & 10%
+                                        & 100%
                                     </p>
                                 </div>
                             </div>
