@@ -9,6 +9,7 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import { useEffect, useState } from "react"
 import { CSSProperties } from 'react'
+import Link from "next/link"
 
 interface CustomCSSProperties {
   '--swiper-navigation-color'?: string
@@ -143,7 +144,7 @@ export default function CategoriesPage() {
       <Navbar />
       <section className="w-[82%] mx-auto mt-[50px] mb-[100px]">
         <div className="mt-[30px]" id="data_analytics">
-          <h1 className="font-bold text-[21px] mb-[20px]">Data Analyst</h1>
+          <h1 className="font-bold text-[21px] mb-[20px]">Data Analytics</h1>
           <div className="hidden sm:block">
             <Swiper
               spaceBetween={15}
@@ -174,7 +175,9 @@ export default function CategoriesPage() {
                     </div>
                     <div className="-mt-[20px] mx-[8px] p-1 mb-3">
                       <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
-                      <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                      <Link href={`/${encodeURIComponent(data.title)}/${data.id}`}>
+                        <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                      </Link>
                       <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
                     </div>
                   </div>
@@ -212,7 +215,9 @@ export default function CategoriesPage() {
                     </div>
                     <div className="-mt-[20px] mx-[8px] p-1 mb-3">
                       <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
-                      <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                      <Link href={`/${encodeURIComponent(data.title)}/${data.id}`}>
+                        <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                      </Link>
                       <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
                     </div>
                   </div>
@@ -253,7 +258,9 @@ export default function CategoriesPage() {
                     </div>
                     <div className="-mt-[20px] mx-[8px] p-1 mb-3">
                       <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
-                      <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                      <Link href={`/${encodeURIComponent(data.title)}/${data.id}`}>
+                        <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                      </Link>
                       <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
                     </div>
                   </div>
@@ -291,7 +298,9 @@ export default function CategoriesPage() {
                     </div>
                     <div className="-mt-[20px] mx-[8px] p-1 mb-3">
                       <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
-                      <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                      <Link href={`/${encodeURIComponent(data.title)}/${data.id}`}>
+                        <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                      </Link>
                       <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
                     </div>
                   </div>
@@ -332,7 +341,9 @@ export default function CategoriesPage() {
                     </div>
                     <div className="-mt-[20px] mx-[8px] p-1 mb-3">
                       <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
-                      <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                      <Link href={`/${encodeURIComponent(data.title)}/${data.id}`}>
+                        <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                      </Link>
                       <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
                     </div>
                   </div>
@@ -370,7 +381,9 @@ export default function CategoriesPage() {
                     </div>
                     <div className="-mt-[20px] mx-[8px] p-1 mb-3">
                       <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
-                      <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                      <Link href={`/${encodeURIComponent(data.title)}/${data.id}`}>
+                        <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                      </Link>
                       <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
                     </div>
                   </div>
@@ -411,7 +424,9 @@ export default function CategoriesPage() {
                     </div>
                     <div className="-mt-[20px] mx-[8px] p-1 mb-3">
                       <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
-                      <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                      <Link href={`/${encodeURIComponent(data.title)}/${data.id}`}>
+                        <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                      </Link>
                       <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
                     </div>
                   </div>
@@ -449,7 +464,9 @@ export default function CategoriesPage() {
                     </div>
                     <div className="-mt-[20px] mx-[8px] p-1 mb-3">
                       <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
-                      <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                      <Link href={`/${encodeURIComponent(data.title)}/${data.id}`}>
+                        <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                      </Link>
                       <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
                     </div>
                   </div>
@@ -490,7 +507,9 @@ export default function CategoriesPage() {
                     </div>
                     <div className="-mt-[20px] mx-[8px] p-1 mb-3">
                       <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
-                      <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                      <Link href={`/${encodeURIComponent(data.title)}/${data.id}`}>
+                        <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                      </Link>
                       <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
                     </div>
                   </div>
@@ -528,7 +547,9 @@ export default function CategoriesPage() {
                     </div>
                     <div className="-mt-[20px] mx-[8px] p-1 mb-3">
                       <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
-                      <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                      <Link href={`/${encodeURIComponent(data.title)}/${data.id}`}>
+                        <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                      </Link>
                       <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
                     </div>
                   </div>
@@ -569,7 +590,9 @@ export default function CategoriesPage() {
                     </div>
                     <div className="-mt-[20px] mx-[8px] p-1 mb-3">
                       <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
-                      <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                      <Link href={`/${encodeURIComponent(data.title)}/${data.id}`}>
+                        <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                      </Link>
                       <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
                     </div>
                   </div>
@@ -607,7 +630,9 @@ export default function CategoriesPage() {
                     </div>
                     <div className="-mt-[20px] mx-[8px] p-1 mb-3">
                       <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
-                      <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                      <Link href={`/${encodeURIComponent(data.title)}/${data.id}`}>
+                        <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                      </Link>
                       <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
                     </div>
                   </div>
@@ -648,7 +673,9 @@ export default function CategoriesPage() {
                     </div>
                     <div className="-mt-[20px] mx-[8px] p-1 mb-3">
                       <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
-                      <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                      <Link href={`/${encodeURIComponent(data.title)}/${data.id}`}>
+                        <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                      </Link>
                       <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
                     </div>
                   </div>
@@ -686,7 +713,9 @@ export default function CategoriesPage() {
                     </div>
                     <div className="-mt-[20px] mx-[8px] p-1 mb-3">
                       <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
-                      <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                      <Link href={`/${encodeURIComponent(data.title)}/${data.id}`}>
+                        <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                      </Link>
                       <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
                     </div>
                   </div>
@@ -727,7 +756,9 @@ export default function CategoriesPage() {
                     </div>
                     <div className="-mt-[20px] mx-[8px] p-1 mb-3">
                       <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
-                      <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                      <Link href={`/${encodeURIComponent(data.title)}/${data.id}`}>
+                        <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                      </Link>
                       <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
                     </div>
                   </div>
@@ -765,7 +796,9 @@ export default function CategoriesPage() {
                     </div>
                     <div className="-mt-[20px] mx-[8px] p-1 mb-3">
                       <div className="w-fit text-white px-3 py-2 text-xs font-bold" style={{ backgroundColor: getCategoryColour(data.category_ids) }}>{getCategoryName(data.category_ids)}</div>
-                      <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                      <Link href={`/${encodeURIComponent(data.title)}/${data.id}`}>
+                        <h1 className="mt-[18px] text-[15px] font-bold leading-6">{data.title}</h1>
+                      </Link>
                       <p className="text-[15px] opacity-70 mt-[7px]">{formatDate(data.created_at)}</p>
                     </div>
                   </div>

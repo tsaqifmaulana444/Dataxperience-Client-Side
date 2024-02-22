@@ -155,7 +155,7 @@ export default function HomePage() {
         </div>
         <div className="w-[83%] mx-auto justify-between sm:flex block mt-[25px]">
           <div className="sm:w-[72%] w-[100%]">
-            <iframe src="https://www.youtube.com/embed/D2vj0WcvH5c?si=s4ErRK_Jv9hcUd6n" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" className="sm:w-[100%] sm:h-[400px] sm:mx-0 mx-auto w-full h-[200px]"></iframe>
+          <iframe src="https://www.youtube.com/embed/1n9rmdvI-_E?si=GJp7PxgBP9Y6D0uO" title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" className="sm:w-[100%] sm:h-[400px] sm:mx-0 mx-auto w-full h-[200px]"></iframe> 
           </div>
           <div className="sm:w-[26%] w-[100%] mt-7 sm:mt-0">
             {machine_learning.map((data, index) => (
